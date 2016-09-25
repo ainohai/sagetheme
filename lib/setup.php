@@ -95,6 +95,9 @@ function display_sidebar() {
  * Theme assets
  */
 function assets() {
+  wp_enqueue_style('material-design-lite-icons/css' 'https://fonts.googleapis.com/icon?family=Material+Icons', false, null);
+  wp_enqueue_style('material-design-lite/css', 'https://code.getmdl.io/1.2.1/material.cyan-orange.min.css', false, null);
+  wp_enqueue_script('material-design-lite/js', 'https://code.getmdl.io/1.2.1/material.min.js', null, null, true);
   wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), false, null);
 
   if (is_single() && comments_open() && get_option('thread_comments')) {

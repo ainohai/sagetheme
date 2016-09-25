@@ -1,6 +1,6 @@
-<header class="banner">
-  <div class="container">
-    <a class="brand" href="<?= esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
+<header class=" header mdl-layout__header mdl-layout__header--transparent">
+  <div class="mdl-layout__header-row">
+    <a class="mdl-layout-title" href="<?= esc_url(home_url('/')); ?>"><?php bloginfo('name'); ?></a>
     <nav class="nav-primary">
       <?php
       if (has_nav_menu('primary_navigation')) :
