@@ -19,6 +19,10 @@ var runSequence  = require('run-sequence');
 var sass         = require('gulp-sass');
 var sourcemaps   = require('gulp-sourcemaps');
 var uglify       = require('gulp-uglify');
+//react
+var webpack = require('webpack');
+var webpackConfig = require('./webpack.config.js');
+var webpackStream = require('webpack-stream');
 
 // See https://github.com/austinpray/asset-builder
 var manifest = require('asset-builder')('./assets/manifest.json');
@@ -32,7 +36,7 @@ var path = manifest.paths;
 var config = manifest.config || {};
 
 // `globs` - These ultimately end up in their respective `gulp.src`.
-// - `globs.js` - Array of asset-builder JS dependency objects. Example:
+// - `globs.jsbabe` - Array of asset-builder JS dependency objects. Example:
 //   ```
 //   {type: 'js', name: 'main.js', globs: []}
 //   ```
@@ -253,6 +257,7 @@ gulp.task('watch', function() {
   });
   gulp.watch([path.source + 'styles/**/*'], ['styles']);
   gulp.watch([path.source + 'scripts/**/*'], ['jshint', 'scripts']);
+  gulp.watch([path.source + 'react/**/*'], ['reactAdmin']);
   gulp.watch([path.source + 'fonts/**/*'], ['fonts']);
   gulp.watch([path.source + 'images/**/*'], ['images']);
   gulp.watch(['bower.json', 'assets/manifest.json'], ['build']);
@@ -279,6 +284,19 @@ gulp.task('wiredep', function() {
       hasChanged: changed.compareSha1Digest
     }))
     .pipe(gulp.dest(path.source + 'styles'));
+});
+
+gulp.task("reactAdmin", function(callback) {
+  webpack(webpackConfig).run(function(err, stats) {
+    if(err) {
+      console.log('Error', err);
+    }
+    else {
+      console.log(stats.toString());
+    }
+    //done();
+  });
+    
 });
 
 // ### Gulp

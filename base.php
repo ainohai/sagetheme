@@ -26,16 +26,17 @@ use Roots\Sage\Wrapper;
     ?>
 	</header>
 	<div class="headerImg"></div>
-	<div class="page-container">
-	<nav class="nav-primary mdl-layout__header-row mdl-layout--large-screen-only">
+	<div class="page-container" id="posti">
+	<nav class="nav-primary mdl-navigation mdl-typography--body-1-force-preferred-font">
       <?php
       if (has_nav_menu('primary_navigation')) :
         wp_nav_menu(['theme_location' => 'primary_navigation', 'menu_class' => 'nav']);
       endif;
       ?>
     </nav>
-    <main class="main mdl-layout__content">
-          <?php include Wrapper\template_path(); ?>
+    <main class="main mdl-layout__content" >
+        <div class="temp" ></div>
+          <?php include Wrapper\template_path();?>
     </main><!-- /.main -->
         <?php if (Setup\display_sidebar()) : ?>
           <aside class="sidebar">

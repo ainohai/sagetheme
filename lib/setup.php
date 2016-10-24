@@ -107,11 +107,13 @@ function assets() {
   }
 
   if (is_user_logged_in() ) {
-      wp_enqueue_script('react/js', 'https://unpkg.com/react@15.3.2/dist/react.js', null, null, true);
-      wp_enqueue_script('react-dom/js', 'https://unpkg.com/react-dom@15.3.2/dist/react-dom.js', null, null, true);
+      //wp_enqueue_script('react/js', 'https://unpkg.com/react@15.3.2/dist/react.js', null, null, true);
+      //wp_enqueue_script('react-dom/js', 'https://unpkg.com/react-dom@15.3.2/dist/react-dom.js', null, null, true);
       wp_enqueue_script('tinymce/js', '//cdn.tinymce.com/4/tinymce.min.js', null, null, true);
+	  wp_enqueue_script('reactAdmin/js', Assets\asset_path('scripts/reactAdmin.js'), array(), 0.1, true);
   }
 
   wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
+
