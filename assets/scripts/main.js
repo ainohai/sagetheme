@@ -19,15 +19,6 @@
     'common': {
       init: function() {
         // JavaScript to be fired on all pages
-		var Home = React.createClass({
-			render: function() {
-			return (<h1>Welcome to the Home Page</h1>);
-			} 
-		});
-
-		ReactDOM.render((
-			<Home />
-		), document.getElementById('posti'));
 		},
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired

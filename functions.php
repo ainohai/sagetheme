@@ -15,7 +15,9 @@ $sage_includes = [
   'lib/setup.php',     // Theme setup
   'lib/titles.php',    // Page titles
   'lib/wrapper.php',   // Theme wrapper class
-  'lib/customizer.php' // Theme customizer
+  'lib/customizer.php', // Theme customizer
+  'lib/klab_templateFunctions.php', // view related things often used in templates
+  'lib/klab_navMenus.php' //
 ];
 
 foreach ($sage_includes as $file) {

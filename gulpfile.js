@@ -19,10 +19,11 @@ var runSequence  = require('run-sequence');
 var sass         = require('gulp-sass');
 var sourcemaps   = require('gulp-sourcemaps');
 var uglify       = require('gulp-uglify');
-//react
+//added
 var webpack = require('webpack');
 var webpackConfig = require('./webpack.config.js');
 var webpackStream = require('webpack-stream');
+var handleBar = require('handlebars');
 
 // See https://github.com/austinpray/asset-builder
 var manifest = require('asset-builder')('./assets/manifest.json');
@@ -257,7 +258,7 @@ gulp.task('watch', function() {
   });
   gulp.watch([path.source + 'styles/**/*'], ['styles']);
   gulp.watch([path.source + 'scripts/**/*'], ['jshint', 'scripts']);
-  gulp.watch([path.source + 'react/**/*'], ['reactAdmin']);
+  gulp.watch([path.source + 'klabScripts/**/*'], ['klabs']);
   gulp.watch([path.source + 'fonts/**/*'], ['fonts']);
   gulp.watch([path.source + 'images/**/*'], ['images']);
   gulp.watch(['bower.json', 'assets/manifest.json'], ['build']);
@@ -286,7 +287,7 @@ gulp.task('wiredep', function() {
     .pipe(gulp.dest(path.source + 'styles'));
 });
 
-gulp.task("reactAdmin", function(callback) {
+gulp.task("klabs", function(callback) {
   webpack(webpackConfig).run(function(err, stats) {
     if(err) {
       console.log('Error', err);
@@ -296,7 +297,7 @@ gulp.task("reactAdmin", function(callback) {
     }
     //done();
   });
-    
+
 });
 
 // ### Gulp

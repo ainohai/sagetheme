@@ -27,7 +27,8 @@ function setup() {
   // Register wp_nav_menu() menus
   // http://codex.wordpress.org/Function_Reference/register_nav_menus
   register_nav_menus([
-    'primary_navigation' => __('Primary Navigation', 'sage')
+    'primary_navigation' => __('Primary Navigation', 'sage'),
+      'klab-home-primary-menu' => __( 'Home Page Primary Menu' )
   ]);
 
   // Enable post thumbnails
@@ -85,6 +86,7 @@ function display_sidebar() {
     // @link https://codex.wordpress.org/Conditional_Tags
     is_404(),
     is_front_page(),
+    is_page(),
     is_page_template('template-custom.php'),
   ]);
 
@@ -107,12 +109,14 @@ function assets() {
   }
 
   if (is_user_logged_in() ) {
-      //wp_enqueue_script('react/js', 'https://unpkg.com/react@15.3.2/dist/react.js', null, null, true);
-      //wp_enqueue_script('react-dom/js', 'https://unpkg.com/react-dom@15.3.2/dist/react-dom.js', null, null, true);
       wp_enqueue_script('tinymce/js', '//cdn.tinymce.com/4/tinymce.min.js', null, null, true);
-	  wp_enqueue_script('reactAdmin/js', Assets\asset_path('scripts/reactAdmin.js'), array(), 0.1, true);
+	  wp_enqueue_script('klabAdmin/js', Assets\asset_path('scripts/klabAdmin.js'), array(), 0.1, true);
+  }
+  else {
+	  wp_enqueue_script('klabAdmin/js', Assets\asset_path('scripts/klab.js'), array(), 0.1, true);
   }
 
+  wp_enqueue_script('axios/js', 'https://unpkg.com/axios/dist/axios.min.js', null, null, true);
   wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);

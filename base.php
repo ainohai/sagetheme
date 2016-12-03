@@ -2,6 +2,7 @@
 
 use Roots\Sage\Setup;
 use Roots\Sage\Wrapper;
+use Roots\Sage\KlabTemplFunctions;
 
 ?>
 
@@ -26,17 +27,22 @@ use Roots\Sage\Wrapper;
     ?>
 	</header>
 	<div class="headerImg"></div>
-	<div class="page-container" id="posti">
-	<nav class="nav-primary mdl-navigation mdl-typography--body-1-force-preferred-font">
-      <?php
-      if (has_nav_menu('primary_navigation')) :
-        wp_nav_menu(['theme_location' => 'primary_navigation', 'menu_class' => 'nav']);
-      endif;
-      ?>
-    </nav>
+	<div class="page-container">
+	<!--<nav class="nav-primary mdl-navigation mdl-typography--body-1-force-preferred-font">
+
+    </nav>-->
     <main class="main mdl-layout__content" >
-        <div class="temp" ></div>
+        <div class="mdl-grid">
+            <?php  if (has_nav_menu('klab-home-primary-menu')) :
+                echo "klabmenu";
+                wp_nav_menu(['theme_location' => 'klab-home-primary-menu', 'menu_class' => 'nav']);
+            endif;?>
+            <?php $pageContentClass = KlabTemplFunctions\getPageContentClasses();?>
+            <div class="<?php echo $pageContentClass?>">
+
           <?php include Wrapper\template_path();?>
+                </div>
+        </div>
     </main><!-- /.main -->
         <?php if (Setup\display_sidebar()) : ?>
           <aside class="sidebar">
