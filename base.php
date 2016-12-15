@@ -16,32 +16,28 @@ use Roots\Sage\KlabTemplFunctions;
       </div>
     <![endif]-->
 
+	<!--<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">-->
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-color--grey-100">
-
-
-	<header class=" header mdl-layout__header--transparent  mdl-color-text--grey-800">
+	<header class="headerImg header mdl-layout__header mdl-layout__header--transparent">
 	<?php
       do_action('get_header');
       get_template_part('templates/header');
     ?>
 	</header>
-	<div class="headerImg"></div>
+
 	<div class="page-container">
 	<!--<nav class="nav-primary mdl-navigation mdl-typography--body-1-force-preferred-font">
 
     </nav>-->
     <main class="main mdl-layout__content" >
         <div class="mdl-grid">
-            <?php  if (has_nav_menu('klab-home-primary-menu')) :
-                echo "klabmenu";
-                wp_nav_menu(['theme_location' => 'klab-home-primary-menu', 'menu_class' => 'nav']);
-            endif;?>
+
             <?php $pageContentClass = KlabTemplFunctions\getPageContentClasses();?>
-            <div class="<?php echo $pageContentClass?>">
+            <!--<div class="<?php echo $pageContentClass?>">-->
 
           <?php include Wrapper\template_path();?>
-                </div>
+                <!--</div>-->
         </div>
     </main><!-- /.main -->
         <?php if (Setup\display_sidebar()) : ?>

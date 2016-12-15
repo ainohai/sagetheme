@@ -7,7 +7,7 @@
  */
 namespace Roots\Sage\KlabNavMenus;
 
-add_action( 'init', __NAMESPACE__ . '\\registerLabHomePageMenu' );
+/*add_action( 'init', __NAMESPACE__ . '\\registerLabHomePageMenu' );
 //add_action('save_post',  __NAMESPACE__ . '\\updateLabHomePageMenu' );
 
 const klab_primaryNavName = 'klab-home-primary-menu';
@@ -62,6 +62,21 @@ function updateLabHomePageMenu($post_id)
 
 }*/
 
+function echoPrimaryNavigation () {
+
+    $frontPageId = get_option( 'page_on_front' );
+    $navMenuPages = getPageAndItsChildren($frontPageId);
+    if (!empty($navMenuPages)) {
+        echo '<nav class="mdl-navigation" >';
+        foreach ($navMenuPages as $navMenuPage) {
+            //print_r($navMenuPage);
+          echo '<a class="mdl-navigation__link" 
+                 href = "'. get_post_permalink($navMenuPage->ID).'" >'
+                 .$navMenuPage->post_title.'</a >';
+        }
+        echo '</nav >';
+    }
+}
 
 function getPageAndItsChildren($pageId) {
     $wpQuery = new \WP_Query;
@@ -80,5 +95,31 @@ function getPageAndItsChildren($pageId) {
     ));
 
     return array_merge($parent, $children);
-};
+}
+
+function echoIntraLinks() {
+    $wpQuery = new \WP_Query();
+    $intraLinks = $wpQuery->query(array(
+        'post_type' => 'klab_intra_links',
+        'posts_per_page' => -1,
+        'orderby' => 'modified',
+        'order' => 'ASC',
+    ));
+
+
+    if (!empty($intraLinks)) {
+        echo '<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect intraLinkList" for="klab_intra_links">';
+        foreach ($intraLinks as $link) {
+            $meta = get_post_meta( $link->ID);
+            //print_r($meta);
+
+            echo '<li class="mdl-menu__item"><a class="" 
+                 href = "'. $meta['klab_intra_links_klabLinkUrl'][0] .'" >'
+                .$link->post_title.'</a ></li>';
+        }
+        echo '</ul>';
+    }
+
+}
+
 ?>

@@ -1,4 +1,39 @@
-.page-container {
-	margin-top: -45vh;
-	flex-shrink: 0;
+body, header, h1, h2, h3, h4, h5, h6, p  {
+	font-family: $base-font-family;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	@include header-text;
+}
+
+a, a:hover{
+	text-decoration: none;
+}
+
+.dark-bg {
+	color : $white;
+	background-color: $black;
+	a {
+		color : $white;
+	}
+}
+
+.primary-accent-bg {
+	color: $white;
+	background-color: $primary-accent-color;
+	a {
+		color : $white;
+	}
+}
+
+.white-bg {
+	color: $basicTextColor;
+	background-color: $white;
+	a {
+		color : $primary-accent-color;
+	}
+}
+
+.main {
+	//max-width:1000px;
 }

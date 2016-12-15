@@ -1,23 +1,102 @@
+
 .headerImg {
   background: url("#{$image-path}/klef_header.jpg") scroll 0 0;
   background-repeat: no-repeat;
   background-size: cover;
-  height:70vh;
-  width:100%;
+  background-position: center center;
   flex-shrink:0;
+}
+
+.mdl-layout__header-row a:hover.mdl-navigation__link  {
+  color: $gray;
 }
 
 header {
   .mdl-layout__header-row {
-    height:auto;
-	position:absolute;
+    height:45px;
   }
-  .mdl-layout-title {
-	color:white;
-	text-decoration:none;
-	h1 {
-	  font-size:112px;
-	  font-weight:500;
-	  }
+
+  .mdl-layout__header-row.header-title {
+    padding-left:0px;
+    height: 290px;
+    align-items: flex-end;
+
+    .mdl-layout-title {
+      color:white;
+      text-decoration:none;
+
+      h1 {
+        margin-bottom:10%;
+        @include textOverImage();
+        padding-left:80px;
+      }
+    }
+  }
+}
+
+.mdl-layout__header-row.primary-nav {
+  display: table-cell;
+  vertical-align: bottom;
+  nav.mdl-navigation {
+    height:45px;
+  }
+  nav a {
+    @include header-text();
+  }
+}
+
+.mdl-layout__header-row.top-nav {
+  a.helsinkiUni {
+      @include header-text();
+      font-size: 17px;
+      //////MIXIN
+      padding-bottom: 5px;
+      padding-top: 5px;
+  }
+  .intraLinkList {
+    a {
+      color: #999999;
+    }
+  }
+
+//some copied stuff to the end
+  .links__link {
+    color: #ccc;
+    padding-bottom: 5px;
+    padding-left: 9px;
+    padding-right: 0;
+    padding-top: 5px;
+  }
+  .links__link {
+    font-size: 12px;
+  }
+  .links__link {
+    color: #424242;
+    display: inline-block;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 600;
+    padding-bottom: 16px;
+    padding-left: 10px;
+    padding-right: 5px;
+    padding-top: 16px;
+    text-decoration-color: -moz-use-text-color;
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-transform: uppercase;
+  }
+
+  .main-menu a {
+    color: #178feb;
+    display: block;
+    font-size: 0.9375rem;
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    line-height: 1.25em;
+    text-decoration-color: -moz-use-text-color;
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-transform: uppercase;
   }
 }

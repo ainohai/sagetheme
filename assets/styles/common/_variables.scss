@@ -9,4 +9,74 @@ $image-path:        "../images/";
 //$sidebar-sm-columns:    4;
 
 // Colors
-//$brand-primary:         #27ae60;
+$black: #222;
+$white: #fff;
+$primary-accent-color: #178feb;
+$gray: #ccc;
+$basicTextColor : $black;
+
+//Fonts
+$base-font-family: "Open Sans",Helvetica,Arial,sans-serif,Nimbus Sans L;
+$base-line-height: 1.8em;
+
+$base-font-color: #424242;
+
+//used with all headers
+@mixin header-text() {
+  //font-size: 1rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1.1em;
+  margin-top: 0;
+  //padding-bottom: 15px;
+  //padding-left: 11px;
+  //padding-right: 0;
+  //padding-top: 15px;
+  text-transform: uppercase;
+  font-family: $base-font-family;
+}
+
+//For texts placed over images:
+@mixin textOverImage() {
+  background-color: rgba(128, 128, 128, 0.8);
+  padding: 4px 4px 4px 4px;
+}
+
+@mixin basic-link() {
+  a:hover{
+     text-decoration: none;
+  }
+}
+
+@mixin imageDiv() {
+  background-color: $primary-accent-color;
+  background-size:     cover;
+  background-repeat:   no-repeat;
+  background-position: center center;
+}
+//FONTS
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 300;
+  src: url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-300/Open-Sans-300.eot?#iefix") format("embedded-opentype"), local("Open Sans Light"), local("Open-Sans-300"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-300/Open-Sans-300.ttf") format("truetype"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-300/Open-Sans-300.woff2") format("woff2"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-300/Open-Sans-300.woff") format("woff"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-300/Open-Sans-300.svg#OpenSans") format("svg");
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-regular/Open-Sans-regular.eot?#iefix") format("embedded-opentype"), local("Open Sans"), local("Open-Sans-regular"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-regular/Open-Sans-regular.ttf") format("truetype"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-regular/Open-Sans-regular.woff2") format("woff2"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-regular/Open-Sans-regular.woff") format("woff"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-regular/Open-Sans-regular.svg#OpenSans") format("svg");
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 600;
+  src: url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-600/Open-Sans-600.eot?#iefix") format("embedded-opentype"), local("Open Sans Semibold"), local("Open-Sans-600"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-600/Open-Sans-600.ttf") format("truetype"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-600/Open-Sans-600.woff2") format("woff2"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-600/Open-Sans-600.woff") format("woff"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-600/Open-Sans-600.svg#OpenSans") format("svg");
+}
+@font-face {
+  font-family: "Open Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-700/Open-Sans-700.eot?#iefix") format("embedded-opentype"), local("Open Sans Bold"), local("Open-Sans-700"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-700/Open-Sans-700.ttf") format("truetype"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-700/Open-Sans-700.woff2") format("woff2"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-700/Open-Sans-700.woff") format("woff"), url("https://www.helsinki.fi/sites/all/themes/helsingin_yliopisto/fonts/Open-Sans-700/Open-Sans-700.svg#OpenSans") format("svg");
+}

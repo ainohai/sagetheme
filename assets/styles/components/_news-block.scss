@@ -1,0 +1,9 @@
+
+.news__image .mdl-card__media {
+  @include imageDiv();
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  height: 410px;
+}

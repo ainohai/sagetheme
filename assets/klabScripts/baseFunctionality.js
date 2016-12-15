@@ -7,8 +7,8 @@ export default class BaseFunctionality {
     let facebookFeedItems = document.querySelectorAll('.facebook-feed .cff-item');
     Array.from(facebookFeedItems).map(elem => {
       console.log(elem);
-      elem.querySelectorAll()
-      Array.from(elem
+      elem.querySelectorAll();
+     // Array.from(elem
       if (elem.classList.contains("cff-video-post")){
         console.log("VIDEO : "+ elem);
       }
