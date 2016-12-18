@@ -18,7 +18,10 @@ $sage_includes = [
   'lib/customizer.php', // Theme customizer
   'lib/klab_templateFunctions.php', // view related things often used in templates
   'lib/klab_navMenus.php', //
-    'lib/contentBlocks/klab_news.php'
+    //content Blocks
+    'lib/contentBlocks/klab_news.php',
+    'lib/contentBlocks/klab_middleNoPic.php',
+    'lib/contentBlocks/klab_sidePic.php'
 ];
 
 foreach ($sage_includes as $file) {

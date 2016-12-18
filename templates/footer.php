@@ -1,5 +1,5 @@
-<footer class="content-info">
-  <div class="container">
+<footer class="mdl-mini-footer">
+
     <?php dynamic_sidebar('sidebar-footer'); ?>
-  </div>
+
 </footer>

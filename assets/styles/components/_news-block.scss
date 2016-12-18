@@ -5,5 +5,10 @@
   display: flex;
   flex-direction: row;
   flex-grow: 1;
-  height: 410px;
+  max-height: 350px;
+
+  h2 {
+    @include textOverImage;
+  }
 }
+

@@ -14,12 +14,15 @@ $white: #fff;
 $primary-accent-color: #178feb;
 $gray: #ccc;
 $basicTextColor : $black;
+$linkColor: #006CBF;
+$linkOnHover:#00487F;
 
 //Fonts
 $base-font-family: "Open Sans",Helvetica,Arial,sans-serif,Nimbus Sans L;
 $base-line-height: 1.8em;
 
 $base-font-color: #424242;
+$kivaTurkoosi: #5bc0de;
 
 //used with all headers
 @mixin header-text() {
@@ -41,6 +44,7 @@ $base-font-color: #424242;
 @mixin textOverImage() {
   background-color: rgba(128, 128, 128, 0.8);
   padding: 4px 4px 4px 4px;
+  color: $white;
 }
 
 @mixin basic-link() {
@@ -54,6 +58,11 @@ $base-font-color: #424242;
   background-size:     cover;
   background-repeat:   no-repeat;
   background-position: center center;
+}
+
+@mixin borderBeforeContent() {
+  border-top:solid;
+
 }
 //FONTS
 @font-face {

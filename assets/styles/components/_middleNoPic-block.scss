@@ -1,0 +1,15 @@
+.middleNoPic {
+
+  .mdl-card__supporting-text {
+    @include borderBeforeContent();
+  }
+
+  .mdl-card__media {
+    @include imageDiv();
+    height:200px;
+  }
+
+  .mdl-card__title-text {
+    font-size: 2.25em;
+  }
+}

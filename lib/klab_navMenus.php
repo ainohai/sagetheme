@@ -71,8 +71,14 @@ function echoPrimaryNavigation () {
         foreach ($navMenuPages as $navMenuPage) {
             //print_r($navMenuPage);
           echo '<a class="mdl-navigation__link" 
-                 href = "'. get_post_permalink($navMenuPage->ID).'" >'
-                 .$navMenuPage->post_title.'</a >';
+                 href = "'. get_post_permalink($navMenuPage->ID).'" >';
+              if ($navMenuPage->ID == $frontPageId ) {
+                  echo "Home";
+              }
+              else {
+                  echo $navMenuPage->post_title;
+              }
+              echo '</a >';
         }
         echo '</nav >';
     }

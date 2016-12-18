@@ -9,6 +9,12 @@ h1, h2, h3, h4, h5, h6 {
 a, a:hover{
 	text-decoration: none;
 }
+a {
+	color: $linkColor;
+}
+p {
+	font-size:16px;
+}
 
 .dark-bg {
 	color : $white;
@@ -32,6 +38,13 @@ a, a:hover{
 	a {
 		color : $primary-accent-color;
 	}
+}
+
+.mdl-card__title-text {
+	align-self: flex-start;
+	-webkit-align-self: flex-start;
+	font-weight: 700;
+	font-size: 24px;
 }
 
 .main {

@@ -1,0 +1,23 @@
+.facebookFeed {
+
+  //max-width:600px;
+
+  p {
+    font-size:14px;
+  }
+
+  .cff-page-name.cff-author-date {
+    text-transform: uppercase;
+  }
+
+  .cff-wrapper {
+    // @include borderBeforeContent();
+     padding-top: 16px;
+  }
+
+  #cff {
+    height: 400px;
+    overflow: scroll;
+  }
+
+}
