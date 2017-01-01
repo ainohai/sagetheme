@@ -9,7 +9,7 @@
 
 <?php global $wp_query;?>
 
-<?php KlabTemplFunctions\getPageHeaderAndContent($wp_query, false, false) ?>
+<?php //KlabTemplFunctions\getPageHeaderAndContent($wp_query, false, false) ?>
 
 <?php
 $args = array (

@@ -66,19 +66,23 @@ function echoPrimaryNavigation () {
 
     $frontPageId = get_option( 'page_on_front' );
     $navMenuPages = getPageAndItsChildren($frontPageId);
+    global $post;
+    $currentSlug=!empty($post) ? $post->post_name : null;
     if (!empty($navMenuPages)) {
         echo '<nav class="mdl-navigation" >';
         foreach ($navMenuPages as $navMenuPage) {
-            //print_r($navMenuPage);
-          echo '<a class="mdl-navigation__link" 
-                 href = "'. get_post_permalink($navMenuPage->ID).'" >';
-              if ($navMenuPage->ID == $frontPageId ) {
-                  echo "Home";
-              }
-              else {
-                  echo $navMenuPage->post_title;
-              }
-              echo '</a >';
+            echo '<a class="mdl-navigation__link';
+            if ($currentSlug === $navMenuPage->post_name) {
+                echo ' active';
+            }
+            echo '" href = "'. get_post_permalink($navMenuPage->ID).'" >';
+            if ($navMenuPage->ID == $frontPageId ) {
+                echo "Home";
+            }
+            else {
+                echo $navMenuPage->post_title;
+            }
+            echo '</a >';
         }
         echo '</nav >';
     }
@@ -126,6 +130,26 @@ function echoIntraLinks() {
         echo '</ul>';
     }
 
+}
+
+function echoOnPageLinks ($wpQuery) {
+    if ($wpQuery->have_posts()) {
+        global $post;
+       // echo '<div class="mdl-layout mdl-layout--fixed-drawer">';
+       // echo '<div class="mdl-layout__drawer" aria-hidden="true">';
+        echo '<ul class="mdl-list">';
+
+        while ($wpQuery->have_posts()) : $wpQuery->the_post();
+
+            echo '<li class="mdl-list__item"><a href="#' . $post->post_name . '">'. $post->post_title .'</a></li>';
+        endwhile;
+
+        echo '</ul>';
+        //echo '</div>';
+        //echo '</div>';
+    }
+
+    $wpQuery->reset_postdata();
 }
 
 ?>

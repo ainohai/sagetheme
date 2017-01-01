@@ -2,6 +2,8 @@
 
 namespace Roots\Sage\KlabTemplFunctions;
 
+use Roots\Sage\KlabMiddleNoPic;
+
 function getPageHeaderAndContent ($wpQuery, $showHeader = true, $showFeaturedImg = true)
 {
 
@@ -60,7 +62,21 @@ function constructSectionClasses ($wpQuery) {
     return $classes;
 }
 
+function echoMetaMiddle($post, $metadataArray) {
+    if (!empty($metadataArray)) {
+                //print_r(get_post_meta($post->ID));
+                foreach ($metadataArray as $metas) {
+                    $meta = get_post_meta( $post->ID, $metas['key'], true );
+                    if (!empty($metas['title'])) {
+                        KlabMiddleNoPic\echoContent(true, false, $meta, $metas['title']);
+                    } else {
+                        KlabMiddleNoPic\echoContent(false, false, $meta);
+                    }
+                }
+            }
+}
 
+//for debugging purposes
 function dumpPostData($wpQuery) {
      if ($wpQuery->have_posts()) { ?>
 
@@ -94,8 +110,9 @@ function dumpPostData($wpQuery) {
             </article>
 
         <?php endwhile;
-    }
-}
+    } ?>
+    </section>
+<?php }
 
 
 ?>

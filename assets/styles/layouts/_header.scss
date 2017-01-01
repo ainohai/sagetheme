@@ -4,7 +4,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  flex-shrink:0;
+  min-width:750px;
 }
 
 .mdl-layout__header-row a:hover.mdl-navigation__link  {
@@ -35,7 +35,8 @@ header {
 }
 
 .mdl-layout__header-row.primary-nav {
-  display: table-cell;
+  //display: table-cell;
+  justify-content: left;
   vertical-align: bottom;
   nav.mdl-navigation {
     height:45px;

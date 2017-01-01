@@ -4,6 +4,6 @@ import AdminFunctionality from './adminFunctionality';
 
 
 docReadyListener(function(){
-  new BaseFunctionality();
-  new AdminFunctionality();
+  //new BaseFunctionality();
+  //new AdminFunctionality();
 });

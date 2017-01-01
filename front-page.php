@@ -25,7 +25,7 @@ $args = array (
         <?php echo do_shortcode('[custom-facebook-feed]'); ?>
     </div>
 
-<section/>
+</section>
 
 
 

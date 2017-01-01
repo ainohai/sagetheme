@@ -2,7 +2,7 @@
 ?>
 
   <div class="mdl-layout__header-row top-nav dark-bg ">
-     <a class="helsinkiUni" href="https://www.helsinki.fi/en"><img src="<?php echo get_template_directory_uri()?>/assets/images/hy-logo.png"/> University of Helsinki</h1>
+     <a class="helsinkiUni" href="https://www.helsinki.fi/en"><img src="<?php echo get_template_directory_uri()?>/assets/images/hy-logo.png"/> University of Helsinki
      </a>
       <div class="mdl-layout-spacer"></div>
       <!-- Right aligned menu below button -->
@@ -18,7 +18,7 @@
     </a>
   </div>
   <div class="mdl-layout__header-row primary-accent-bg primary-nav">
-      <div class="mdl-layout-spacer"></div>
+
       <!-- Navigation -->
 
       <?php KlabNavMenus\echoPrimaryNavigation() ?>

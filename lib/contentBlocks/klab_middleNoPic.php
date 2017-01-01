@@ -3,10 +3,10 @@
 namespace Roots\Sage\KlabMiddleNoPic;
 use Roots\Sage\KlabTemplFunctions;
 
-function echoBlock ($wpQuery, $showTitle = true, $showPic = false)
+function echoBlock ($wpQuery, $metadataArray = null, $showTitle = true, $showPic = false)
 {
-    global $post;
-    $blockName = 'middleNoPic';
+
+
     if ($wpQuery->have_posts()) { ?>
 
         <section class="<?php echo KlabTemplFunctions\constructSectionClasses($wpQuery); ?>">
@@ -14,16 +14,11 @@ function echoBlock ($wpQuery, $showTitle = true, $showPic = false)
         <?php
         while ($wpQuery->have_posts()) : $wpQuery->the_post();
             global $post;
-            ?>
 
-            <div class="editableContent <?php echo $blockName; ?>"
-                 data-postTypeSlug="<?php echo get_post_type($post); ?>"
-                 data-id="<?php $post->ID; ?>">
+            echoContent($showTitle, $showPic);
+            KlabTemplFunctions\echoMetaMiddle($post, $metadataArray);
 
-               <?php  echoContent($blockName, $showTitle, $showPic); ?>
-            </div>
-
-        <?php endwhile;
+        endwhile;
     }
     ?>
 
@@ -32,31 +27,35 @@ function echoBlock ($wpQuery, $showTitle = true, $showPic = false)
     <?php $wpQuery->reset_postdata();
 }
 
-function echoContent($blockName, $showTitle, $showPic, $content = null, $title = null) {
+//call from loop.
+function echoContent($showTitle, $showPic, $content = null, $title = null) {
 global $post; ?>
 
-<div class="mdl-grid  <?php echo $blockName; ?>__text">
-
+<?php $blockName = 'middleNoPic'; ?>
+<div class="mdl-grid  <?php echo $blockName; ?> editableContent" data-postTypeSlug="<?php echo get_post_type($post); ?>"
+                 data-id="<?php $post->ID;?>" >
+<div class="mdl-cell--12-col">
     <?php if ($showTitle) { ?>
-        <h1 class="mdl-cell--8-col mdl-cell--2-offset">
+        <h2>
             <?php if (!empty($title)) { echo $title; }
-            else { the_title(); } ?></h1>
+            else { the_title(); } ?></h2>
     <?php } ?>
 
-    <div class=" mdl-cell--8-col mdl-cell--2-offset"><?php
-        if(!empty($content)) {
-            echo wpautop($content);
+    <div><?php
+        if($content != null) {
+            echo apply_filters( 'the_content', wp_kses_post( $content ) );
         } else { the_content(); } ?></div>
 
 
     <?php if ($showPic && has_post_thumbnail($post->ID)) { ?>
 
-        <div class=" mdl-cell--10-col mdl-cell--1-offset"  style="background-image: url('<?php echo the_post_thumbnail_url()?>'">
+        <div>
+            <?php the_post_thumbnail( 'large' ); ?>
         </div>
 
 
     <?php } ?>
-
+</div>
 </div>
 
 <?php } ?>

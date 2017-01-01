@@ -3,7 +3,7 @@ import BaseFunctionality from './baseFunctionality';
 
 
 docReadyListener(function(){
-  new BaseFunctionality();
+  //new BaseFunctionality();
 });
 
 
