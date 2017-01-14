@@ -4,7 +4,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  min-width:750px;
 }
 
 .mdl-layout__header-row a:hover.mdl-navigation__link  {
@@ -60,6 +59,11 @@ header {
     }
   }
 
+  #klab_intra_links {
+    padding-right:20px;
+    padding-left: 20px;
+  }
+
 //some copied stuff to the end
   .links__link {
     color: #ccc;
@@ -99,5 +103,23 @@ header {
     text-decoration-line: none;
     text-decoration-style: solid;
     text-transform: uppercase;
+  }
+}
+
+.is-small-screen {
+  header {
+    .mdl-layout--small-screen-only.mdl-layout__header-row {
+      .mdl-layout-title {
+        h1 {
+          font-size: 32px;
+        }
+      }
+    }
+    .mdl-layout__drawer-button {
+        top:25px;
+    }
+    .helsinkiUni img {
+      width:25px;
+    }
   }
 }

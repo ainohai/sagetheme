@@ -9,7 +9,7 @@ function getPageHeaderAndContent ($wpQuery, $showHeader = true, $showFeaturedImg
 
     if ($wpQuery->have_posts()) { ?>
 
-        <section class = "<?php echo constructSectionClasses ($wpQuery); ?>">
+        <section class = "<?php echo constructSectionClasses ($wpQuery, 'pageHeaderAndContent'); ?>">
 
         <?php
         while ($wpQuery->have_posts()) : $wpQuery->the_post();
@@ -43,15 +43,13 @@ function constructPostClasses () {
 
 }
 
-function constructSectionClasses ($wpQuery) {
+function constructSectionClasses ($wpQuery, $sectionName) {
     $postsArray = $wpQuery->get_posts();
     $postId = $postsArray[0]->ID;
     $postType = $postsArray[0]->post_type;
-    $pageTemplate = '';
 
     $classes = 'postSection';
-    $classes .= ' postType-'.$postType;
-   //$classes .= ' firstPostId-'.$postId;
+    $classes .= ' postSection--'.$sectionName;
 
     if ($postType === 'page') {
         $classes .= ' pageTemplate-';
@@ -80,7 +78,7 @@ function echoMetaMiddle($post, $metadataArray) {
 function dumpPostData($wpQuery) {
      if ($wpQuery->have_posts()) { ?>
 
-        <section class = "<?php echo constructSectionClasses ($wpQuery); ?>">
+        <section class = "<?php echo constructSectionClasses ($wpQuery, 'dump'); ?>">
 
         <?php
         while ($wpQuery->have_posts()) : $wpQuery->the_post();

@@ -100,7 +100,7 @@ function assets() {
 
     wp_enqueue_style('material-design-lite-icons/css', 'https://fonts.googleapis.com/icon?family=Material+Icons', false, null);
     wp_enqueue_style('material-design-lite/css', 'https://code.getmdl.io/1.3.0/material.min.css', false, null);
-    wp_enqueue_script('material-design-lite/js', 'https://code.getmdl.io/1.3.0/material.min.js', null, null, true);
+    wp_enqueue_script('material-design-lite/js', 'https://code.getmdl.io/1.3.0/material.min.js', null, null, false);
 
     wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), false, null);
 
@@ -128,14 +128,32 @@ add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
  *
  * @return string
  */
-function remove_image_size_attributes($html ) {
-   return preg_replace( '/(width|height)="\d*"/', '', $html );
-}
+//function remove_image_size_attributes($html ) {
+//   return preg_replace( '/(width|height)="\d*"/', '', $html );
+//}
 
 // Remove image size attributes from post thumbnails
-add_filter( 'post_thumbnail_html', __NAMESPACE__ . '\\remove_image_size_attributes' );
+//add_filter( 'post_thumbnail_html', __NAMESPACE__ . '\\remove_image_size_attributes' );
 
 // Remove image size attributes from images added to a WordPress post
-add_filter( 'image_send_to_editor', __NAMESPACE__ . '\\remove_image_size_attributes' );
+//add_filter( 'image_send_to_editor', __NAMESPACE__ . '\\remove_image_size_attributes' );
 
 
+//to add defer to loading of scripts - use defer to keep loading order
+/*function script_tag_defer($tag, $handle) {
+    if (is_admin()){
+        return $tag;
+    }
+    if (strpos($tag, '/wp-includes/js/jquery/jquery')) {
+        return $tag;
+    }
+    if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 9.') !==false) {
+        return $tag;
+    }
+    else {
+        return str_replace(' src',' defer src', $tag);
+    }
+}
+add_filter('script_loader_tag', __NAMESPACE__ . '\\script_tag_defer',10,2);
+
+*/

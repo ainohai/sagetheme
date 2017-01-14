@@ -1,3 +1,14 @@
 .sidePic {
-
+  .sidePic--mainContent__content {
+      justify-content: center;
+  }
+  .sidePic--metaContent {
+      max-width: $smallerContentWidth;
+  }
+  .mdl-card__media {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
 }

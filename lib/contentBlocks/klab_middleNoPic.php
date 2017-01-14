@@ -6,10 +6,7 @@ use Roots\Sage\KlabTemplFunctions;
 function echoBlock ($wpQuery, $metadataArray = null, $showTitle = true, $showPic = false)
 {
 
-
     if ($wpQuery->have_posts()) { ?>
-
-        <section class="<?php echo KlabTemplFunctions\constructSectionClasses($wpQuery); ?>">
 
         <?php
         while ($wpQuery->have_posts()) : $wpQuery->the_post();
@@ -22,7 +19,6 @@ function echoBlock ($wpQuery, $metadataArray = null, $showTitle = true, $showPic
     }
     ?>
 
-    </section>
 
     <?php $wpQuery->reset_postdata();
 }
@@ -34,14 +30,14 @@ global $post; ?>
 <?php $blockName = 'middleNoPic'; ?>
 <div class="mdl-grid  <?php echo $blockName; ?> editableContent" data-postTypeSlug="<?php echo get_post_type($post); ?>"
                  data-id="<?php $post->ID;?>" >
-<div class="mdl-cell--12-col">
+<div class="mdl-card mdl-cell--12-col">
     <?php if ($showTitle) { ?>
         <h2>
             <?php if (!empty($title)) { echo $title; }
             else { the_title(); } ?></h2>
     <?php } ?>
 
-    <div><?php
+    <div class="mdl-card__supporting-text"><?php
         if($content != null) {
             echo apply_filters( 'the_content', wp_kses_post( $content ) );
         } else { the_content(); } ?></div>
@@ -49,7 +45,7 @@ global $post; ?>
 
     <?php if ($showPic && has_post_thumbnail($post->ID)) { ?>
 
-        <div>
+        <div class="mdl-card__media">
             <?php the_post_thumbnail( 'large' ); ?>
         </div>
 

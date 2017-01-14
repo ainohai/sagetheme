@@ -24,6 +24,9 @@ $base-line-height: 1.8em;
 $base-font-color: #424242;
 $kivaTurkoosi: #5bc0de;
 
+$maxContentWidth: 1100px;
+$smallerContentWidth: 900px;
+
 //used with all headers
 @mixin header-text() {
   //font-size: 1rem;

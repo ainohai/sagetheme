@@ -1,11 +1,11 @@
+.postSection--labInfo {
+  max-width:$smallerContentWidth;
+}
+
 .middleNoPic {
 
-  max-width:900px;
-  margin-left:auto;
-  margin-right:auto;
-
   .mdl-card__supporting-text {
-    @include borderBeforeContent();
+    //@include borderBeforeContent();
   }
 
   .mdl-card__media {

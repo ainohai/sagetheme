@@ -20,12 +20,11 @@ use Roots\Sage\KlabTemplFunctions;
 
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
-        <header class="headerImg header mdl-layout__header mdl-layout__header--scroll">
+
             <?php
             do_action('get_header');
             get_template_part('templates/header');
             ?>
-        </header>
 
 
         <main class="main mdl-layout__content" >
