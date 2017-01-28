@@ -1,5 +1,10 @@
+.postSection--news {
+  .mdl-card__media {
+    min-height: 300px;
+  }
+}
 
-.news__image .mdl-card__media {
+/*.news__image .mdl-card__media {
   @include imageDiv();
   align-items: center;
   display: flex;
@@ -10,5 +15,5 @@
   h2 {
     @include textOverImage;
   }
-}
+}*/
 

@@ -16,28 +16,10 @@ p {
 	font-size:16px;
 }
 
-.dark-bg {
-	color : $white;
-	background-color: $black;
-	a {
-		color : $white;
-	}
-}
-
-.primary-accent-bg {
-	color: $white;
-	background-color: $primary-accent-color;
-	a {
-		color : $white;
-	}
-}
-
-.white-bg {
-	color: $basicTextColor;
-	background-color: $white;
-	a {
-		color : $primary-accent-color;
-	}
+.mdl-navigation__link
+{}
+.mdl-navigation__link--weighted {
+	@include header-text;
 }
 
 .mdl-card__title-text {
@@ -58,5 +40,21 @@ img {
 .postSection {
 	margin-left:auto;
 	margin-right:auto;
-	max-width:$maxContentWidth;
+	//max-width:$maxContentWidth;
 }
+
+
+
+.researchCol--abstract {
+	p {
+		line-height:2em;
+		font-style:italic;
+	}
+}
+
+.mdl-grid.research-topics {
+	flex-direction: row-reverse;
+}
+
+
+

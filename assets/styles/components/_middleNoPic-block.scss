@@ -1,8 +1,32 @@
-.postSection--labInfo {
-  max-width:$smallerContentWidth;
+.middleSingleCol {
+  .mdl-card__media {
+    width:100%;
+    height:290px;
+    display:flex;
+    align-items: flex-end;
+
+    .mdl-card__title-text {
+      margin-bottom:10%;
+      @include textOverImage();
+    }
+  }
+
+  .mdl-card__supporting-text {
+    max-width:$smallerContentWidth;
+    //margin-left:auto;
+    //margin-right:auto;
+  }
+}
+
+/*.postSection--labInfo {
+  //
 }
 
 .middleNoPic {
+
+  .mdl-card__media {
+
+  }
 
   .mdl-card__supporting-text {
     //@include borderBeforeContent();
@@ -35,4 +59,4 @@
   .wp-post-image {
     max-width:100%;
   }
-}
+}*/

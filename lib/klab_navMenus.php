@@ -71,7 +71,7 @@ function echoPrimaryNavigation () {
     if (!empty($navMenuPages)) {
         echo '<nav class="mdl-navigation" >';
         foreach ($navMenuPages as $navMenuPage) {
-            echo '<a class="mdl-navigation__link';
+            echo '<a class="mdl-navigation__link mdl-navigation__link--weighted';
             if ($currentSlug === $navMenuPage->post_name) {
                 echo ' active';
             }
@@ -118,7 +118,7 @@ function echoIntraLinks() {
 
 
     if (!empty($intraLinks)) {
-        echo '<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect intraLinkList" for="klab_intra_links">';
+        echo '<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect klab-intralinkList" for="klab-intraLinks">';
         foreach ($intraLinks as $link) {
             $meta = get_post_meta( $link->ID);
             //print_r($meta);
@@ -141,6 +141,8 @@ function echoOnPageLinks ($wpQuery) {
 
         while ($wpQuery->have_posts()) : $wpQuery->the_post();
 
+            //global $wp;
+            //$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
             echo '<li class="mdl-list__item"><a href="#' . $post->post_name . '">'. $post->post_title .'</a></li>';
         endwhile;
 

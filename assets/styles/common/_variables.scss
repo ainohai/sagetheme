@@ -29,16 +29,11 @@ $smallerContentWidth: 900px;
 
 //used with all headers
 @mixin header-text() {
-  //font-size: 1rem;
   font-style: normal;
   font-weight: 700;
   letter-spacing: -0.05em;
   line-height: 1.1em;
   margin-top: 0;
-  //padding-bottom: 15px;
-  //padding-left: 11px;
-  //padding-right: 0;
-  //padding-top: 15px;
   text-transform: uppercase;
   font-family: $base-font-family;
 }
@@ -66,6 +61,35 @@ $smallerContentWidth: 900px;
 @mixin borderBeforeContent() {
   border-top:solid;
 
+}
+
+@mixin dark-bg() {
+  color : $white;
+  background-color: $black;
+  a {
+    color : $white;
+  }
+}
+
+@mixin primary-accent-bg() {
+  color: $white;
+  background-color: $primary-accent-color;
+  a {
+    color : $white;
+  }
+}
+
+@mixin white-bg() {
+  color: $basicTextColor;
+  background-color: $white;
+  a {
+    color : $primary-accent-color;
+  }
+}
+
+
+@mixin marginsAroundImage() {
+  margin-bottom:32px;
 }
 //FONTS
 /*@font-face {

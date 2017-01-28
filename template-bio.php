@@ -4,25 +4,62 @@
  */
 ?>
 <?php
-use Roots\Sage\KlabMiddleNoPic;
-use Roots\Sage\KlabSidePic;
+use Roots\Sage\KlabTemplFunctions;
 ?>
 
-<?php global $wp_query;
-    global $post;
-    $currentPage=$post->ID;?>
-<?php print_r(get_intermediate_image_sizes());?>
-<?php KlabSidePic\echoBlock($wp_query, array(['key'=>'page_biodetails'], ['key'=>'page_cv', 'title' => 'CV']), false, null, 'medium'); ?>
+<?php //print_r(get_intermediate_image_sizes());?>
 
 <?php
-$wpQuery = new WP_Query();
-$children = $wpQuery->query(array(
-                                    'post_type' => 'page',
-                                    'post_parent'    => $currentPage,
-                                    'posts_per_page' => -1,
-                                    'orderby' => 'menu_order',
-                                    'order' => 'ASC',
-));
+global $wp_query, $post;
+$blockName = 'bio'; ?>
 
-KlabMiddleNoPic\echoBlock($wpQuery);
-?>
+
+    <section class="<?php echo KlabTemplFunctions\constructSectionClasses($wp_query, $blockName); ?>">
+
+        <?php $blockName = 'bio--mainContent'; ?>
+
+        <div class="mdl-grid editableContent <?php echo $blockName; ?>"
+             data-postTypeSlug="<?php echo get_post_type($post); ?>"
+             data-id="<?php $post->ID; ?>">
+
+            <div class="mdl-cell  mdl-card mdl-cell--5-col">
+                <div class="mdl-card__media">
+                    <?php  the_post_thumbnail('medium');  ?>
+                </div>
+            </div>
+
+            <div class="mdl-cell mdl-cell--7-col mdl-card <?php echo $blockName . "__bioDetails" ?>">
+                <div class="mdl-card__supporting-text">
+                    <?php
+                    the_content();
+                    ?></div>
+
+            </div>
+
+        </div>
+        <?php
+        $cv = get_post_meta( $post->ID, 'page_cv', true );
+
+         if (!empty($cv)) {
+             $blockName = 'bio--cv'; ?>
+
+        <div class="mdl-grid editableContent <?php echo $blockName; ?>"
+             data-postTypeSlug="<?php echo get_post_type($post); ?>"
+             data-id="<?php $post->ID; ?>">
+            <div class="mdl-cell mdl-cell--12-col mdl-card <?php echo $blockName . "__bioDetails" ?>">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">CV </h2>
+                </div>
+                <div class="mdl-card__supporting-text"><?php
+                    echo apply_filters( 'the_content', wp_kses_post( $cv ) );
+                    ?>
+                </div>
+
+            </div>
+
+        </div>
+        <?php //endwhile; ?>
+
+    </section>
+
+<?php } ?>

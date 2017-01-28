@@ -2,13 +2,15 @@
   "dependencies": {
     "main.js": {
       "files": [
-        "scripts/main.js"
+        "scripts/main.js",
+        "scripts/responsiveslides.js"
       ],
       "main": true
     },
     "main.css": {
       "files": [
-        "styles/main.scss"
+        "styles/main.scss",
+        "styles/responsiveslides.css"
       ],
       "main": true
     },
@@ -24,4 +26,5 @@
   "config": {
     "devUrl": "http://example.dev"
   }
+
 }

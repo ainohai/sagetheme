@@ -32,13 +32,11 @@ use Roots\Sage\KlabTemplFunctions;
             <?php include Wrapper\template_path();?>
 
             <?php
-            //do_action('get_footer');
-            //get_template_part('templates/footer');
-            //wp_footer();
+            do_action('get_footer');
+            get_template_part('templates/footer');
+            wp_footer();
             ?>
-            <footer class="mdl-mega-footer">
 
-            </footer>
         </main><!-- /.main -->
         <?php if (Setup\display_sidebar()) : ?>
             <aside class="sidebar">

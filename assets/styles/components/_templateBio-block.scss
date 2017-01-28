@@ -1,0 +1,26 @@
+
+.bio--mainContent {
+  flex-direction: row-reverse;
+
+  .mdl-card__media {
+    img {
+      width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.bio--mainContent__bioDetails {
+  justify-content: center;
+}
+.bio--cv {
+  max-width: $smallerContentWidth;
+  margin-left:0px;
+  margin-right: 0px;
+}
+
+.postSection--bio {
+  margin-left:0px;
+  margin-right:0px;
+}
+

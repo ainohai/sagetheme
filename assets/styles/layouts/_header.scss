@@ -1,125 +1,74 @@
 
-.headerImg {
-  background: url("#{$image-path}/klef_header.jpg") scroll 0 0;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-
-.mdl-layout__header-row a:hover.mdl-navigation__link  {
-  color: $gray;
-}
-
-header {
-  .mdl-layout__header-row {
-    height:45px;
+.mdl-layout__header-row {
+  max-height:50px;
+  &--uni {
+    height: 47px;
+    @include dark-bg();
   }
 
-  .mdl-layout__header-row.header-title {
-    padding-left:0px;
-    height: 290px;
-    align-items: flex-end;
-
-    .mdl-layout-title {
-      color:white;
-      text-decoration:none;
-
-      h1 {
-        margin-bottom:10%;
-        @include textOverImage();
-        padding-left:80px;
-      }
-    }
+  &--primary {
+    @include primary-accent-bg();
   }
 }
 
-.mdl-layout__header-row.primary-nav {
-  //display: table-cell;
-  justify-content: left;
-  vertical-align: bottom;
-  nav.mdl-navigation {
-    height:45px;
-  }
-  nav a {
-    @include header-text();
+.klab-helsinkiUni {
+  @include header-text();
+  font-size: 14px;
+  &__img {
+    height:20px;
   }
 }
 
-.mdl-layout__header-row.top-nav {
-  a.helsinkiUni {
-      @include header-text();
-      font-size: 17px;
-      //////MIXIN
-      padding-bottom: 5px;
-      padding-top: 5px;
-  }
-  .intraLinkList {
-    a {
-      color: #999999;
-    }
-  }
+.mdl-layout__header.is-compact {
+  max-height:51px;
+  min-height: 51px;
+}
 
-  #klab_intra_links {
-    padding-right:20px;
-    padding-left: 20px;
-  }
+.mdl-layout-title--mainKlab {
+  @include header-text();
+}
 
-//some copied stuff to the end
-  .links__link {
-    color: #ccc;
-    padding-bottom: 5px;
-    padding-left: 9px;
-    padding-right: 0;
-    padding-top: 5px;
-  }
-  .links__link {
-    font-size: 12px;
-  }
-  .links__link {
-    color: #424242;
-    display: inline-block;
-    font-size: 0.75rem;
-    font-style: normal;
-    font-weight: 600;
-    padding-bottom: 16px;
-    padding-left: 10px;
-    padding-right: 5px;
-    padding-top: 16px;
-    text-decoration-color: -moz-use-text-color;
-    text-decoration-line: none;
-    text-decoration-style: solid;
-    text-transform: uppercase;
-  }
+.mdl-layout__header-row {
+  @include header-text();
 
-  .main-menu a {
-    color: #178feb;
-    display: block;
-    font-size: 0.9375rem;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: 0.01em;
-    line-height: 1.25em;
-    text-decoration-color: -moz-use-text-color;
-    text-decoration-line: none;
-    text-decoration-style: solid;
-    text-transform: uppercase;
+  a:hover.mdl-navigation__link  {
+    color: $gray;
   }
 }
+
+#klab-intraLinks {
+  //padding-right:20px;
+  margin-left: 30px;
+
+}
+
+.klab-intralinkList {
+  a {
+    color:rgba(0,0,0,.54);
+  }
+}
+
+
 
 .is-small-screen {
-  header {
-    .mdl-layout--small-screen-only.mdl-layout__header-row {
-      .mdl-layout-title {
-        h1 {
-          font-size: 32px;
-        }
+  .mdl-layout__header-row {
+    .mdl-layout-title {
+      h1 {
+        font-size: 32px;
       }
     }
-    .mdl-layout__drawer-button {
-        top:25px;
-    }
-    .helsinkiUni img {
-      width:25px;
-    }
   }
+  .mdl-layout__drawer-button {
+    top:43px;
+    background-color: initial;
+  }
+
+  .is-compact .mdl-layout__drawer-button {
+    top:0px;
+  }
+
+
 }
+
+
+

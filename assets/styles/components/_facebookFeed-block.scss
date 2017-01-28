@@ -1,9 +1,9 @@
 .postSection--facebookFeed {
-  max-width:$smallerContentWidth;
+  //max-width:$smallerContentWidth;
   .mdl-card {
-
-    max-width:600px;
-    margin-left:32px;
+    width:auto;
+    //max-width:600px;
+    //margin-left:32px;
 
     p {
       font-size:14px;
@@ -19,7 +19,7 @@
     }
 
     #cff {
-      height: 400px;
+      height: 600px;
       overflow: scroll;
     }
 

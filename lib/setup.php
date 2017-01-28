@@ -118,6 +118,7 @@ function assets() {
 
   wp_enqueue_script('axios/js', 'https://unpkg.com/axios/dist/axios.min.js', null, null, true);
   wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
+    wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
 
@@ -157,3 +158,4 @@ add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
 add_filter('script_loader_tag', __NAMESPACE__ . '\\script_tag_defer',10,2);
 
 */
+

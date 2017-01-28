@@ -2,7 +2,7 @@
 
 namespace Roots\Sage\KlabTemplFunctions;
 
-use Roots\Sage\KlabMiddleNoPic;
+use Roots\Sage\KlabFullPicSingleCol;
 
 function getPageHeaderAndContent ($wpQuery, $showHeader = true, $showFeaturedImg = true)
 {
@@ -43,15 +43,19 @@ function constructPostClasses () {
 
 }
 
-function constructSectionClasses ($wpQuery, $sectionName) {
+function constructSectionClasses ($wpQuery, $sectionName, $gridSpacing = true, $noGrid = false) {
     $postsArray = $wpQuery->get_posts();
     $postId = $postsArray[0]->ID;
     $postType = $postsArray[0]->post_type;
 
-    $classes = 'postSection';
-    $classes .= ' postSection--'.$sectionName;
 
-    if ($postType === 'page') {
+    $classes = (!$noGrid) ? 'mdl-grid' : '';
+    if (!$gridSpacing){
+        $classes .= ' mdl-grid--no-spacing';
+    }
+    $classes .= ' postSection postSection--'.$sectionName;
+
+    if ($postType === 'page' && is_admin()) {
         $classes .= ' pageTemplate-';
         $wpQuery->is_front_page() ?  $classes .= 'front_page':
             $classes .= get_post_meta( $postId, '_wp_page_template', true );
@@ -60,19 +64,7 @@ function constructSectionClasses ($wpQuery, $sectionName) {
     return $classes;
 }
 
-function echoMetaMiddle($post, $metadataArray) {
-    if (!empty($metadataArray)) {
-                //print_r(get_post_meta($post->ID));
-                foreach ($metadataArray as $metas) {
-                    $meta = get_post_meta( $post->ID, $metas['key'], true );
-                    if (!empty($metas['title'])) {
-                        KlabMiddleNoPic\echoContent(true, false, $meta, $metas['title']);
-                    } else {
-                        KlabMiddleNoPic\echoContent(false, false, $meta);
-                    }
-                }
-            }
-}
+
 
 //for debugging purposes
 function dumpPostData($wpQuery) {

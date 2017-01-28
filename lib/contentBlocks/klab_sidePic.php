@@ -2,7 +2,7 @@
 
 namespace Roots\Sage\KlabSidePic;
 use Roots\Sage\KlabTemplFunctions;
-use Roots\Sage\KlabMiddleNoPic;
+use Roots\Sage\KlabFullPicSingleCol;
 
 function echoBlock ($wpQuery, $metadataArray=null, $showTitle = false, $classes = null, $imageSize = 'thumbnail') {
 

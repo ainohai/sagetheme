@@ -20,8 +20,10 @@ $sage_includes = [
   'lib/klab_navMenus.php', //
     //content Blocks
     'lib/contentBlocks/klab_news.php',
-    'lib/contentBlocks/klab_middleNoPic.php',
-    'lib/contentBlocks/klab_sidePic.php'
+    'lib/contentBlocks/klab_fullPicSingleCol.php',
+    'lib/contentBlocks/klab_sidePic.php',
+    'lib/contentBlocks/klab_singleColCard.php',
+     'lib/contentBlocks/klab_researchTopic.php'
 ];
 
 foreach ($sage_includes as $file) {
