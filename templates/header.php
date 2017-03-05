@@ -15,19 +15,15 @@
             <i class="material-icons">more_vert</i>
         </button>
     </div>
-    <!--<div class="mdl-layout--large-screen-only header-title mdl-layout__header-row">
-        <a class="mdl-layout-title" href="<?= esc_url(home_url('/')); ?>">
-            <h1><?php //bloginfo('name'); ?></h1>
-        </a>
-    </div>-->
-    <!--<div class="mdl-layout--small-screen-only mdl-layout__header-row dark-bg">
-        <a class="mdl-layout-title" href="<?= esc_url(home_url('/')); ?>"><h1><?php bloginfo('name'); ?></h1>
-        </a>
-    </div>-->
-    <div class="mdl-layout__header-row  mdl-layout__header-row--primary">
+
+    <?php
+    global $post;
+    $frontPageId = get_option( 'page_on_front' );
+    $invert = ($post->post_parent == $frontPageId || $post->ID == $frontPageId) ? '' :'invert'; ?>
+    <div class="mdl-layout__header-row  mdl-layout__header-row--primary <?php echo $invert ?>">
         <span class="mdl-layout--small-screen-only mdl-layout-title mdl-layout-title--mainKlab"><?php bloginfo('name')?></span>
         <!-- Navigation -->
-        <div class="mdl-layout--large-screen-only ">
+        <div class="mdl-layout--large-screen-only">
         <?php KlabNavMenus\echoPrimaryNavigation() ?>
         </div>
         <?php  /*annoying to fiddle with wordpress nav html structure -> lets do it from scratch with wpQuery.

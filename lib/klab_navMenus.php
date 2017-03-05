@@ -61,18 +61,22 @@ function updateLabHomePageMenu($post_id)
     wp_update_nav_menu_item( $menuId, 0, $menu_item_data);
 
 }*/
+define("FOR_PATIENTS_FRONT_ID", 3677);
 
 function echoPrimaryNavigation () {
 
-    $frontPageId = get_option( 'page_on_front' );
-    $navMenuPages = getPageAndItsChildren($frontPageId);
     global $post;
-    $currentSlug=!empty($post) ? $post->post_name : null;
+
+    $parentPageId = $post->post_parent ? $post->post_parent : $post->ID;
+    $frontPageId = get_option( 'page_on_front' );
+    $navMenuPages = getPageAndItsChildren($parentPageId);
+
     if (!empty($navMenuPages)) {
-        echo '<nav class="mdl-navigation" >';
+        $navModifier = $parentPageId == $frontPageId ? '': 'primaryNav--lightBg';
+        echo '<nav class="mdl-navigation primaryNav '. $navModifier .'" >';
         foreach ($navMenuPages as $navMenuPage) {
             echo '<a class="mdl-navigation__link mdl-navigation__link--weighted';
-            if ($currentSlug === $navMenuPage->post_name) {
+            if ($post->post_name === $navMenuPage->post_name) {
                 echo ' active';
             }
             echo '" href = "'. get_post_permalink($navMenuPage->ID).'" >';
@@ -84,7 +88,19 @@ function echoPrimaryNavigation () {
             }
             echo '</a >';
         }
+        echo '<div class="mdl-layout-spacer"></div>';
+
+        $linkId = ($post->post_parent == $frontPageId || $post->ID == $frontPageId) ? FOR_PATIENTS_FRONT_ID : $frontPageId;
+        $linkPost = get_post($linkId);
+        echo '<a class="mdl-navigation__link mdl-navigation__link--weighted contrast" href="'. get_post_permalink($linkId).'">';
+        echo $linkPost->post_title;
+        echo '</a>';
         echo '</nav >';
+
+        /*$linkPostID = $post->post_parent === $frontPageId ?
+        echo '';
+        echo '<a></a>';
+</button>*/
     }
 }
 
@@ -112,7 +128,7 @@ function echoIntraLinks() {
     $intraLinks = $wpQuery->query(array(
         'post_type' => 'klab_intra_links',
         'posts_per_page' => -1,
-        'orderby' => 'modified',
+        'orderby' => 'menu_order',
         'order' => 'ASC',
     ));
 
@@ -123,9 +139,21 @@ function echoIntraLinks() {
             $meta = get_post_meta( $link->ID);
             //print_r($meta);
 
-            echo '<li class="mdl-menu__item"><a class="" 
-                 href = "'. $meta['klab_intra_links_klabLinkUrl'][0] .'" >'
-                .$link->post_title.'</a ></li>';
+            echo '<a class="" 
+                 href = "'. $meta['klab_intra_links_klabLinkUrl'][0] .'" ><li class="mdl-menu__item">'
+                .$link->post_title.'</li></a >';
+        }
+
+        if (is_user_logged_in()) {
+
+
+            echo '<a href="' . get_admin_url() . '"><li class="mdl-menu__item">Admin area </li></a> ';
+            echo '<a href="' . admin_url( 'edit.php?post_type=klab_intra_links') . '"><li class="mdl-menu__item">Edit these links </li> </a>';
+            echo '<a href="' . wp_logout_url() . '"><li class="mdl-menu__item">Logout </li> </a>';
+        }
+        else {
+            echo '<a href="' . wp_login_url() . '"><li class="mdl-menu__item">Edit site  </li></a>';
+
         }
         echo '</ul>';
     }
@@ -137,7 +165,7 @@ function echoOnPageLinks ($wpQuery) {
         global $post;
        // echo '<div class="mdl-layout mdl-layout--fixed-drawer">';
        // echo '<div class="mdl-layout__drawer" aria-hidden="true">';
-        echo '<ul class="mdl-list">';
+        echo '<ul class="mdl-list researchTopicNav">';
 
         while ($wpQuery->have_posts()) : $wpQuery->the_post();
 

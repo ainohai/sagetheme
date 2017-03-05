@@ -1,0 +1,17 @@
+.researchCol--abstract {
+  p {
+    line-height:2em;
+    font-style:italic;
+  }
+}
+
+.mdl-grid.research-topics {
+  flex-direction: row-reverse;
+}
+
+.researchTopicNav.fixed {
+
+  position:fixed;
+  top:65px;
+
+}

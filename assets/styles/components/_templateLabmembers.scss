@@ -1,0 +1,51 @@
+.rslides .caption {
+  @include textOverImage();
+  font-size:1em;
+  font-weight: normal;
+  text-transform: none;
+  position:absolute;
+  bottom:0;
+  width:100%;
+  z-index:3;
+  text-align: center;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+
+}
+
+
+.middleSingleCol--labMemberSlider {
+
+  width:100%;
+  .mdl-card__media {
+    height: 450px;
+
+    .mdl-card__title-text {
+      //margin-bottom:128px;
+    }
+
+  }
+
+}
+
+.postSection--klabLabMember {
+  max-width: $maxContentWidth;
+
+  h2 {
+    font-size:2em;
+  }
+  .mdl-card__media {
+
+    margin-left:auto;
+    margin-right:auto;
+    img {
+      border-radius: 50%;
+    }
+
+    .mdl-list__item-avatar {
+      font-size:150px;
+      height:150px;
+      width:150px;
+    }
+  }
+}

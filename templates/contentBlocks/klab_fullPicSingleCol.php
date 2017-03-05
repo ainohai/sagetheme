@@ -2,6 +2,10 @@
 
 namespace Roots\Sage\KlabFullPicSingleCol;
 use Roots\Sage\KlabTemplFunctions;
+use Roots\Sage\Setup\EditAnchors;
+
+define('FULL_SINGLE_PIC','fullSinglePic');
+define('SINGLE_CONTENT','content');
 
 function echoBlock ($wpQuery, $metadataArray = null, $showTitle = true, $showPic = true, $showContent = true)
 {
@@ -9,10 +13,10 @@ function echoBlock ($wpQuery, $metadataArray = null, $showTitle = true, $showPic
 
     if ($wpQuery->have_posts()) {
         $postsArray = $wpQuery->get_posts();
-        $blockModifier = $postsArray[0]->slug;?>
+        $blockModifier = ($showPic && !$showContent) ? FULL_SINGLE_PIC : SINGLE_CONTENT;?>
 
 
-        <section class="<?php echo KlabTemplFunctions\constructSectionClasses($wp_query, $blockModifier, false); ?>">
+        <section class="<?php echo KlabTemplFunctions\constructSectionClasses($wp_query, $blockModifier, !$showPic); ?>">
 
             <?php
             while ($wpQuery->have_posts()) : $wpQuery->the_post();
@@ -36,7 +40,7 @@ function echoContent($showTitle, $showPic, $showContent = true, $blockModifier =
     global $post; ?>
 
     <?php $blockNames = 'middleSingleCol'; ?>
-    <?php if (!empty($blockModifier) && $blockModifier != null ) {
+    <?php if (!empty($blockModifier) && $blockModifier != null && $blockModifier != '' ) {
         $blockNames = $blockNames . ' ' . $blockNames . '--' . $blockModifier;
     } ?>
     <div class="mdl-card mdl-cell--12-col <?php echo $blockNames; ?> editableContent"
@@ -54,35 +58,46 @@ function echoContent($showTitle, $showPic, $showContent = true, $blockModifier =
             } ?>
 
             <div class="mdl-card__media" style="background-image: url('<?php echo $imageUrl ?>'">
-                <?php if($showTitle) { ?>
+                <?php if( current_user_can('editor') || current_user_can('administrator')) {
+                    echo '<div class="absoluteEditButton">';
+                    echo KlabTemplFunctions\getEditPostButtonInLoop(EditAnchors::getThumbnailAnchor());
+                    echo '</div>';
+                } ?>
+                <?php if ($showTitle) { ?>
                     <div class="mdl-card__title">
-                        <h1 class="mdl-card__title-text"><?php (is_front_page()) ? bloginfo('name') : the_title() ; ?></h1>
+                        <h1 class="mdl-card__title-text">
+                            <?php if (empty($title)) {
+                                (is_front_page()) ? bloginfo('name') : the_title();
+                            } else {
+                                echo $title;
+                            } ?>
+
+                        </h1>
                     </div>
-                <?php }?>
+                <?php } ?>
+
             </div>
 
 
         <?php } ?>
-        <div class="mdl-grid">
-            <div class="mdl-cell--8-col mdl-cell--1-offset-desktop mdl-card__supporting-text">
-                <?php if ($showTitle && !$showPic) { ?>
-                    <h2>
-                        <?php
-                        if (!empty($title)) { echo $title; }
-                        else { the_title(); } ?>
-                    </h2>
-                <?php } ?>
 
+        <?php if ($showTitle && !$showPic) { ?>
+            <h2>
                 <?php
-                if ($showContent) {
-                    if ($content != null) {
-                        echo apply_filters('the_content', wp_kses_post($content));
-                    } else {
-                        the_content();
-                    }
-                }?>
-            </div>
-        </div>
+                if (!empty($title)) { echo $title; }
+                else { the_title(); } ?>
+            </h2>
+        <?php } ?>
+
+        <?php
+        if ($showContent) {
+            if ($content != null) {
+                echo apply_filters('the_content', wp_kses_post($content));
+            } else {
+                the_content();
+            }
+        }?>
+
     </div>
 
 <?php }

@@ -8,8 +8,37 @@
 
   &--primary {
     @include primary-accent-bg();
+    padding-left:50px;
+
+    .mdl-layout--large-screen-only {
+      width:100%
+    }
+  }
+  &--primary.invert {
+    @include white-bg();
+
   }
 }
+
+.primaryNav {
+  .mdl-navigation__link {
+    line-height: 40px;
+  }
+  .mdl-navigation__link.contrast {
+    //@include white-bg();
+    //color : $primary-accent-color;
+    border: 2px, solid $white;
+    line-height: 28px;
+  }
+}
+.invert {
+  .mdl-navigation__link.contrast {
+    //@include white-bg();
+    color: $primary-accent-color;
+    border: 2px, solid $primary-accent-color;
+  }
+}
+
 
 .klab-helsinkiUni {
   @include header-text();

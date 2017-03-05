@@ -1,6 +1,5 @@
 
-.bio--mainContent {
-  flex-direction: row-reverse;
+.bigSidePic {
 
   .mdl-card__media {
     img {
@@ -10,13 +9,16 @@
   }
 }
 
-.bio--mainContent__bioDetails {
+.bigSidePic--bio {
+  flex-direction: row-reverse;
+}
+
+.bigSidePic__content {
   justify-content: center;
 }
-.bio--cv {
-  max-width: $smallerContentWidth;
-  margin-left:0px;
-  margin-right: 0px;
+
+#map {
+  height:400px;
 }
 
 .postSection--bio {
@@ -24,3 +26,6 @@
   margin-right:0px;
 }
 
+.contentSide {
+  max-width: $maxContentWidth;
+}

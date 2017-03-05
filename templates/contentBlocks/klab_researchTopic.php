@@ -3,7 +3,6 @@ use Roots\Sage\KlabTemplFunctions;
 
 function echoBlock ($wpQuery, $showTitle = true, $researchTopic=true)
 {
-    global $wp_query;
 
     if ($wpQuery->have_posts()) {
 
@@ -11,7 +10,7 @@ function echoBlock ($wpQuery, $showTitle = true, $researchTopic=true)
         $editorBlock = ($researchTopic) ? 'abstract' : 'content';
         ?>
 
-        <section class="<?php echo KlabTemplFunctions\constructSectionClasses($wp_query, $blockModifier); ?>">
+        <section class="<?php echo KlabTemplFunctions\constructSectionClasses($wpQuery, $blockModifier); ?>">
 
             <?php
             while ($wpQuery->have_posts()) : $wpQuery->the_post();

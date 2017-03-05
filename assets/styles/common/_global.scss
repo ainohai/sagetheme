@@ -1,60 +1,89 @@
 body, header, h1, h2, h3, h4, h5, h6, p  {
-	font-family: $base-font-family;
+  font-family: $base-font-family;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	@include header-text;
+  @include header-text;
 }
 
 a, a:hover{
-	text-decoration: none;
+  text-decoration: none;
 }
 a {
-	color: $linkColor;
+  color: $linkColor;
 }
 p {
-	font-size:16px;
+  font-size:16px;
 }
 
 .mdl-navigation__link
 {}
 .mdl-navigation__link--weighted {
-	@include header-text;
+  @include header-text;
+}
+
+.mdl-card__supporting-text {
+  color:$black;
 }
 
 .mdl-card__title-text {
-	align-self: flex-start;
-	-webkit-align-self: flex-start;
-	font-weight: 700;
-	font-size: 24px;
+  align-self: flex-start;
+  -webkit-align-self: flex-start;
+  font-weight: 700;
+  font-size: 24px;
+}
+
+.mdl-card__media {
+  background-color: inherit;
 }
 
 .main {
-	//max-width:1000px;
+  //max-width:1000px;
 }
 
 img {
-	max-width:100%;
+  max-width:100%;
+  height:auto;
 }
 
 .postSection {
-	margin-left:auto;
-	margin-right:auto;
-	//max-width:$maxContentWidth;
+  margin-left:auto;
+  margin-right:auto;
+  //max-width:$maxContentWidth;
+}
+.postSection--publicationsList {
+
+  margin-left:auto;
+  margin-right:auto;
+
+
 }
 
+.publicationItem {
+  margin-bottom:24px;
 
-
-.researchCol--abstract {
-	p {
-		line-height:2em;
-		font-style:italic;
-	}
+  &__title {
+    font-weight:700;
+    font-size:16px;
+  }
 }
 
-.mdl-grid.research-topics {
-	flex-direction: row-reverse;
+.adminEdit .adminEdit__button {
+  min-width:20px;
+  width:20px;
+  height:20px;
+  background-color: $gray;
+
+  .material-icons {
+    font-size: 16px;
+  }
 }
+
+.absoluteEditButton {
+  position:absolute;
+  top:10px;
+}
+
 
 
 

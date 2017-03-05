@@ -3,6 +3,7 @@
 namespace Roots\Sage\Setup;
 
 use Roots\Sage\Assets;
+use Roots\Sage\KlabTemplFunctions;
 
 /**
  * Theme setup
@@ -48,6 +49,8 @@ function setup() {
   // Use main stylesheet for visual editor
   // To add custom styles edit /assets/styles/layouts/_tinymce.scss
   add_editor_style(Assets\asset_path('styles/main.css'));
+
+    add_filter('show_admin_bar', '__return_false');
 }
 add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
 
@@ -107,9 +110,12 @@ function assets() {
   if (is_single() && comments_open() && get_option('thread_comments')) {
     wp_enqueue_script('comment-reply');
   }
+  if (is_page('contact')) {
+      wp_enqueue_script('googlemaps/js', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyANdMVnsOgw9R0277hHHWlyOxJylPKcJOc&callback=initMap', ['sage/js'], null, true);
+  }
 
   if (is_user_logged_in() ) {
-      wp_enqueue_script('tinymce/js', '//cdn.tinymce.com/4/tinymce.min.js', null, null, true);
+      //wp_enqueue_script('tinymce/js', '//cdn.tinymce.com/4/tinymce.min.js', null, null, true);
 	  wp_enqueue_script('klabAdmin/js', Assets\asset_path('scripts/klabAdmin.js'), array(), 0.1, true);
   }
   else {
@@ -119,43 +125,95 @@ function assets() {
   wp_enqueue_script('axios/js', 'https://unpkg.com/axios/dist/axios.min.js', null, null, true);
   wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
     wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
+
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
 
-/**
- * Removes width and height attributes from image tags
- *
- * @param string $html
- *
- * @return string
- */
-//function remove_image_size_attributes($html ) {
-//   return preg_replace( '/(width|height)="\d*"/', '', $html );
-//}
+class EditAnchors {
+    const CONTENT_ANCHOR = 'wp-content-editor-container';
+    const TITLE_ANCHOR = 'title';
+    const THUMBNAIL_ANCHOR = 'set-post-thumbnail';
 
-// Remove image size attributes from post thumbnails
-//add_filter( 'post_thumbnail_html', __NAMESPACE__ . '\\remove_image_size_attributes' );
-
-// Remove image size attributes from images added to a WordPress post
-//add_filter( 'image_send_to_editor', __NAMESPACE__ . '\\remove_image_size_attributes' );
-
-
-//to add defer to loading of scripts - use defer to keep loading order
-/*function script_tag_defer($tag, $handle) {
-    if (is_admin()){
-        return $tag;
+    static function getContentAnchor() {
+        return self::CONTENT_ANCHOR;
     }
-    if (strpos($tag, '/wp-includes/js/jquery/jquery')) {
-        return $tag;
+    static function getTitleAnchor() {
+        return self::TITLE_ANCHOR;
     }
-    if (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE 9.') !==false) {
-        return $tag;
-    }
-    else {
-        return str_replace(' src',' defer src', $tag);
+    static function getThumbnailAnchor() {
+        return self::THUMBNAIL_ANCHOR;
     }
 }
-add_filter('script_loader_tag', __NAMESPACE__ . '\\script_tag_defer',10,2);
 
+$contentAnchor = EditAnchors::getContentAnchor();
+$titleAnchor = EditAnchors::getTitleAnchor();
+$thumbnailAnchor = EditAnchors::getThumbnailAnchor();
+
+add_filter('the_content',
+    function($content) use ($contentAnchor) {
+        return klab_addEditButton($content, $contentAnchor);
+    }
+);
+
+add_filter('the_title',
+    function($content) use ($titleAnchor) {
+        return klab_addEditButton($content, $titleAnchor);
+    }
+);
+
+add_filter('post_thumbnail_html',
+    function($content) use ($thumbnailAnchor) {
+        return klab_addEditButton($content, $thumbnailAnchor);
+    }
+);
+
+//admin edit button
+function klab_addEditButton($content, $anchor) {
+    //is_admin checks if user is in admin panel
+    $beforecontent = (( current_user_can('editor') || current_user_can('administrator')) && !is_admin() ) ?
+        KlabTemplFunctions\getEditPostButtonInLoop($anchor) : '';
+    return $beforecontent . $content;
+
+}
+
+function klab_loginRedirect( $redirect_to, $request, $user ) {
+    //is there a user to check?
+    if ( isset( $user->roles ) && is_array( $user->roles ) ) {
+        //check for admins
+        if ( in_array( 'administrator', $user->roles ) ) {
+            // redirect them to the default place
+            return $redirect_to;
+        } else {
+            return home_url();
+        }
+    } else {
+        return $redirect_to;
+    }
+}
+
+add_filter( 'login_redirect',  __NAMESPACE__ . '\\klab_loginRedirect', 10, 3 );
+//add_filter('the_content', __NAMESPACE__ . '\\klab_addEditButtonToContent');
+/*
+//admin edit button
+function klab_addEditButtonToTitle($content) {
+    $beforecontent =
+        '<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+            <i class="material-icons">edit</i>
+        </button>';
+    return $beforecontent . $content;
+
+}
+add_filter('the_title', __NAMESPACE__ . '\\klab_addEditButtonToTitle');
+
+//admin edit button
+function klab_addEditButtonToThumbnail($html) {
+    $beforecontent =
+        '<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
+            <i class="material-icons">edit</i>
+        </button>';
+    return $beforecontent . $html;
+
+
+}
+add_filter('post_thumbnail_html', __NAMESPACE__ . '\\klab_addEditButtonToThumbnail');
 */
-

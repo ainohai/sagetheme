@@ -19,7 +19,9 @@
     'common': {
       init: function() {
         // JavaScript to be fired on all pages
-		},
+        console.log("running common");
+
+      },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired
       }
@@ -33,10 +35,43 @@
         // JavaScript to be fired on the home page, after the init JS
       }
     },
-    // About us page, note the change from about-us to about_us.
-    'about_us': {
+    'research': {
       init: function() {
-        // JavaScript to be fired on the about us page
+        console.log("initing research");
+        $('.mdl-layout__content').scroll(function(){
+          if ($(this).scrollTop() > 380) {
+            $('.researchTopicNav').addClass('fixed');
+          } else {
+            $('.researchTopicNav').removeClass('fixed');
+          }
+
+        });
+      }
+    },
+
+    'labmembers': {
+      init: function() {
+        // Slideshow
+        $(".rslides").responsiveSlides({
+          auto: true,
+          //pagination: true,
+          //nav: true,
+          fade: 1000,
+          timeout: 8000
+          //maxwidth: 800
+        });
+
+        console.log("running labmemb");
+      }
+
+    },
+    'contact': {
+      init: function() {
+        console.log("running contact");
+
+
+
+
       }
     }
   };
@@ -75,3 +110,16 @@
   $(document).ready(UTIL.loadEvents);
 
 })(jQuery); // Fully reference jQuery after this point.
+
+function initMap () {
+  console.log("inifMap");
+  var location = {lat: 60.1912461, lng: 24.9042853};
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 13,
+    center: location
+  });
+  var marker = new google.maps.Marker({
+    position: location,
+    map: map
+  });
+}

@@ -15,7 +15,9 @@
 @import "components/sidePic-block";
 @import "components/singleColCard-block";
 @import "components/facebookFeed-block";
-@import "components/templateBio-block";
+@import "components/_templateBio";
+@import "components/_templateLabmembers";
+@import "components/_templateResearch";
 @import "layouts/header";
 @import "layouts/sidebar";
 @import "layouts/footer";

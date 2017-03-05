@@ -19,11 +19,15 @@ $sage_includes = [
   'lib/klab_templateFunctions.php', // view related things often used in templates
   'lib/klab_navMenus.php', //
     //content Blocks
-    'lib/contentBlocks/klab_news.php',
-    'lib/contentBlocks/klab_fullPicSingleCol.php',
-    'lib/contentBlocks/klab_sidePic.php',
-    'lib/contentBlocks/klab_singleColCard.php',
-     'lib/contentBlocks/klab_researchTopic.php'
+    'templates/contentBlocks/klab_news.php',
+    'templates/contentBlocks/klab_fullPicSingleCol.php',
+    'templates/contentBlocks/klab_sidePic.php',
+    'templates/contentBlocks/klab_singleColCard.php',
+     'templates/contentBlocks/klab_researchTopic.php',
+    'templates/contentBlocks/klab_labMemberSlider.php',
+    'templates/contentBlocks/klab_contentSide.php',
+    'templates/contentBlocks/klab_bigSidePic.php'
+
 ];
 
 foreach ($sage_includes as $file) {

@@ -1,7 +1,10 @@
 <?php
 use Roots\Sage\KlabFullPicSingleCol;
 
-KlabFullPicSingleCol\echoBlock($wp_query, null, true, true); ?>
+
+KlabFullPicSingleCol\echoBlock($wp_query, null, true, true, false);
+
+KlabFullPicSingleCol\echoBlock($wp_query, null, false, false, true); ?>
 
 <?php $wp_query->reset_postdata(); ?>
 
