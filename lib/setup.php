@@ -155,11 +155,11 @@ add_filter('the_content',
     }
 );
 
-add_filter('the_title',
+/*add_filter('the_title',
     function($content) use ($titleAnchor) {
         return klab_addEditButton($content, $titleAnchor);
     }
-);
+);*/
 
 add_filter('post_thumbnail_html',
     function($content) use ($thumbnailAnchor) {
@@ -217,3 +217,13 @@ function klab_addEditButtonToThumbnail($html) {
 }
 add_filter('post_thumbnail_html', __NAMESPACE__ . '\\klab_addEditButtonToThumbnail');
 */
+
+add_action('admin_head',  __NAMESPACE__ . '\\custom_admin_css');
+
+function custom_admin_css() {
+    echo '<style>
+    #wpbody-content #cpto #cpt_info_box, #wpbody-content #cpt_info_box {
+      display:none;
+    } 
+  </style>';
+}

@@ -16,16 +16,21 @@ $gray: #ccc;
 $basicTextColor : $black;
 $linkColor: #006CBF;
 $linkOnHover:#00487F;
+$grayBg:#dbdbdb;
+$accent-bg:#9d9d9d;
 
 //Fonts
 $base-font-family: "Open Sans",Helvetica,Arial,sans-serif,Nimbus Sans L;
+$base-font-serif: "Georgia", "Times New Roman", serif;
 $base-line-height: 1.8em;
 
 $base-font-color: #424242;
 $kivaTurkoosi: #5bc0de;
 
-$maxContentWidth: 1100px;
-$smallerContentWidth: 900px;
+$maxContentWidth: 1500px;
+$smallerContentWidth: 1000px;
+
+$textOverImageBg: rgba(128, 128, 128, 0.8);
 
 //used with all headers
 @mixin header-text() {
@@ -40,7 +45,7 @@ $smallerContentWidth: 900px;
 
 //For texts placed over images:
 @mixin textOverImage() {
-  background-color: rgba(128, 128, 128, 0.8);
+  background-color: $textOverImageBg;
   padding: 4px 4px 4px 4px;
   color: $white;
 }

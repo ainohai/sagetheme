@@ -16,7 +16,7 @@ function echoBlock ($wpQuery, $metadataArray = null, $showTitle = true, $showPic
         $blockModifier = ($showPic && !$showContent) ? FULL_SINGLE_PIC : SINGLE_CONTENT;?>
 
 
-        <section class="<?php echo KlabTemplFunctions\constructSectionClasses($wp_query, $blockModifier, !$showPic); ?>">
+        <section class="<?php echo KlabTemplFunctions\constructSectionClasses($blockModifier, !$showPic); ?>">
 
             <?php
             while ($wpQuery->have_posts()) : $wpQuery->the_post();
@@ -43,6 +43,7 @@ function echoContent($showTitle, $showPic, $showContent = true, $blockModifier =
     <?php if (!empty($blockModifier) && $blockModifier != null && $blockModifier != '' ) {
         $blockNames = $blockNames . ' ' . $blockNames . '--' . $blockModifier;
     } ?>
+
     <div class="mdl-card mdl-cell--12-col <?php echo $blockNames; ?> editableContent"
          data-postTypeSlug="<?php echo get_post_type($post); ?>"
          data-id="<?php $post->ID;?>">
@@ -56,7 +57,7 @@ function echoContent($showTitle, $showPic, $showContent = true, $blockModifier =
                 $imageUrl = get_the_post_thumbnail_url(get_option('page_on_front'));
 
             } ?>
-
+            <div class = "headerPadding"></div>
             <div class="mdl-card__media" style="background-image: url('<?php echo $imageUrl ?>'">
                 <?php if( current_user_can('editor') || current_user_can('administrator')) {
                     echo '<div class="absoluteEditButton">';
@@ -72,7 +73,8 @@ function echoContent($showTitle, $showPic, $showContent = true, $blockModifier =
                                 echo $title;
                             } ?>
 
-                        </h1>
+                        </h1> <?php
+                         ?>
                     </div>
                 <?php } ?>
 
@@ -103,7 +105,7 @@ function echoContent($showTitle, $showPic, $showContent = true, $blockModifier =
 <?php }
 
 function echoMetaMiddle($post, $metadataArray) {
-    if (!empty($metadataArray)) {
+    /*if (!empty($metadataArray)) {
 //print_r(get_post_meta($post->ID));
         foreach ($metadataArray as $metas) {
             $meta = get_post_meta( $post->ID, $metas['key'], true );
@@ -113,7 +115,7 @@ function echoMetaMiddle($post, $metadataArray) {
                 echoContent(false, false, true, null, $meta);
             }
         }
-    }
+    }*/
 }
 
 ?>

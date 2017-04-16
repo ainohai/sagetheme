@@ -38,8 +38,10 @@
     'research': {
       init: function() {
         console.log("initing research");
+        var p = $( '.researchTopicNav' );
+        var position = p.position();
         $('.mdl-layout__content').scroll(function(){
-          if ($(this).scrollTop() > 380) {
+          if ($(this).scrollTop() > position.top) {
             $('.researchTopicNav').addClass('fixed');
           } else {
             $('.researchTopicNav').removeClass('fixed');
@@ -57,7 +59,7 @@
           //pagination: true,
           //nav: true,
           fade: 1000,
-          timeout: 8000
+          timeout: 6000
           //maxwidth: 800
         });
 

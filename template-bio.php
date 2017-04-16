@@ -10,17 +10,12 @@ use Roots\Sage\KlabLabContentSide;
 use Roots\Sage\KlabFullPicSingleCol;
 ?>
 
-<?php //print_r(get_intermediate_image_sizes());?>
-
 <?php
 global $wp_query, $post;
 $blockName = 'bio'; ?>
 
 
-    <section class="<?php echo KlabTemplFunctions\constructSectionClasses($wp_query, $blockName); ?>">
-
-
-        <?php KlabBigSidePic\echoContent('bio'); ?>
+        <?php KlabBigSidePic\echoContent($blockName); ?>
 
 
         <?php
@@ -29,8 +24,7 @@ $blockName = 'bio'; ?>
          if (!empty($cv)) {
 
              KlabLabContentSide\echoContent('bioDetails', 'CV', $cv)
-         //endwhile; ?>
+          ?>
 
-    </section>
 
 <?php } ?>

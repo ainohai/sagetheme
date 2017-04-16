@@ -1,24 +1,24 @@
-<?php use Roots\Sage\KlabNewsBlock;
+<?php use Roots\Sage\KlabEchoNews;
 use Roots\Sage\KlabFullPicSingleCol;
+
+class KlabFrontEntryPage extends \Roots\Sage\KlabPage\KlabDefaultEntryPage {
+    public function run()
+    {
+        $this->echoPage();
+        $this->echoAfterPage();
+    }
+
+    protected function echoAfterPage()
+    {
+        $news = new KlabEchoNews\KlabNews();
+        $news->echoPosts();
+    }
+}
+while (have_posts()) : the_post();
+$thisPage = new KlabFrontEntryPage();
+$thisPage->run();
+endwhile;
+
 ?>
 
-<?php KlabFullPicSingleCol\echoBlock($wp_query, null, true, true, false); ?>
-<?php KlabFullPicSingleCol\echoBlock($wp_query, null, false, false, true); ?>
-<?php //news ?>
-
-<?php
-$args = array (
-    'post_type' => 'klab_news',
-    'posts_per_page' => -1,
-    'orderby' => 'menu_order',
-    'order' => 'ASC',
-);
-?>
-
-<?php $newsQuery = new WP_Query( $args ); ?>
-
-
-
-
-<?php KlabNewsBlock\echoNewsBlock($newsQuery) ?>
 

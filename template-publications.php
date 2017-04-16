@@ -34,7 +34,7 @@ if ($publicationsQuery->have_posts()) {
     $blockModifier = 'publicationsList';?>
 
 
-    <section class="<?php echo KlabTemplFunctions\constructSectionClasses($wp_query, $blockModifier, false); ?>">
+    <section class="<?php echo KlabTemplFunctions\constructSectionClasses($blockModifier, false); ?>">
 
 
         <div class = "mdl-cell--8-col mdl-cell--1-offset-desktop mdl-card">

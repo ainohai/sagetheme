@@ -19,7 +19,7 @@
     <?php
     global $post;
     $frontPageId = get_option( 'page_on_front' );
-    $invert = ($post->post_parent == $frontPageId || $post->ID == $frontPageId) ? '' :'invert'; ?>
+    $invert = ($post->post_parent == LAB_HOME_PARENT_ID || $post->ID == $frontPageId) ? '' :'invert'; ?>
     <div class="mdl-layout__header-row  mdl-layout__header-row--primary <?php echo $invert ?>">
         <span class="mdl-layout--small-screen-only mdl-layout-title mdl-layout-title--mainKlab"><?php bloginfo('name')?></span>
         <!-- Navigation -->

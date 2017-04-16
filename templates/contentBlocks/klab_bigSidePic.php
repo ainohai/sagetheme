@@ -7,7 +7,7 @@ function echoContent($blockModifier) {
     global $post;
     ?>
 
-    <div class="mdl-grid editableContent <?php echo $blockName .' '. $blockName .'--' . $blockModifier; ?>"
+    <section class="mdl-grid editableContent postSection <?php echo $blockName .' '. $blockName .'--' . $blockModifier; ?>"
          data-postTypeSlug="<?php echo get_post_type($post); ?>"
          data-id="<?php $post->ID; ?>">
 
@@ -30,6 +30,6 @@ function echoContent($blockModifier) {
 
         </div>
 
-    </div>
+    </section>
 
 <?php } ?>

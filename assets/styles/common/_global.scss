@@ -26,6 +26,11 @@ p {
   color:$black;
 }
 
+.mdl-card {
+  min-height: inherit;
+  background-color: inherit;
+}
+
 .mdl-card__title-text {
   align-self: flex-start;
   -webkit-align-self: flex-start;
@@ -46,15 +51,54 @@ img {
   height:auto;
 }
 
-.postSection {
-  margin-left:auto;
-  margin-right:auto;
-  //max-width:$maxContentWidth;
-}
-.postSection--publicationsList {
 
-  margin-left:auto;
-  margin-right:auto;
+
+.postSection {
+  margin-left: auto;
+  margin-right: auto;
+  //max-width: $maxContentWidth;
+  padding-top:32px;
+  padding-bottom:15px;
+  padding-left: 1.5%;
+  padding-right: 1.5%;
+
+
+  &--publicationsList {
+
+    //margin-left:auto;
+    //margin-right:auto;
+
+  }
+
+  &--fullSinglePic, &--imageSlider {
+    max-width: inherit;
+    padding-bottom:0px;
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  &--contentInBox {
+    min-height:30vh;
+    //padding-bottom:5vh;
+
+    .mdl-card {
+      max-width: $smallerContentWidth;
+      justify-content: center;
+      margin-left: auto;
+      margin-right: auto;
+      padding-right: 10%;
+      padding-left: 1.5%;
+      font-size: 20px;
+
+      p {
+        font-family: $base-font-serif;
+        font-size: 18px;
+        line-height: 1.7;
+        //padding-top: 24px;
+
+      }
+    }
+  }
 
 
 }
@@ -68,20 +112,51 @@ img {
   }
 }
 
-.adminEdit .adminEdit__button {
-  min-width:20px;
-  width:20px;
-  height:20px;
-  background-color: $gray;
+.adminEdit {
 
-  .material-icons {
-    font-size: 16px;
+  &--modPostsButtons {
+    margin-left: 24px;
+    margin-top: 12px;
+    margin-bottom: 6px;
+
+    button {
+      margin-left: 2px;
+      margin-right: 2px;
+    }
+  }
+
+  .adminEdit__button {
+    min-width: 20px;
+    width: 20px;
+    height: 20px;
+    //background-color: $gray;
+
+    .material-icons {
+      font-size: 16px;
+    }
   }
 }
+
+.adminPostTypeSect {
+  border-style: solid;
+  border-color: $gray;
+  margin:2px;
+}
+
 
 .absoluteEditButton {
   position:absolute;
   top:10px;
+  left:18px;
+}
+
+.mdl-cell {
+  //padding-left: 2%;
+  //padding-right: 2%;
+}
+
+.mdl-cell--6-col {
+  max-width:700px;
 }
 
 

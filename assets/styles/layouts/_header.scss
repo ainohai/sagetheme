@@ -1,4 +1,3 @@
-
 .mdl-layout__header-row {
   max-height:50px;
   &--uni {
@@ -22,7 +21,8 @@
 
 .primaryNav {
   .mdl-navigation__link {
-    line-height: 40px;
+    line-height: 1em;
+    font-size: 16px;
   }
   .mdl-navigation__link.contrast {
     //@include white-bg();
@@ -98,6 +98,3 @@
 
 
 }
-
-
-

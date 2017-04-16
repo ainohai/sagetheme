@@ -5,7 +5,7 @@ function echoContent ($blockModifier, $title, $content = null) {
 global $post;
 $blockName = 'contentSide'; ?>
 
-<div class="mdl-grid editableContent <?php echo $blockName . ' ' .$blockName .'--' .$blockModifier?>"
+<section class="mdl-grid editableContent postSection <?php echo $blockName . ' ' .$blockName .'--' .$blockModifier?>"
      data-postTypeSlug="<?php echo get_post_type($post); ?>"
      data-id="<?php $post->ID; ?>">
     <div class="mdl-cell mdl-cell--12-col mdl-card <?php echo $blockName . "__content"; ?>">
@@ -25,7 +25,7 @@ $blockName = 'contentSide'; ?>
 
     </div>
 
-</div>
+</section>
 <?php
 }
 ?>

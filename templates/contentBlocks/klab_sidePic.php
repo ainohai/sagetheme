@@ -9,7 +9,7 @@ function echoBlock ($wpQuery, $metadataArray=null, $showTitle = false, $classes 
     $blockName = 'sidePic';
     if ($wpQuery->have_posts()) { ?>
 
-        <section class="<?php echo $blockName . ' ' .KlabTemplFunctions\constructSectionClasses($wpQuery, 'bio'); ?>">
+        <section class="<?php echo $blockName . ' ' .KlabTemplFunctions\constructSectionClasses('bio'); ?>">
 
         <?php
         while ($wpQuery->have_posts()) : $wpQuery->the_post();

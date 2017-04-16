@@ -61,7 +61,9 @@ function updateLabHomePageMenu($post_id)
     wp_update_nav_menu_item( $menuId, 0, $menu_item_data);
 
 }*/
-define("FOR_PATIENTS_FRONT_ID", 3677);
+define("FOR_PATIENTS_ID", 3677);
+define("FOR_PATIENTS_PARENT_ID", 3949);
+define("LAB_HOME_PARENT_ID", 3946);
 
 function echoPrimaryNavigation () {
 
@@ -69,10 +71,10 @@ function echoPrimaryNavigation () {
 
     $parentPageId = $post->post_parent ? $post->post_parent : $post->ID;
     $frontPageId = get_option( 'page_on_front' );
-    $navMenuPages = getPageAndItsChildren($parentPageId);
+    $navMenuPages = getPageChildren($parentPageId);
 
     if (!empty($navMenuPages)) {
-        $navModifier = $parentPageId == $frontPageId ? '': 'primaryNav--lightBg';
+        $navModifier = $parentPageId == FOR_PATIENTS_PARENT_ID  ? ' primaryNav--lightBg' : '';
         echo '<nav class="mdl-navigation primaryNav '. $navModifier .'" >';
         foreach ($navMenuPages as $navMenuPage) {
             echo '<a class="mdl-navigation__link mdl-navigation__link--weighted';
@@ -90,7 +92,7 @@ function echoPrimaryNavigation () {
         }
         echo '<div class="mdl-layout-spacer"></div>';
 
-        $linkId = ($post->post_parent == $frontPageId || $post->ID == $frontPageId) ? FOR_PATIENTS_FRONT_ID : $frontPageId;
+        $linkId = ($post->post_parent == LAB_HOME_PARENT_ID || $post->ID == $frontPageId) ? FOR_PATIENTS_ID : $frontPageId;
         $linkPost = get_post($linkId);
         echo '<a class="mdl-navigation__link mdl-navigation__link--weighted contrast" href="'. get_post_permalink($linkId).'">';
         echo $linkPost->post_title;
@@ -104,15 +106,15 @@ function echoPrimaryNavigation () {
     }
 }
 
-function getPageAndItsChildren($pageId) {
-    $wpQuery = new \WP_Query;
+function getPageChildren($pageId) {
+    /*$wpQuery = new \WP_Query;
     $parent = $wpQuery->query(array(
             'page_id' => $pageId
         )
-    );
+    );*/
 
-    $wpQuery2 = new \WP_Query();
-    $children = $wpQuery2->query(array(
+    $wpQuery = new \WP_Query();
+    return $wpQuery->query(array(
         'post_type' => 'page',
         'post_parent'    => $pageId,
         'posts_per_page' => -1,
@@ -120,7 +122,8 @@ function getPageAndItsChildren($pageId) {
         'order' => 'ASC',
     ));
 
-    return array_merge($parent, $children);
+    //return array_merge($parent, $children);
+
 }
 
 function echoIntraLinks() {
@@ -160,26 +163,5 @@ function echoIntraLinks() {
 
 }
 
-function echoOnPageLinks ($wpQuery) {
-    if ($wpQuery->have_posts()) {
-        global $post;
-       // echo '<div class="mdl-layout mdl-layout--fixed-drawer">';
-       // echo '<div class="mdl-layout__drawer" aria-hidden="true">';
-        echo '<ul class="mdl-list researchTopicNav">';
-
-        while ($wpQuery->have_posts()) : $wpQuery->the_post();
-
-            //global $wp;
-            //$current_url = add_query_arg( $wp->query_string, '', home_url( $wp->request ) );
-            echo '<li class="mdl-list__item"><a href="#' . $post->post_name . '">'. $post->post_title .'</a></li>';
-        endwhile;
-
-        echo '</ul>';
-        //echo '</div>';
-        //echo '</div>';
-    }
-
-    $wpQuery->reset_postdata();
-}
 
 ?>

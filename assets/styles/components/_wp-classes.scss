@@ -40,12 +40,13 @@
   margin-bottom:32px;
   margin-top:24px;
 }
-
-// Captions
-/*.wp-caption {
-  @extend .thumbnail;
+//////////ADMIN SIDE
+.editorTitle {
+  font-size: 14px;
+  font-weight: 600;
+  margin-top:24px;
 }
-.wp-caption-text {
-  padding: $thumbnail-caption-padding;
-}*/
 
+#cpt_info_box {
+  display:none;
+}
