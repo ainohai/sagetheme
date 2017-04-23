@@ -3,7 +3,7 @@
 <header class="mdl-layout__header mdl-layout__header--waterfall mdl-layout__header--waterfall-hide-top">
     <div class="mdl-layout__header-row mdl-layout__header-row--uni ">
         <span class="mdl-layout--large-screen-only mdl-layout-title mdl-layout-title--mainKlab">
-            <a href="<?php get_site_url()?>"><?php bloginfo('name')?></a></span>
+            <a href="<?php echo get_home_url()?>"><?php bloginfo('name')?></a></span>
         <div class="mdl-layout-spacer mdl-layout--large-screen-only"></div>
         <a class="klab-helsinkiUni" href="https://www.helsinki.fi/en">
             <img class="klab-helsinkiUni__img"src="<?php echo get_template_directory_uri()?>/assets/images/hy-logo.png"/>
@@ -43,4 +43,3 @@
     <?php KlabNavMenus\echoPrimaryNavigation() ?>
 </div>
 <?php KlabNavMenus\echoIntraLinks() ?>
-

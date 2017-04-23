@@ -19,9 +19,15 @@ class KlabFullPageImage extends KlabPostSection\KlabAbstractPostSection
 
     private $title;
     private $backgroundImageUrl;
+    private $caption;
+    const HAS_MAX_HEIGHT = '-maxHeight';
 
-    public function __construct() {
-        parent::__construct(self::FULL_SINGLE_PIC, null, false);
+    public function __construct($hasMaxHeight = false) {
+        $modifierArray = null;
+        if ($hasMaxHeight) {
+            $modifierArray = array ($this::HAS_MAX_HEIGHT);
+        }
+        parent::__construct(self::FULL_SINGLE_PIC, $modifierArray, false);
     }
 
     /**
@@ -40,6 +46,14 @@ class KlabFullPageImage extends KlabPostSection\KlabAbstractPostSection
         $this->backgroundImageUrl = $backgroundImageUrl;
     }
 
+    /**
+     * @param mixed $caption
+     */
+    public function setCaption($caption)
+    {
+        $this->caption = $caption;
+    }
+
     public function echoContent() {
 
         ?>
@@ -52,7 +66,7 @@ class KlabFullPageImage extends KlabPostSection\KlabAbstractPostSection
 
                 <?php $this->echoEditButton(); ?>
 
-                <?php if (isset($this)) { ?>
+                <?php if (isset($this->title)) { ?>
                     <div class="mdl-card__title">
                         <h1 class="mdl-card__title-text">
 
@@ -65,7 +79,9 @@ class KlabFullPageImage extends KlabPostSection\KlabAbstractPostSection
             </div>
 
         </div>
-
+        <?php if (isset($this->caption) && $this->caption != '') { ?>
+            <div class="fullPageImgCaption"><span class="caption"><?php echo $this->caption; ?> </span></div>
+        <?php } ?>
     <?php }
 
 
@@ -78,5 +94,3 @@ class KlabFullPageImage extends KlabPostSection\KlabAbstractPostSection
     }
 
 }?>
-
-

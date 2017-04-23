@@ -48,3 +48,4 @@ use Roots\Sage\KlabTemplFunctions;
 
 </body>
 </html>
+<?php ?>

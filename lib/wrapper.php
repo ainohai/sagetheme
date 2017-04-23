@@ -62,3 +62,4 @@ class SageWrapping {
   }
 }
 add_filter('template_include', [__NAMESPACE__ . '\\SageWrapping', 'wrap'], 109);
+?>

@@ -1,6 +1,7 @@
 <?php
 
 namespace Roots\Sage\KlabLabMembers;
+use Roots\Sage\KlabPostSection\KlabLabMemberSection;
 use Roots\Sage\KlabTemplFunctions;
 use Roots\Sage\KlabSingleColCard;
 use Roots\Sage\KlabEchoPostType;
@@ -9,14 +10,17 @@ class KlabLabMembers extends KlabEchoPostType\KlabAbstractEchoPostType  {
 
     const POST_TYPE_SLUG = 'klab_lab_member';
     const BLOCK_MODIFIER = 'klabLabMember';
+    const ALUMNI_TERM_ID = 836;
     private $terms;
+    private $justAlumni;
 
-    public function __construct()
+    public function __construct($justAlumni = false)
     {
         parent::__construct(self::POST_TYPE_SLUG, self::BLOCK_MODIFIER);
         $this->terms = get_terms( 'labMemberPosition', array(
             'orderby' => 'term_order'
         ));
+        $this->justAlumni = $justAlumni;
     }
 
     protected function echoPostContent ()
@@ -27,84 +31,64 @@ class KlabLabMembers extends KlabEchoPostType\KlabAbstractEchoPostType  {
 
         if ($wp_query->have_posts() ) {
 
-            $this->echoWpLoop();
+            $this->echoWpLoopContents();
 
         }
         $wp_query->reset_postdata();
         $wp_query = $savedQuery;
     }
 
-    protected function echoWpLoop ()
+    protected function echoWpLoopContents ()
     {
+
         $labQuery = $this->wpQuery;
-?>
-        <div class="mdl-grid">
-                    <?php
-                    $resultArray = KlabTemplFunctions\getPostsOrderedByTaxonomyCats('labMemberPosition', $labQuery);
-                    foreach ($this->terms as $term) {
-                        $postArray = $resultArray[$term->slug];
-
-                        ?>
-
-                        <div class="mdl-cell mdl-cell--9-col ">
-                            <h2><?php echo $term->name ?></h2>
-                        </div>
-
-
-                        <?php
-                        foreach ($postArray as $member) {
-                            global $post;
-                            $post = $member;
-                            $this->echoLabmember();
-                        }
-
-                    }
-                    ?>
-                </div>
-<?php
-    }
-
-private function echoLabmember () {
 
         global $post;
-        $blockName = 'labMember';
-        $imageSize = 'thumbnail';
-        ?>
+        $temp = $post;
 
-        <div class="editableContent mdl-grid <?php echo $blockName; ?>"
-             data-postTypeSlug="<?php echo get_post_type($post); ?>"
-             data-id="<?php echo $post->ID; ?>" id="<?php echo $post->post_name ?>">
+        echo '<section class ="'. KlabTemplFunctions\constructWrapperSectionClasses() .'">';
+
+                    $resultArray = KlabTemplFunctions\getPostsOrderedByTaxonomyCats('labMemberPosition', $labQuery);
+                    foreach ($this->terms as $term) {
+
+                        if ((!$this->justAlumni && $term->term_id != $this::ALUMNI_TERM_ID) ||
+                              $this->justAlumni && $term->term_id == $this::ALUMNI_TERM_ID) {
+
+                            $postArray = $resultArray[$term->slug];
+
+                            ?>
+
+                            <div class="mdl-cell mdl-cell--9-col ">
+                                <h2><?php echo $term->name ?></h2>
+                            </div>
 
 
+                            <?php
+                            foreach ($postArray as $member) {
 
-            <div class="mdl-cell  mdl-card mdl-cell--3-col">
-                <div class="mdl-card__media">
-                    <?php if (has_post_thumbnail($post->ID)) { ?>
-                        <?php  the_post_thumbnail($imageSize);  ?>
-                    <?php } else { ?>
-                        <i class="material-icons  mdl-list__item-avatar">person</i>
-                    <?php }?>
-                </div>
+                                $post = $member;
 
-            </div>
+                                $metadataArray =  get_post_meta( $post->ID);
+                                $memberTitle = isset($metadataArray["klab_lab_member_klabMemberTitle"]) ? $metadataArray["klab_lab_member_klabMemberTitle"][0] :'';
+                                $currentPos = isset($metadataArray["klab_lab_member_klabMemberCurrentPosition"]) ? $metadataArray["klab_lab_member_klabMemberCurrentPosition"][0] :'';
+                                $description = isset($metadataArray["klab_lab_member_klabMemberDescription"]) ? $metadataArray["klab_lab_member_klabMemberDescription"][0] :'';
 
-            <div class="mdl-cell mdl-cell--9-col mdl-card <?php echo $blockName . "__content" ?>">
+                                $labMember = new KlabLabMemberSection($this->justAlumni);
+                                $labMember->setLabMemberName(get_the_title());
+                                //imagesize = thumbnail
+                                $labMember->setLabMemberImage(get_the_post_thumbnail());
+                                $labMember->setLabMemberTitle($memberTitle);
+                                $labMember->setLabMemberCurrentPosition($currentPos);
+                                $labMember->setLabMemberDescription($description);
 
-                <h3 class="mdl-card__title-text"><?php the_title(); ?></h3>
+                                $labMember->run();
 
-                <?php
-                $metadataArray =  get_post_meta( $post->ID);
-                echo '<span class="'.$blockName.'__title">'. $metadataArray["klab_lab_member_klabMemberTitle"][0] .'</span>';
-                ?>
-                <div class="mdl-card__supporting-text">
-                    <?php
-                    echo '<p>'. $metadataArray['klab_lab_member_klabMemberDescription'][0].'</p>'?></div>
+                            }
 
-            </div>
-        </div>
-
-        <?php
-
+                        }
+                    }
+                echo '</section>';
+                $post = $temp;
     }
 
     protected function afterButtons() {
@@ -112,4 +96,4 @@ private function echoLabmember () {
         $this->addButton(admin_url( 'edit.php?post_type='.$this->postTypeSlug .'&page=order-post-types-'.$this->postTypeSlug), 'Reorder Categories');
 
     }
-}
+}?>

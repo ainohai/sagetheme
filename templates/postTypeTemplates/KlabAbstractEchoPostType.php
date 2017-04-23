@@ -23,14 +23,20 @@ abstract class KlabAbstractEchoPostType
     protected $postTypeSlug;
     protected $blockModifier;
     private $sectionArgs;
+    private $listTitle;
+    private $htmlSection;
 
-    public function __construct($postTypeSlug, $blockModifier)
+    public function __construct($postTypeSlug, $blockModifier, $additionalQueryArgs = null, $htmlSection = false)
     {
         if (!post_type_exists($postTypeSlug)){
             throw new InvalidArgumentException("post type doesn't exist");
         }
 
         $this->postTypeSlug = $postTypeSlug;
+        if ($additionalQueryArgs != null) {
+            $this->args = array_merge($this->args, $additionalQueryArgs);
+        }
+
         $this->args = array_merge($this->args, array('post_type' => $postTypeSlug));
         if( current_user_can('editor') || current_user_can('administrator')) {
             $this->printEditingComponents = true;
@@ -39,9 +45,15 @@ abstract class KlabAbstractEchoPostType
 
         $this->wpQuery = new \WP_Query( $this->args );
 
+        $this->htmlSection = $htmlSection;
+
     }
 
     public function echoPosts() {
+        if($this->htmlSection) {
+            echo '<section class="' . KlabTemplFunctions\constructWrapperSectionClasses() . '">';
+        }
+
         if(!$this->printEditingComponents){
             $this->echoPostContent();
         }
@@ -49,6 +61,10 @@ abstract class KlabAbstractEchoPostType
             $this->echoAdminStart();
             $this->echoPostContent();
             $this->echoAdminEnd();
+        }
+
+        if($this->htmlSection) {
+            echo '</section>';
         }
 
     }
@@ -94,9 +110,14 @@ abstract class KlabAbstractEchoPostType
         $wp_query = $this->wpQuery;
 
         if ($wp_query->have_posts() ) {
+
+            if(isset($this->listTitle)) {
+                echo '<h2>'. $this->listTitle .'</h2>';
+            }
+
             while (have_posts()) : the_post();
 
-                 $this->echoWpLoop();
+                 $this->echoWpLoopContents();
 
             endwhile;
          }
@@ -104,7 +125,7 @@ abstract class KlabAbstractEchoPostType
         $wp_query = $savedQuery;
     }
 
-    protected abstract function echoWpLoop();
+    protected abstract function echoWpLoopContents();
 
     /**
      * @param mixed $sectionArgs
@@ -114,5 +135,12 @@ abstract class KlabAbstractEchoPostType
         $this->sectionArgs = $sectionArgs;
     }
 
+    /**
+     * @param mixed $listTitle
+     */
+    public function setListTitle($listTitle)
+    {
+        $this->listTitle = $listTitle;
+    }
 
-}
+}?>

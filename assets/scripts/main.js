@@ -21,6 +21,9 @@
         // JavaScript to be fired on all pages
         console.log("running common");
 
+        $('.gallery-size-thumbnail').addClass('mdl-grid');
+        $('.gallery-size-thumbnail .gallery-item').addClass('mdl-cell--4-col');
+
       },
       finalize: function() {
         // JavaScript to be fired on all pages, after page specific JS is fired

@@ -1,7 +1,6 @@
 <?php namespace Roots\Sage\KlabLabMemberSlider;
 use Roots\Sage\KlabEchoPostType\KlabAbstractEchoPostType;
-use Roots\Sage\KlabTemplFunctions;
-use Roots\Sage\KlabFullPicSingleCol;
+use Roots\Sage\KlabPage\KlabDefaultEntryPage;
 
 class KlabLabMemberSlider extends KlabAbstractEchoPostType
 {
@@ -17,19 +16,24 @@ class KlabLabMemberSlider extends KlabAbstractEchoPostType
     }
 
     protected function echoPostContent ()
-    {
+    { ?>
+
+        <?php
         echo '<ul class="rslides">';
         parent::echoPostContent();
         echo '</ul>';
     }
 
-    protected function echoWpLoop ()
+    protected function echoWpLoopContents ()
     { ?>
         <li>
             <div class="captionContainer">
                 <p class="caption"><?php the_title() ?></p>
             </div>
-            <?php KlabFullPicSingleCol\echoContent(true, true, false, 'labMemberSlider', null, $this->pageTitle); ?>
+
+            <?php
+            $slide = new KlabDefaultEntryPage();
+            $slide->echoHeaderPic(); ?>
         </li>
 
         <?php

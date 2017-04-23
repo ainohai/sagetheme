@@ -6,5 +6,3 @@ while (have_posts()) : the_post();
     $thisPage->run();
 endwhile;
 ?>
-
-

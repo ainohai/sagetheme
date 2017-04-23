@@ -13,7 +13,7 @@ class KlabResearchTopic extends KlabAbstractEchoPostType
         parent::__construct(self::POST_TYPE_SLUG, self::BLOCK_MODIFIER);
     }
 
-    protected function echoWpLoop() {
+    protected function echoWpLoopContents() {
 
         global $post;
 
@@ -28,48 +28,7 @@ class KlabResearchTopic extends KlabAbstractEchoPostType
         $researchDetailSection->setContent(wp_kses_post($researchDescr));
         $researchDetailSection->run();
 
-        /*    $this->echoContent('abstract');
-            if (self::POST_TYPE_SLUG == $post->post_type) {
-                $researchDescr = get_post_meta($post->ID, 'klab_research_topic_klabResearchDescription', true);
-                $this->echoContent('reseachTopicDetails', false, $researchDescr);
-            }
-        */
-
     }
-
-//call from loop.
-    private function echoContent($blockModifier, $showTitle = true, $content = null)
-    {
-        global $post; ?>
-
-        <?php $blockNames = 'researchCol'; ?>
-        <?php if (!empty($blockModifier) && $blockModifier != null) {
-
-        $blockNames = $blockNames . ' ' . $blockNames . '--' . $blockModifier;
-    } ?>
-        <div class="mdl-card mdl-cell--12-col <?php echo $blockNames; ?>">
-
-            <?php if ($showTitle) { ?>
-                <div class="mdl-card__title">
-                    <h2 class="mdl-card__title-text"><?php the_title(); ?></h2>
-                </div>
-                <div class="mdl-card__media">
-                    <?php the_post_thumbnail('large'); ?>
-                   <?php echo get_post(get_post_thumbnail_id())->post_excerpt; ?>
-                </div>
-            <?php } ?>
-
-            <div class="mdl-card__supporting-text">
-                <?php if ($content != null) {
-                    echo apply_filters('the_content', wp_kses_post($content));
-                } else {
-                    the_content();
-                }
-                ?>
-            </div>
-        </div>
-
-    <?php }
 
     public function echoResearchTopicNav () {
         $wpQuery = $this->wpQuery;

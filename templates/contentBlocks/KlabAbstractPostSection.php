@@ -18,25 +18,31 @@ abstract class KlabAbstractPostSection
     private $gridSpacing;
     private $noGrid;
 
+
     public function __construct($sectionName, $modifierArray = null, $gridSpacing = true, $noGrid = false)
     {
         $this->sectionName = $sectionName;
         $this->gridSpacing = $gridSpacing;
         $this->noGrid = $noGrid;
         $this->modifierArray = $modifierArray;
+
     }
 
     public function run()
-    { ?>
+    {
+?>
+
         <div class="<?php echo KlabTemplFunctions\constructSectionClasses($this->sectionName, $this->gridSpacing, $this->noGrid, $this->modifierArray); ?>">
 
-        <?php
+            <?php
             $this->echoContent();
             ?>
 
         </div>
-<?php
-        }
+
+        <?php
+
+    }
 
     abstract public function echoContent();
 

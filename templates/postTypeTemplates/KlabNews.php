@@ -1,6 +1,7 @@
 <?php
 
 namespace Roots\Sage\KlabEchoNews;
+use Roots\Sage\ContentInBox\KlabContentInBox;
 use Roots\Sage\KlabTemplFunctions;
 use Roots\Sage\KlabSingleColCard;
 use Roots\Sage\KlabEchoPostType;
@@ -12,7 +13,7 @@ class KlabNews extends KlabEchoPostType\KlabAbstractEchoPostType  {
 
     public function __construct()
     {
-        parent::__construct(self::POST_TYPE_SLUG, self::BLOCK_MODIFIER);
+        parent::__construct(self::POST_TYPE_SLUG, self::BLOCK_MODIFIER, null, true);
         parent::setSectionArgs(array('echoSection' => false));
 
     }
@@ -35,7 +36,7 @@ class KlabNews extends KlabEchoPostType\KlabAbstractEchoPostType  {
 
                     $i = --$i;
                     if ($i != 0) {
-                        //$this->echoWpLoop();
+                        $this->echoWpLoopContents();
                     } else {
                         echo ($totalPostCount > 1) ? '</div>' : '';
 
@@ -50,7 +51,7 @@ class KlabNews extends KlabEchoPostType\KlabAbstractEchoPostType  {
             $wp_query = $savedQuery;
         }
 
-        protected function echoWpLoop ()
+        protected function echoWpLoopContents ()
         {
             global $post; ?>
 
@@ -77,11 +78,19 @@ class KlabNews extends KlabEchoPostType\KlabAbstractEchoPostType  {
             <?php
         }
 
-        private function lastPost() { ?>
+        private function lastPost() {
+            global $post;
+            ?>
 
             <section
                 class="mdl-cell mdl-cell--6-col  <?php echo KlabTemplFunctions\constructSectionClasses(self::BLOCK_MODIFIER, true, true); ?>">
-                <?php KlabSingleColCard\echoContent(true, true, 'singleNews'); ?>
+                <?php
+                $lastNews = new KlabContentInBox(false, false, false, true);
+                $lastNews->setTitle(get_the_title());
+                $lastNews->setContent(get_the_content());
+                $lastNews->setImage(get_the_post_thumbnail($post->ID, 'medium'));
+                $lastNews->run();
+                //KlabSingleColCard\echoContent(true, true, 'singleNews'); ?>
             </section>
         <?php   }
 
@@ -99,3 +108,4 @@ class KlabNews extends KlabEchoPostType\KlabAbstractEchoPostType  {
             <?php
         }
 }
+?>

@@ -21,9 +21,7 @@ $sage_includes = [
     //content Blocks
     'templates/postTypeTemplates/KlabAbstractEchoPostType.php',
     'templates/postTypeTemplates/KlabNews.php',
-    'templates/contentBlocks/klab_fullPicSingleCol.php',
-    'templates/contentBlocks/klab_sidePic.php',
-    'templates/contentBlocks/klab_singleColCard.php',
+    'templates/postTypeTemplates/KlabPublications.php',
      'templates/postTypeTemplates/KlabResearchTopic.php',
     'templates/postTypeTemplates/KlabLabMemberSlider.php',
     'templates/contentBlocks/klab_contentSide.php',
@@ -31,9 +29,12 @@ $sage_includes = [
     'templates/postTypeTemplates/KlabLabMembers.php',
     'templates/pages/KlabDefaultPage.php',
     'templates/pages/KlabDefaultEntryPage.php',
+    //post sections
     'templates/contentBlocks/KlabAbstractPostSection.php',
     'templates/contentBlocks/KlabFullPageImage.php',
-    'templates/contentBlocks/KlabContentInBox.php'
+    'templates/contentBlocks/KlabContentInBox.php',
+    'templates/contentBlocks/KlabPublicationSection.php',
+    'templates/contentBlocks/KlabLabMemberSection.php'
 
 ];
 
@@ -45,3 +46,4 @@ foreach ($sage_includes as $file) {
   require_once $filepath;
 }
 unset($file, $filepath);
+?>

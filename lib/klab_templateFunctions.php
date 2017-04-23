@@ -2,7 +2,23 @@
 
 namespace Roots\Sage\KlabTemplFunctions;
 
-use Roots\Sage\KlabFullPicSingleCol;
+function echoTemplate($pageClass)
+{
+    global $isChildWithinLoop;
+
+    if ($isChildWithinLoop) {
+        $thisPage = new $pageClass;
+        $thisPage->run();
+
+        return;
+    }
+
+    while (have_posts()) : the_post();
+        $thisPage = new $pageClass;
+        $thisPage->run();
+    endwhile;
+
+}
 
 function getEditPostButtonInLoop($anchor) {
     return '<a class="adminEdit" href="' . get_edit_post_link() .'#'. $anchor .'"><button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored adminEdit__button">
@@ -14,7 +30,10 @@ function getPageContentClasses(){
     return " page-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col";
 }
 
-//TODO: Remove wpquery from params.
+function constructWrapperSectionClasses() {
+    return 'logicalPieceOfContent';
+}
+
 function constructSectionClasses ($sectionName, $gridSpacing = true, $noGrid = false, $modifierArray = null) {
 
     $classes = (!$noGrid) ? 'mdl-grid' : '';
@@ -68,13 +87,16 @@ function getPostsOrderedByTaxonomyCats($taxonomyName, $wpQuery)
 }
 //for debugging purposes
 function dumpPostData($wpQuery) {
+
      if ($wpQuery->have_posts()) { ?>
 
         <section class = "<?php echo constructSectionClasses ('dump'); ?>">
 
         <?php
         while ($wpQuery->have_posts()) : $wpQuery->the_post();
-            global $post; print_r(get_the_terms($post->ID, 'labMemberPosition'));
+            global $post;
+            //var_dump($post);
+
             ?>
 
             <article class="editableContent" data-postTypeSlug="<?php echo get_post_type($post); ?>"

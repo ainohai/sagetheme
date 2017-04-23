@@ -8,8 +8,9 @@
 
 namespace Roots\Sage\KlabPage;
 
-
 use Roots\Sage\ContentInBox\KlabContentInBox;
+use Roots\Sage\KlabLabMemberSlider;
+use Roots\Sage\KlabLabMembers\KlabLabMembers;
 
 class KlabDefaultPage
 {
@@ -27,10 +28,17 @@ class KlabDefaultPage
 
     public function run() {
 
-        $this->echoPage();
+        $this->echoPageAndSection();
         $this->echoAfterPage();
         $this->echoChildren();
         $this->echoAfterChildren();
+    }
+
+    public function echoPageAndSection() {
+        echo '<section class="'. \Roots\Sage\KlabTemplFunctions\constructWrapperSectionClasses() .'">';
+        $this->echoPage();
+        echo '</section>';
+
     }
 
     public function echoPage() {
@@ -40,6 +48,8 @@ class KlabDefaultPage
                 $contentInBox->setTitle(get_the_title());
                 $contentInBox->setImage(get_the_post_thumbnail('medium'));
                 $contentInBox->run();
+
+
     }
 
     protected function echoChildren() {
@@ -65,7 +75,10 @@ class KlabDefaultPage
                 $child->run();
             }
             else {
-                locate_template($template_name, true, true);
+                global $isChildWithinLoop;
+                $isChildWithinLoop = true;
+                include (locate_template($template_name, false, false));
+                $isChildWithinLoop = false;
             }
 
         endwhile; endif;
@@ -83,3 +96,28 @@ class KlabDefaultPage
     }
 
 }
+
+class KlabLabMemberSliderPage extends \Roots\Sage\KlabPage\KlabDefaultPage
+{
+    public function echoPage()
+    {
+        $mainContent = new KlabContentInBox();
+        $mainContent->setContent(get_the_content());
+
+        $sliderPosts = new KlabLabMemberSlider\KlabLabMemberSlider();
+        $sliderPosts->echoPosts();
+
+        $mainContent->run();
+
+    }
+
+    protected function echoAfterPage()
+    {
+        $labMembers = new KlabLabMembers();
+        $labMembers->echoPosts();
+
+        $alumni = new KlabLabMembers(true);
+        $alumni->echoPosts();
+    }
+}
+?>

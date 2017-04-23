@@ -16,6 +16,7 @@ function echoContent($blockModifier) {
             <div class="mdl-card__media" <?php if($blockModifier == 'contact') echo 'id="map"';?>>
                 <?php if($blockModifier != 'contact') {
                     the_post_thumbnail('medium');
+                    echo '<span class="caption">' .get_post(get_post_thumbnail_id($post))->post_excerpt . '</span>';
                 }
                 ?>
 

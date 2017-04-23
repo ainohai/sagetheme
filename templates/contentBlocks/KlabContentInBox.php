@@ -21,14 +21,15 @@ class KlabContentInBox extends KlabAbstractPostSection
     private $content;
     private $image;
 
-    public function __construct($overImage = false, $hasBackground = false, $bigText = false)
+    public function __construct($overImage = false, $hasBackground = false, $bigText = false, $noGridSpacing = false)
     {
         $modifierArray = [];
         if ($overImage) { array_push($modifierArray, self::OVER_IMAGE_MODIFIER); }
         if ($hasBackground) { array_push($modifierArray, self::WITH_BACKGROUND_MODIFIER);}
         if ($bigText) { array_push($modifierArray, self::BIG_TEXT_MODIFIER);}
 
-        parent::__construct(self::CONTENT_IN_BOX, $modifierArray);
+        parent::__construct(self::CONTENT_IN_BOX, $modifierArray, !$noGridSpacing);
+
     }
 
     /**
@@ -92,3 +93,20 @@ class KlabContentInBox extends KlabAbstractPostSection
 
 
 }
+
+class KlabSelectedPubs extends KlabContentInBox  {
+
+    public function __construct($overImage, $hasBackground, $bigText)
+    {
+        parent::__construct($overImage, $hasBackground, $bigText);
+    }
+
+    public function echoContent()
+    {
+        parent::echoContent();
+        echo '<div class="mdl-card mdl-cell--12-col">';
+        $publications = new \Roots\Sage\KlabEchoPostType\KlabPublications(true);
+        $publications->echoPosts();
+        echo '</div>';
+    }
+}?>

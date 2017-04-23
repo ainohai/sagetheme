@@ -1,6 +1,6 @@
-.postSection--fullSinglePic {
 
-  .mdl-card__media {
+
+.postSection--fullSinglePic .mdl-card__media, .fullSinglePic--labMemberSlider .mdl-card__media {
     width:100%;
     height:290px;
     height:100vh;
@@ -22,18 +22,25 @@
       margin-left:18px;
     }
   }
-}
+
 
 
 .-hasBackground {
   background-color:$accent-bg;
+  margin-bottom: 24px;
   .mdl-card {
     background-color: $grayBg;
-    padding-top: 52px;
-    padding-top: 8vh;
     padding-bottom: 24px;
-    padding-bottom: 5vh;
+    padding-top: 24px;
+    min-height: 0px;
+  }
 
+  .mdl-card:first-of-type {
+    padding-top: 8vh;
+  }
+
+  .mdl-card:last-of-type {
+    padding-bottom: 5vh;
   }
 }
 
@@ -50,3 +57,6 @@
   }
 }
 
+.postSection--fullSinglePic.-maxHeight .mdl-card__media {
+  max-height:650px;
+}

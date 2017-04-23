@@ -12,10 +12,10 @@ use Roots\Sage\KlabFullPicSingleCol;
 
 <?php
 global $wp_query, $post;
-$blockName = 'bio'; ?>
 
+$blockName = 'bio';
 
-        <?php KlabBigSidePic\echoContent($blockName); ?>
+         KlabBigSidePic\echoContent($blockName); ?>
 
 
         <?php
@@ -27,4 +27,4 @@ $blockName = 'bio'; ?>
           ?>
 
 
-<?php } ?>
+<?php }?>

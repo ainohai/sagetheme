@@ -257,15 +257,103 @@ function klab_imageLinkShortCode( $atts ) {
         if ($imageUrl == null) {
             return "Image with the name you gave was not found.";
         }
+
+        return '<div class="linkImage">
+                <a href = "'. $a['url'].'">
+                    <img src="'. $imageUrl.'"/>
+                    <span>'. $a['link_text'] .'</span>
+                </a></div>';
     }
 
     return '<div class="linkImage">
                 <a href = "'. $a['url'].'">
-                    <img src="'. $imageUrl.'"/>
                     <span>'. $a['link_text'] .'</span>
                 </a></div>';
 }
 
 add_shortcode( 'link', __NAMESPACE__ . '\\klab_imageLinkShortCode' );
 
+
+//Function used to programmatically add alumnis.
+/*function programmatically_create_post() {
+
+    $names = ["Tarja Välimäki",
+        "Anni Viheriäranta",
+        "Ekaterina Virkunen",
+        "Johanna Englund",
+        "Liina Nevalaita",
+        "Vilja Eskelinen",
+        "Katriina Muona",
+        "Mikko Myllynen",
+        "Sirkku Saarikoski",
+        "Heini Natri",
+        "Misa Imai",
+        "Yan Yan",
+        "Essi Havula",
+        "Sauli Toikka",
+        "Anne Mäkelä",
+        "Katja Suomi",
+        "Elina Enlund",
+        "Harriet Gullsten",
+        "Marjukka",
+        "Jaakko",
+        "Amit Cohen",
+        "Juho",
+        "Kaisu",
+        "Niklas Ekman",
+        "Annika Hau"];
+
+    // Initialize the page ID to -1. This indicates no action has been taken.
+    $post_id = -1;
+
+    //object(WP_Post)#742 (24) { ["ID"]=> int(3970)
+    // ["post_author"]=> string(1) "1"
+    // ["post_date"]=> string(19) "2016-04-16 18:16:09"
+    // ["post_date_gmt"]=> string(19) "2016-04-16 18:16:09"
+    // ["post_content"]=> string(0) ""
+    // ["post_title"]=> string(116) "MYC-induced apoptosis in mammary epithelial cells is associated with repression of lineage-specific gene signatures." ["post_excerpt"]=> string(0) "" ["post_status"]=> string(7) "publish" ["comment_status"]=> string(6) "closed" ["ping_status"]=> string(6) "closed" ["post_password"]=> string(0) "" ["post_name"]=> string(117) "myc-induced-apoptosis-in-mammary-epithelial-cells-is-associated-with-repression-of-lineage-specific-gene-signatures-2" ["to_ping"]=> string(0) "" ["pinged"]=> string(0) ""
+    // ["post_modified"]=> string(19) "2016-04-16 19:43:34"
+    // ["post_modified_gmt"]=> string(19) "2016-04-16 19:43:34" ["post_content_filtered"]=> string(0) "" ["post_parent"]=> int(0) ["guid"]=> string(168) "http://52.18.72.234/klefstromlab/klab_publication/myc-induced-apoptosis-in-mammary-epithelial-cells-is-associated-with-repression-of-lineage-specific-gene-signatures-2/" ["menu_order"]=> int(0) ["post_type"]=> string(16) "klab_publication" ["post_mime_type"]=> string(0) "" ["comment_count"]=> string(1) "0" ["filter"]=> string(3) "raw"
+
+    // Setup the author, slug, and title for the post
+    foreach ( $names as $name ) {
+
+        $author_id = 1;
+        $title = $name;
+
+        if (null == get_page_by_title($title, OBJECT, 'klab_lab_member')) {
+
+            // Set the post ID so that we know the post was created successfully
+            $post_id = wp_insert_post(
+                array(
+                    'post_date' => '2016-04-16 18:16:09',
+                    'post_date_gmt' => '2016-04-16 18:16:09',
+                    'post_modified' => '2016-04-16 19:43:34',
+                    'post_modified_gmt' => '2016-04-16 19:43:34',
+                    'comment_status' => 'closed',
+                    'ping_status' => 'closed',
+                    'post_author' => $author_id,
+                    'post_title' => $title,
+                    'post_status' => 'publish',
+                    'post_type' => 'klab_lab_member'
+                )
+            );
+
+            $term_taxonomy_ids = wp_set_object_terms($post_id, array(836), 'labMemberPosition', true);
+
+            var_dump($term_taxonomy_ids);
+            var_dump(get_post($post_id));
+
+            // Otherwise, we'll stop
+        } else {
+
+            // Arbitrarily use -2 to indicate that the page with the title already exists
+            $post_id = -2;
+            echo "already exists";
+
+        } // end if
+    }
+
+}
+add_filter( 'init', __NAMESPACE__ . '\\programmatically_create_post' );*/
 ?>
