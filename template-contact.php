@@ -2,8 +2,7 @@
 /**
  * Template Name: Contact Info Template
  */
-use Roots\Sage\KlabBigSidePic;
 
-KlabBigSidePic\echoContent('contact');
+\Roots\Sage\KlabTemplFunctions\echoTemplate(\Roots\Sage\KlabPage\KlabMapPage::class)
 
 ?>

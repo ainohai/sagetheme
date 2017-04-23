@@ -49,7 +49,7 @@ class KlabContentInBox extends KlabAbstractPostSection
     }
 
     public function setAndFilterContent($content){
-        $this->content = wp_kses_post($content);
+        $this->content = apply_filters( 'the_content', wp_kses_post($content));
     }
 
     /**
@@ -67,7 +67,7 @@ class KlabContentInBox extends KlabAbstractPostSection
 
             <?php
             echo (!empty($this->title)) ?
-                '<div class=""mdl-card__title">
+                '<div class="mdl-card__title">
                     <h2 class="mdl-card__title-text">'
                 . $this->title .
                 '</h2>

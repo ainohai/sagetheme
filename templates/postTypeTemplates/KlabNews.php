@@ -82,7 +82,7 @@ class KlabNews extends KlabEchoPostType\KlabAbstractEchoPostType  {
             global $post;
             ?>
 
-            <section
+            <div
                 class="mdl-cell mdl-cell--6-col  <?php echo KlabTemplFunctions\constructSectionClasses(self::BLOCK_MODIFIER, true, true); ?>">
                 <?php
                 $lastNews = new KlabContentInBox(false, false, false, true);
@@ -91,19 +91,19 @@ class KlabNews extends KlabEchoPostType\KlabAbstractEchoPostType  {
                 $lastNews->setImage(get_the_post_thumbnail($post->ID, 'medium'));
                 $lastNews->run();
                 //KlabSingleColCard\echoContent(true, true, 'singleNews'); ?>
-            </section>
+            </div>
         <?php   }
 
         private function facebookFeed () {
     //contents of custom facebook feed plugin ?>
-            <section class="mdl-cell mdl-cell--6-col postSection postSection--facebookFeed">
+            <div class="mdl-cell mdl-cell--6-col postSection postSection--facebookFeed">
                 <div class="mdl-card">
 
                     <h2 class="mdl-card__title-text">Klefström lab on facebook </h2>
                     <?php echo do_shortcode('[custom-facebook-feed]'); ?>
                 </div>
 
-            </section>
+            </div>
 
             <?php
         }

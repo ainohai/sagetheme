@@ -1,0 +1,31 @@
+.-hasBackground {
+  background-color:$accent-bg;
+  margin-bottom: 24px;
+  .mdl-card {
+    background-color: $grayBg;
+    padding-bottom: 24px;
+    padding-top: 24px;
+    min-height: 0px;
+  }
+
+  .mdl-card:first-of-type {
+    padding-top: 8vh;
+  }
+
+  .mdl-card:last-of-type {
+    padding-bottom: 5vh;
+  }
+}
+
+.-overImage {
+  margin-top:-40vh;
+  padding-bottom:30px;
+}
+
+.-bigText {
+  .mdl-card {
+    p {
+      font-size: 21.5px;
+    }
+  }
+}

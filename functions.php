@@ -18,21 +18,25 @@ $sage_includes = [
   'lib/customizer.php', // Theme customizer
   'lib/klab_templateFunctions.php', // view related things often used in templates
   'lib/klab_navMenus.php', //
-    //content Blocks
+    //post types
     'templates/postTypeTemplates/KlabAbstractEchoPostType.php',
     'templates/postTypeTemplates/KlabNews.php',
     'templates/postTypeTemplates/KlabPublications.php',
      'templates/postTypeTemplates/KlabResearchTopic.php',
     'templates/postTypeTemplates/KlabLabMemberSlider.php',
-    'templates/contentBlocks/klab_contentSide.php',
-    'templates/contentBlocks/klab_bigSidePic.php',
     'templates/postTypeTemplates/KlabLabMembers.php',
+    //Page classes
     'templates/pages/KlabDefaultPage.php',
     'templates/pages/KlabDefaultEntryPage.php',
+    'templates/pages/KlabBigSidePic.php',
+    'templates/pages/KlabMapPage.php',
+    'templates/pages/KlabTitleAndContentPage.php',
     //post sections
     'templates/contentBlocks/KlabAbstractPostSection.php',
     'templates/contentBlocks/KlabFullPageImage.php',
     'templates/contentBlocks/KlabContentInBox.php',
+    'templates/contentBlocks/KlabContentSide.php',
+    'templates/contentBlocks/KlabBigSidePicSection.php',
     'templates/contentBlocks/KlabPublicationSection.php',
     'templates/contentBlocks/KlabLabMemberSection.php'
 

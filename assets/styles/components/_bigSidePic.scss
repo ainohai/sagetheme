@@ -1,33 +1,24 @@
-
+.postSection--bigSidePic
 .bigSidePic {
 
+  /*NOT IN USE
   .mdl-card__media {
     img {
       width: 100%;
       height: auto;
     }
-  }
+  }*/
 }
 
-.bigSidePic--bio {
+.postSection--bigSidePic {
   flex-direction: row-reverse;
 }
 
+/*Does nothing
 .bigSidePic__content {
   justify-content: center;
-}
+}*/
 
 #map {
   height:400px;
-}
-
-.postSection--bio {
-  margin-left:0px;
-  margin-right:0px;
-}
-
-.contentSide {
-  max-width: $maxContentWidth;
-  margin-left:inherit;
-
 }

@@ -116,8 +116,8 @@ class KlabLabMemberSliderPage extends \Roots\Sage\KlabPage\KlabDefaultPage
         $labMembers = new KlabLabMembers();
         $labMembers->echoPosts();
 
-        $alumni = new KlabLabMembers(true);
-        $alumni->echoPosts();
+        //$alumni = new KlabLabMembers(true);
+        //$alumni->echoPosts();
     }
 }
 ?>

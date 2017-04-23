@@ -3,7 +3,6 @@
 namespace Roots\Sage\KlabLabMembers;
 use Roots\Sage\KlabPostSection\KlabLabMemberSection;
 use Roots\Sage\KlabTemplFunctions;
-use Roots\Sage\KlabSingleColCard;
 use Roots\Sage\KlabEchoPostType;
 
 class KlabLabMembers extends KlabEchoPostType\KlabAbstractEchoPostType  {

@@ -70,7 +70,7 @@ class KlabResearchEntryPage extends \Roots\Sage\KlabPage\KlabDefaultEntryPage
     {
         $researchTopics = new KlabResearchTopic();
         ?>
-
+        <section class="<?php echo \Roots\Sage\KlabTemplFunctions\constructWrapperSectionClasses(); ?>">
         <div class="mdl-grid sideBar">
             <aside class="mdl-cell mdl-cell--3-col mdl-cell--hide-phone mdl-cell--hide-tablet sideBarNav">
                 <?php $researchTopics->echoResearchTopicNav(); ?>
@@ -80,6 +80,7 @@ class KlabResearchEntryPage extends \Roots\Sage\KlabPage\KlabDefaultEntryPage
                 <?php $researchTopics->echoPosts(); ?>
             </div>
         </div>
+        </section>
         <?php
     }
 }
@@ -103,7 +104,7 @@ class KlabPublicationPage extends \Roots\Sage\KlabPage\KlabDefaultEntryPage
     protected function echoAfterPage()
     {
         echo '<section class="'. \Roots\Sage\KlabTemplFunctions\constructWrapperSectionClasses() .'">';
-        echo '<div class="'. \Roots\Sage\KlabTemplFunctions\constructWrapperSectionClasses(self::BLOCK_FOR_FULL_ARTICLE_LIST, false) .'">';
+        echo '<div class="'. \Roots\Sage\KlabTemplFunctions\constructSectionClasses(self::BLOCK_FOR_FULL_ARTICLE_LIST, false) .'">';
 
         $publications = new \Roots\Sage\KlabEchoPostType\KlabPublications(false);
         $publications->echoPosts();
