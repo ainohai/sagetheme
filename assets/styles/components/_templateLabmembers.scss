@@ -40,8 +40,12 @@
     
     margin-left:auto;
     margin-right:auto;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
     img {
-      border-radius: 50%;
     }
 
     .mdl-list__item-avatar {

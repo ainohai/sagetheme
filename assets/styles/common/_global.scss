@@ -1,4 +1,4 @@
-body, header, h1, h2, h3, h4, h5, h6, p  {
+body, header, h1, h2, h3, h4, h5, h6  {
   font-family: $base-font-family;
 }
 
@@ -14,6 +14,15 @@ a {
 }
 p, li {
   font-size:16px;
+  font-family: $base-font-serif;
+}
+
+h3 {
+  font-size:20px;
+}
+
+footer.mdl-mega-footer, .caption, .cff-default-styles p {
+  font-family: $base-font-family;
 }
 
 .mdl-navigation__link
@@ -31,7 +40,8 @@ p, li {
   background-color: inherit;
 }
 
-.mdl-card__title-text {
+//TODO:CLEAN UP:
+.mdl-card__title-text, h2 {
   align-self: flex-start;
   -webkit-align-self: flex-start;
   font-weight: 700;
@@ -74,6 +84,11 @@ img {
   &--allPublicationsList {
     max-width: $smallerContentWidth;
 
+    &__year {
+      padding-top:18px;
+      padiding-bottom:6px;
+    }
+
   }
 
   &--fullSinglePic, &--imageSlider {
@@ -106,6 +121,10 @@ img {
 
 
     }
+  }
+
+  &--publicationItem {
+    padding-top:6px;
   }
 
 
@@ -205,9 +224,16 @@ footer {
   a, p {
     color: #9e9e9e;
   }
+  margin-top:24px;
 }
 .mdl-card__supporting-text iframe {
   display:block;
   margin-left: auto;
   margin-right: auto;
+}
+
+//TODO: Clean up
+.postSection--affiliateLinks{
+  max-width:1200px;
+  margin-bottom: 25px;
 }

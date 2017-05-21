@@ -156,4 +156,21 @@ function getPageHeaderAndContent ($wpQuery, $showHeader = true, $showFeaturedImg
     <?php $wpQuery->reset_postdata();
 
 }
+
+function echo3Column($metaDataName = null)
+{
+    global $post;
+    $content = get_the_content();
+    if ($metaDataName != null) {
+        $metadataArray = get_post_meta($post->ID);
+        $content = isset($metadataArray[$metaDataName]) ? $metadataArray[$metaDataName][0] : '';
+
+    }
+    $content = apply_filters('the_content', wp_kses_post($content));
+
+    echo '<div class="mdl-cell mdl-cell--4-col">';
+    echo $content;
+    echo '</div>';
+
+}
 ?>

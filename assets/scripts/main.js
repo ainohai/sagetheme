@@ -38,23 +38,34 @@
         // JavaScript to be fired on the home page, after the init JS
       }
     },
-    'research': {
+      page_template_template_research_php: {
       init: function() {
-        console.log("initing research");
         var p = $( '.researchTopicNav' );
         var position = p.position();
+        var height = p.outerHeight();
+        var footer = $('.mdl-mega-footer');
+        var footerPos = footer.position();
         $('.mdl-layout__content').scroll(function(){
           if ($(this).scrollTop() > position.top) {
-            $('.researchTopicNav').addClass('fixed');
-          } else {
+              //if ($(this).scrollTop() < (footerPos.top - height)) {
+                  //$('.researchTopicNav').removeClass('fixed');
+                  //add pos
+              //}
+
+              $('.researchTopicNav').addClass('fixed');
+
+
+          }
+            else {
             $('.researchTopicNav').removeClass('fixed');
+
           }
 
         });
       }
     },
 
-    'labmembers': {
+    page_template_template_labmember_php: {
       init: function() {
         // Slideshow
         $(".rslides").responsiveSlides({
@@ -69,16 +80,8 @@
         console.log("running labmemb");
       }
 
-    },
-    'contact': {
-      init: function() {
-        console.log("running contact");
-
-
-
-
-      }
     }
+
   };
 
   // The routing fires all common scripts, followed by the page specific scripts.
@@ -102,6 +105,7 @@
 
       // Fire page-specific init JS, and then finalize JS
       $.each(document.body.className.replace(/-/g, '_').split(/\s+/), function(i, classnm) {
+          console.log(classnm);
         UTIL.fire(classnm);
         UTIL.fire(classnm, 'finalize');
       });

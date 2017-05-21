@@ -23,7 +23,7 @@ abstract class KlabAbstractEchoPostType
     protected $postTypeSlug;
     protected $blockModifier;
     private $sectionArgs;
-    private $listTitle;
+    protected $listTitle;
     private $htmlSection;
 
     public function __construct($postTypeSlug, $blockModifier, $additionalQueryArgs = null, $htmlSection = false)

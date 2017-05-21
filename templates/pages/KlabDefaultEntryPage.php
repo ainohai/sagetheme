@@ -14,17 +14,19 @@ use Roots\Sage\KlabResearchTopic\KlabResearchTopic;
 
 class KlabDefaultEntryPage extends KlabDefaultPage
 {
+    private $noTitleOnPic;
 
-    public function __construct()
+    public function __construct($noTitleOnPic = false)
     {
         parent::__construct();
+        $this->noTitleOnPic = $noTitleOnPic;
     }
 
     public function echoPage() {
 
         $this->echoHeaderPic();
 
-        $contentInBox = new KlabContentInBox(true, true);
+        $contentInBox = new KlabContentInBox();
         $contentInBox->setContent(get_the_content());
         $contentInBox->run();
 
@@ -34,8 +36,10 @@ class KlabDefaultEntryPage extends KlabDefaultPage
         $headerPic = new KlabFullPageImage();
         $headerPic->setBackgroundImageUrl($this->getImageUrl());
         $headerPic->setCaption($this->getImageCaption());
-        $title = is_front_page() ? get_bloginfo( 'name', 'display' ) : get_the_title();
-        $headerPic->setTitle($title);
+        if (!$this->noTitleOnPic) {
+            $title = is_front_page() ? get_bloginfo('name', 'display') : get_the_title();
+            $headerPic->setTitle($title);
+        }
         $headerPic->run();
     }
 
@@ -95,7 +99,7 @@ class KlabPublicationPage extends \Roots\Sage\KlabPage\KlabDefaultEntryPage
 
         $this->echoHeaderPic();
 
-        $contentInBox = new \Roots\Sage\ContentInBox\KlabSelectedPubs(true, true, false);
+        $contentInBox = new \Roots\Sage\ContentInBox\KlabSelectedPubs(false, false, false);
         $contentInBox->setContent(get_the_content());
         $contentInBox->run();
 

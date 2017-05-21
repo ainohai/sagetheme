@@ -18,6 +18,7 @@ class KlabPublications extends KlabAbstractEchoPostType
     const BLOCK_MODIFIER = 'publicationsList';
     const SELECTED_TITLE = 'Selected publications';
     const ALL_TITLE = 'Full list of publications';
+    private $onlySelectedPublications;
 
     public function __construct($onlySelectedPublications = false, $htmlSection = false)
     {
@@ -26,11 +27,12 @@ class KlabPublications extends KlabAbstractEchoPostType
             $pubsFilter = array('meta_key' => 'klab_publication_selectedPublication',
                 'meta_value_num' => 1);
         }
+
         parent::__construct(self::POST_TYPE_SLUG, self::BLOCK_MODIFIER, $pubsFilter, $htmlSection);
 
         $listTitle = $onlySelectedPublications ? $this::SELECTED_TITLE : $this::ALL_TITLE;
         $this->setListTitle($listTitle);
-
+        $this->onlySelectedPublications = $onlySelectedPublications;
     }
 
     protected function echoWpLoopContents()
@@ -46,6 +48,43 @@ class KlabPublications extends KlabAbstractEchoPostType
         $publications->setPubmedGuid($metadataArray['klab_publication_uid'][0]);
 
         $publications->run();
+    }
+
+    protected function echoPostContent ()
+    {
+        if($this->onlySelectedPublications) {
+            parent::echoPostContent();
+            return;
+        }
+
+        global $wp_query;
+        $savedQuery = $wp_query;
+
+        $wp_query = $this->wpQuery;
+
+        if ($wp_query->have_posts() ) {
+
+            if (isset($this->listTitle)) {
+                echo '<h2>' . $this->listTitle . '</h2>';
+            }
+
+            $pubsByYear = $this->sortPubsByYear();
+
+            foreach ($pubsByYear as $year => $pubs) {
+                echo '<div class="postSection--allPublicationsList__year">';
+                echo '<h3>'. $year . '</h3>';
+
+                foreach ($pubs as $pub) {
+                    global $post;
+                    $post = $pub;
+                    $this->echoWpLoopContents();
+                }
+                echo '</div>';
+
+            }
+        }
+        $wp_query->reset_postdata();
+        $wp_query = $savedQuery;
     }
 
     private function publicationDetails($metaDataArray){
@@ -103,9 +142,31 @@ klab_publication_selectedPublication : Array ( [0] => on )
 
     }
 
+
     private function extractPublicationYear($metadata) {
         $pubdate = $metadata['klab_publication_pubdate'][0];
         $dateArr = explode(' ', $pubdate);
         return $dateArr[0];
+    }
+
+    private function sortPubsByYear() {
+
+        $pubsByYearMap = array();
+        $publications = $this->wpQuery->get_posts();
+
+        foreach ($publications as $pub) {
+            $metadataArray =  get_post_meta( $pub->ID);
+            $pubYear = $this->extractPublicationYear($metadataArray);
+
+            if (!array_key_exists($pubYear, $pubsByYearMap)) {
+                $pubsByYearMap[$pubYear] = array($pub);
+            } else {
+                array_push($pubsByYearMap[$pubYear], $pub);
+            }
+        }
+
+        krsort($pubsByYearMap);
+
+        return $pubsByYearMap;
     }
 } ?>

@@ -75,7 +75,7 @@ class KlabLabMembers extends KlabEchoPostType\KlabAbstractEchoPostType  {
                                 $labMember = new KlabLabMemberSection($this->justAlumni);
                                 $labMember->setLabMemberName(get_the_title());
                                 //imagesize = thumbnail
-                                $labMember->setLabMemberImage(get_the_post_thumbnail());
+                                $labMember->setLabMemberImage(get_the_post_thumbnail($post, 'thumbnail'));
                                 $labMember->setLabMemberTitle($memberTitle);
                                 $labMember->setLabMemberCurrentPosition($currentPos);
                                 $labMember->setLabMemberDescription($description);

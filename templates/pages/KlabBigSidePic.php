@@ -19,7 +19,7 @@ class KlabBigSidePic extends KlabDefaultPage
         global $post;
 
         $sidePic = new KlabBigSidePicSection();
-        $sidePic->setContent(get_the_content());
+        $sidePic->setContent(apply_filters('the_content', $post->post_content));
         $sidePic->setImage(get_the_post_thumbnail($post->ID, 'medium'));
         $sidePic->setImageCaption(get_post(get_post_thumbnail_id($post))->post_excerpt);
         $sidePic->setTitle(get_the_title());

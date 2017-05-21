@@ -114,18 +114,7 @@ function assets() {
         wp_enqueue_script('googlemaps/js', 'https://maps.googleapis.com/maps/api/js?key=AIzaSyANdMVnsOgw9R0277hHHWlyOxJylPKcJOc&callback=initMap', ['sage/js'], null, true);
     }
 
-    if (is_user_logged_in() ) {
-        //wp_enqueue_script('tinymce/js', '//cdn.tinymce.com/4/tinymce.min.js', null, null, true);
-        wp_enqueue_script('klabAdmin/js', Assets\asset_path('scripts/klabAdmin.js'), array(), 0.1, true);
-    }
-    else {
-        wp_enqueue_script('klab/js', Assets\asset_path('scripts/klab.js'), array(), 0.1, true);
-    }
-
-    wp_enqueue_script('axios/js', 'https://unpkg.com/axios/dist/axios.min.js', null, null, true);
     wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
-    wp_enqueue_script('sage/js', Assets\asset_path('scripts/main.js'), ['jquery'], null, true);
-
 }
 add_action('wp_enqueue_scripts', __NAMESPACE__ . '\\assets', 100);
 
@@ -356,4 +345,6 @@ add_shortcode( 'link', __NAMESPACE__ . '\\klab_imageLinkShortCode' );
 
 }
 add_filter( 'init', __NAMESPACE__ . '\\programmatically_create_post' );*/
+
+
 ?>

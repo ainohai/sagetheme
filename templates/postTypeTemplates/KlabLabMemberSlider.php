@@ -32,7 +32,7 @@ class KlabLabMemberSlider extends KlabAbstractEchoPostType
             </div>
 
             <?php
-            $slide = new KlabDefaultEntryPage();
+            $slide = new KlabDefaultEntryPage(true);
             $slide->echoHeaderPic(); ?>
         </li>
 

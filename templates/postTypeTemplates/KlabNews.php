@@ -98,9 +98,11 @@ class KlabNews extends KlabEchoPostType\KlabAbstractEchoPostType  {
     //contents of custom facebook feed plugin ?>
             <div class="mdl-cell mdl-cell--6-col postSection postSection--facebookFeed">
                 <div class="mdl-card">
-
-                    <h2 class="mdl-card__title-text">Klefström lab on facebook </h2>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text">Klefström lab on facebook </h2>
+                    </div>
                     <?php echo do_shortcode('[custom-facebook-feed]'); ?>
+
                 </div>
 
             </div>

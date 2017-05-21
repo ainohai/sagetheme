@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Tutkimuksemme child page
+ * Template Name: Child page with big pic
  */
 
 use Roots\Sage\KlabTemplFunctions;
