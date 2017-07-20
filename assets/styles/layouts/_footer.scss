@@ -1,5 +1,11 @@
 footer {
-  //height: 300px;
   backgroud-color: $black;
+  margin-top: 32px;
+
+  a, p {
+    color: $footerText;
+    font-family: $base-font-family;
+    font-size:15px;
+  }
 
 }

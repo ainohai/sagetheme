@@ -36,14 +36,16 @@ class KlabResearchTopic extends KlabAbstractEchoPostType
         if ($wpQuery->have_posts()) {
             global $post;
 
-            echo '<ul class="mdl-list researchTopicNav">';
+            echo '<div class="researchTopicNav">';
+            echo '<h4>Research topics</h4>';
+            echo '<ul class="mdl-list">';
 
             while ($wpQuery->have_posts()) : $wpQuery->the_post();
 
                 echo '<li class="mdl-list__item"><a href="#' . $post->post_name . '">'. $post->post_title .'</a></li>';
             endwhile;
 
-            echo '</ul>';
+            echo '</ul></div>';
 
         }
 

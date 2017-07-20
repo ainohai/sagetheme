@@ -28,7 +28,7 @@ class KlabPublicationSection extends KlabAbstractPostSection
 
         <?php
         echo (!empty($this->authors)) ?
-            '<span class="'. $this->sectionName . '__authors">'
+            '<span class="mdl-cell mdl-cell--12-col '. $this->sectionName . '__authors">'
             . $this->authors .
             ' </span><br>' : ''; ?>
 
@@ -38,7 +38,7 @@ class KlabPublicationSection extends KlabAbstractPostSection
             } ?>
 
         <?php    echo (!empty($this->publicationDetails)) ?
-        '<span class="'. $this->sectionName . '__details">' .
+        '<span class="mdl-cell mdl-cell--12-col '. $this->sectionName . '__details">' .
         $this->publicationDetails
         . ' </span>'
         : ''; ?>
@@ -79,13 +79,16 @@ class KlabPublicationSection extends KlabAbstractPostSection
     }
 
     private function constructTitle() {
-        $titleSpan = '<span class="' . $this->sectionName . '__title">' .
-        $this->title
-        . ' </span>';
+
+        $title = $this->title;
 
         if (isset($this->pubmedGuid)) {
-            return ' <a href ="' . $this::PUBMED_BASE_URL . $this->pubmedGuid . '">' . $titleSpan .'</a>';
+            $title = ' <a href ="' . $this::PUBMED_BASE_URL . $this->pubmedGuid . '">' . $title .'</a>';
         }
+
+        $titleSpan = '<span class="mdl-cell mdl-cell--12-col ' . $this->sectionName . '__title">' .
+        $title
+        . ' </span>';
 
         return $titleSpan;
 

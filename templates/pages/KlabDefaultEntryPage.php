@@ -29,7 +29,9 @@ class KlabDefaultEntryPage extends KlabDefaultPage
         $contentInBox = new KlabContentInBox();
         $contentInBox->setContent(get_the_content());
         $contentInBox->run();
-
+        if (!empty(get_the_content())) {
+            \Roots\Sage\KlabTemplFunctions\echoDivider();
+        }
     }
 
     public function echoHeaderPic() {
@@ -94,27 +96,41 @@ class KlabPublicationPage extends \Roots\Sage\KlabPage\KlabDefaultEntryPage
 
     const BLOCK_FOR_FULL_ARTICLE_LIST ='allPublicationsList';
 
-    public function echoPage()
+    protected function echoAfterPage()
     {
 
-        $this->echoHeaderPic();
+        $this->echoPubsList(true);
 
-        $contentInBox = new \Roots\Sage\ContentInBox\KlabSelectedPubs(false, false, false);
-        $contentInBox->setContent(get_the_content());
-        $contentInBox->run();
+        \Roots\Sage\KlabTemplFunctions\echoDivider();
+
+        $this->echoPubsList(false);
 
     }
 
-    protected function echoAfterPage()
-    {
-        echo '<section class="'. \Roots\Sage\KlabTemplFunctions\constructWrapperSectionClasses() .'">';
-        echo '<div class="'. \Roots\Sage\KlabTemplFunctions\constructSectionClasses(self::BLOCK_FOR_FULL_ARTICLE_LIST, false) .'">';
+    private function echoPubsList($justSelectedPubs){
 
-        $publications = new \Roots\Sage\KlabEchoPostType\KlabPublications(false);
+        global $post;
+        $metadataArray =  get_post_meta( $post->ID);
+
+        $description = "";
+        if ($justSelectedPubs) {
+            $description = isset($metadataArray["page_selectedPubsListInfo"]) ? $metadataArray["page_selectedPubsListInfo"][0] :'';
+        }
+        else {
+            $description = isset($metadataArray["page_fullPubsListInfo"]) ? $metadataArray["page_fullPubsListInfo"][0] : '';
+        }
+
+        echo '<section class="'. \Roots\Sage\KlabTemplFunctions\constructWrapperSectionClasses() .'">';
+        echo '<div class="'. \Roots\Sage\KlabTemplFunctions\constructSectionClasses(self::BLOCK_FOR_FULL_ARTICLE_LIST, true, false) .'">';
+
+        $publications = new \Roots\Sage\KlabEchoPostType\KlabPublications(apply_filters( 'the_content', wp_kses_post($description)), $justSelectedPubs);
         $publications->echoPosts();
 
         echo '</div>';
         echo '</section>';
+
+        wp_reset_postdata();
+
     }
 }
 

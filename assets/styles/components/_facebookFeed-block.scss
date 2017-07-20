@@ -1,11 +1,6 @@
 .postSection--facebookFeed {
-  //max-width:$smallerContentWidth;
-  .mdl-card {
-    width:auto;
-    //max-width:600px;
-    //margin-left:32px;
 
-    p {
+    .cff-item p {
       font-size:14px;
     }
 
@@ -14,7 +9,6 @@
     }
 
     .cff-wrapper {
-      // @include borderBeforeContent();
       padding-top: 16px;
     }
 
@@ -22,6 +16,4 @@
       height: 600px;
       overflow: scroll;
     }
-
-  }
 }

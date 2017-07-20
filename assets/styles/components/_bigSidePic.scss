@@ -13,11 +13,9 @@
 .postSection--bigSidePic {
   flex-direction: row-reverse;
 }
-
-/*Does nothing
-.bigSidePic__content {
-  justify-content: center;
-}*/
+.is-small-screen .postSection--bigSidePic {
+  flex-direction:inherit;
+}
 
 #map {
   height:400px;

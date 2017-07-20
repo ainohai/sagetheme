@@ -45,7 +45,7 @@ class KlabContentInBox extends KlabAbstractPostSection
      */
     public function setContent($content)
     {
-        $this->content = $content;
+        $this->content = $this->filterPostContent($content);
     }
 
     public function setAndFilterContent($content){
@@ -63,7 +63,7 @@ class KlabContentInBox extends KlabAbstractPostSection
     public function echoContent()
     {
         ?>
-        <div class="mdl-card mdl-cell--12-col">
+        <div class="mdl-cell mdl-card mdl-cell--12-col">
 
             <?php
             echo (!empty($this->title)) ?
@@ -93,20 +93,4 @@ class KlabContentInBox extends KlabAbstractPostSection
 
 
 }
-
-class KlabSelectedPubs extends KlabContentInBox  {
-
-    public function __construct($overImage, $hasBackground, $bigText)
-    {
-        parent::__construct($overImage, $hasBackground, $bigText);
-    }
-
-    public function echoContent()
-    {
-        parent::echoContent();
-        echo '<div class="mdl-card mdl-cell--12-col">';
-        $publications = new \Roots\Sage\KlabEchoPostType\KlabPublications(true);
-        $publications->echoPosts();
-        echo '</div>';
-    }
-}?>
+?>

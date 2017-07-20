@@ -173,4 +173,11 @@ function echo3Column($metaDataName = null)
     echo '</div>';
 
 }
+
+function echoDivider (){
+    global $post;
+    if ( $post->post_parent !== FOR_PATIENTS_PARENT_ID) {
+        echo '<div class="mdl-grid divider"></div>';
+    }
+}
 ?>

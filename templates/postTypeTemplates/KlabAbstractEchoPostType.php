@@ -112,7 +112,9 @@ abstract class KlabAbstractEchoPostType
         if ($wp_query->have_posts() ) {
 
             if(isset($this->listTitle)) {
-                echo '<h2>'. $this->listTitle .'</h2>';
+                echo '<div class="mdl-cell mdl-cell--12-col mdl-card__title">';
+                echo '<h2 class="mdl-card__title-text">'. $this->listTitle .'</h2>';
+                echo '</div>';
             }
 
             while (have_posts()) : the_post();

@@ -64,14 +64,16 @@ class KlabNews extends KlabEchoPostType\KlabAbstractEchoPostType  {
                     </div>
                 <?php } else { ?>
                     <div class="mdl-cell mdl-cell--3-col mdl-layout--large-screen-only mdl-card <?php echo self::BLOCK_MODIFIER; ?>__image">
-                        <div class="mdl-card__media">
-                            <h2><?php the_title() ?></h2>
+                        <div class="mdl-card__title">
+                            <h2 class="mdl-card__title-text"><?php the_title() ?></h2>
                         </div>
                     </div>
                 <?php } ?>
 
                 <div class="mdl-cell mdl-card mdl-cell--9-col <?php echo self::BLOCK_MODIFIER; ?>__text">
-                    <h2 class="mdl-card__title-text"><?php the_title() ?></h2>
+                    <div class="mdl-card__title">
+                        <h2 class="mdl-card__title-text"><?php the_title() ?></h2>
+                    </div>
                     <div class="mdl-card__supporting-text"><?php the_content(); ?></div>
                 </div>
             </div>
@@ -83,7 +85,7 @@ class KlabNews extends KlabEchoPostType\KlabAbstractEchoPostType  {
             ?>
 
             <div
-                class="mdl-cell mdl-cell--6-col  <?php echo KlabTemplFunctions\constructSectionClasses(self::BLOCK_MODIFIER, true, true); ?>">
+                class="mdl-cell mdl-card mdl-cell--6-col  <?php echo KlabTemplFunctions\constructSectionClasses(self::BLOCK_MODIFIER, true, true); ?>">
                 <?php
                 $lastNews = new KlabContentInBox(false, false, false, true);
                 $lastNews->setTitle(get_the_title());
@@ -96,14 +98,13 @@ class KlabNews extends KlabEchoPostType\KlabAbstractEchoPostType  {
 
         private function facebookFeed () {
     //contents of custom facebook feed plugin ?>
-            <div class="mdl-cell mdl-cell--6-col postSection postSection--facebookFeed">
-                <div class="mdl-card">
+            <div class="mdl-cell mdl-card mdl-cell--6-col postSection postSection--facebookFeed">
                     <div class="mdl-card__title">
                         <h2 class="mdl-card__title-text">Klefström lab on facebook </h2>
                     </div>
-                    <?php echo do_shortcode('[custom-facebook-feed]'); ?>
-
-                </div>
+                    <div class="mdl-card__supporting-text">
+                        <?php echo do_shortcode('[custom-facebook-feed]'); ?>
+                    </div>
 
             </div>
 

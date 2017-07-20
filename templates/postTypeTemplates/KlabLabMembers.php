@@ -56,13 +56,16 @@ class KlabLabMembers extends KlabEchoPostType\KlabAbstractEchoPostType  {
                             $postArray = $resultArray[$term->slug];
 
                             ?>
-
-                            <div class="mdl-cell mdl-cell--9-col ">
-                                <h2><?php echo $term->name ?></h2>
+                            <div class="mdl-grid">
+                            <div class="mdl-cell mdl-cell--9-col mdl-card__title">
+                                <h2 class="mdl-card__title-text"><?php echo $term->name ?></h2>
+                            </div>
                             </div>
 
-
                             <?php
+
+                            echo $this->justAlumni ? '<ul class="mdl-list mdl-grid '. $this::BLOCK_MODIFIER .'--list">' : '<div>';
+
                             foreach ($postArray as $member) {
 
                                 $post = $member;
@@ -78,11 +81,12 @@ class KlabLabMembers extends KlabEchoPostType\KlabAbstractEchoPostType  {
                                 $labMember->setLabMemberImage(get_the_post_thumbnail($post, 'thumbnail'));
                                 $labMember->setLabMemberTitle($memberTitle);
                                 $labMember->setLabMemberCurrentPosition($currentPos);
-                                $labMember->setLabMemberDescription($description);
+                                $labMember->setLabMemberDescription(apply_filters( 'the_content', wp_kses_post($description)));
 
                                 $labMember->run();
 
                             }
+                            echo $this->justAlumni ? '</ul>' : '</div>';
 
                         }
                     }

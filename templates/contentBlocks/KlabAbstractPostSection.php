@@ -84,7 +84,7 @@ class KlabContentSide extends KlabAbstractPostSection
      */
     public function setContent($content)
     {
-        $this->content = $content;
+        $this->content = $this->filterPostContent($content);
     }
 
     /**
@@ -155,7 +155,7 @@ class KlabBigSidePicSection extends KlabAbstractPostSection
      */
     public function setContent($content)
     {
-        $this->content = $content;
+        $this->content = $this->filterPostContent($content);
     }
 
     /**

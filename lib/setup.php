@@ -181,31 +181,6 @@ function klab_loginRedirect( $redirect_to, $request, $user ) {
 }
 
 add_filter( 'login_redirect',  __NAMESPACE__ . '\\klab_loginRedirect', 10, 3 );
-//add_filter('the_content', __NAMESPACE__ . '\\klab_addEditButtonToContent');
-/*
-//admin edit button
-function klab_addEditButtonToTitle($content) {
-    $beforecontent =
-        '<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-            <i class="material-icons">edit</i>
-        </button>';
-    return $beforecontent . $content;
-
-}
-add_filter('the_title', __NAMESPACE__ . '\\klab_addEditButtonToTitle');
-
-//admin edit button
-function klab_addEditButtonToThumbnail($html) {
-    $beforecontent =
-        '<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--colored">
-            <i class="material-icons">edit</i>
-        </button>';
-    return $beforecontent . $html;
-
-
-}
-add_filter('post_thumbnail_html', __NAMESPACE__ . '\\klab_addEditButtonToThumbnail');
-*/
 
 add_action('admin_head',  __NAMESPACE__ . '\\custom_admin_css');
 
@@ -261,6 +236,59 @@ function klab_imageLinkShortCode( $atts ) {
 }
 
 add_shortcode( 'link', __NAMESPACE__ . '\\klab_imageLinkShortCode' );
+
+function klab_mediaLinkShortCode( $atts ) {
+    $a = shortcode_atts( array(
+        'url' => '',
+        'title' => ''
+    ), $atts );
+
+    if ($a['url'] == '') {
+        echo "url needs to be given as you want to make a link";
+    }
+    $title = is_empty($a['title']) ? $a['url'] : $a['title'];
+
+    return '<div class="unfurlLink">
+                <a href = "'. $a['url'].'">
+                    <span>'. $title .'</span>
+                </a></div>';
+}
+
+add_shortcode( 'media_link', __NAMESPACE__ . '\\klab_mediaLinkShortCode' );
+
+
+function klab_addTinyMCEbuttons() {
+    if ( ! current_user_can( 'edit_posts' ) && ! current_user_can( 'edit_pages' ) ) {
+        return;
+    }
+
+    if ( get_user_option( 'rich_editing' ) !== 'true' ) {
+        return;
+    }
+
+    add_filter( 'mce_external_plugins',  __NAMESPACE__ . '\\klab_addLinkButtons' );
+    add_filter( 'mce_buttons',  __NAMESPACE__ . '\\klab_registerLinkButtons' );
+
+}
+
+if ( ! function_exists( 'klab_addLinkButtons' ) ) {
+    function klab_addLinkButtons( $plugin_array ) {
+        $plugin_array['linkWithImage'] = Assets\asset_path('scripts/tinymce_buttons.js');
+        return $plugin_array;
+    }
+}
+
+if ( ! function_exists( 'klab_registerLinkButtons' ) ) {
+    function klab_registerLinkButtons( $buttons ) {
+        array_push( $buttons, 'linkWithImage' );
+        array_push( $buttons, 'newsLink' );
+        return $buttons;
+    }
+}
+
+
+add_action( 'init', __NAMESPACE__ . '\\klab_addTinyMCEbuttons');
+
 
 
 //Function used to programmatically add alumnis.

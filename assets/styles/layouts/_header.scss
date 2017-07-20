@@ -17,6 +17,10 @@
     @include white-bg();
 
   }
+
+  .active {
+    text-decoration: underline;
+  }
 }
 
 .primaryNav {
@@ -90,11 +94,14 @@
   .mdl-layout__drawer-button {
     top:43px;
     background-color: initial;
+    
+    i {
+      color: $base-font-color;
+    }
   }
 
   .is-compact .mdl-layout__drawer-button {
     top:0px;
   }
-
 
 }

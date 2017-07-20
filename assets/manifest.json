@@ -3,14 +3,16 @@
     "main.js": {
       "files": [
         "scripts/main.js",
-        "scripts/responsiveslides.js"
+        "scripts/responsiveslides.js",
+        "scripts/jquery.colorbox.js"
       ],
       "main": true
     },
     "main.css": {
       "files": [
         "styles/main.scss",
-        "styles/responsiveslides.css"
+        "styles/responsiveslides.css",
+        "styles/colorbox.css"
       ],
       "main": true
     },

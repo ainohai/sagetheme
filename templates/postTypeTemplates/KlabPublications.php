@@ -19,8 +19,9 @@ class KlabPublications extends KlabAbstractEchoPostType
     const SELECTED_TITLE = 'Selected publications';
     const ALL_TITLE = 'Full list of publications';
     private $onlySelectedPublications;
+    private $listDescription;
 
-    public function __construct($onlySelectedPublications = false, $htmlSection = false)
+    public function __construct($listDescription, $onlySelectedPublications = false, $htmlSection = false)
     {
         $pubsFilter = null;
         if ($onlySelectedPublications) {
@@ -30,9 +31,11 @@ class KlabPublications extends KlabAbstractEchoPostType
 
         parent::__construct(self::POST_TYPE_SLUG, self::BLOCK_MODIFIER, $pubsFilter, $htmlSection);
 
+        $this->listDescription = $listDescription;
         $listTitle = $onlySelectedPublications ? $this::SELECTED_TITLE : $this::ALL_TITLE;
         $this->setListTitle($listTitle);
         $this->onlySelectedPublications = $onlySelectedPublications;
+
     }
 
     protected function echoWpLoopContents()
@@ -52,10 +55,6 @@ class KlabPublications extends KlabAbstractEchoPostType
 
     protected function echoPostContent ()
     {
-        if($this->onlySelectedPublications) {
-            parent::echoPostContent();
-            return;
-        }
 
         global $wp_query;
         $savedQuery = $wp_query;
@@ -65,22 +64,43 @@ class KlabPublications extends KlabAbstractEchoPostType
         if ($wp_query->have_posts() ) {
 
             if (isset($this->listTitle)) {
-                echo '<h2>' . $this->listTitle . '</h2>';
+                echo '<div class="mdl-cell mdl-cell--12-col">';
+                echo '<div class="mdl-card__title">';
+                echo '<h2 class="mdl-card__title-text">'. $this->listTitle .'</h2>';
+                echo '</div>';
+                echo '</div>';
             }
 
-            $pubsByYear = $this->sortPubsByYear();
-
-            foreach ($pubsByYear as $year => $pubs) {
-                echo '<div class="postSection--allPublicationsList__year">';
-                echo '<h3>'. $year . '</h3>';
-
-                foreach ($pubs as $pub) {
-                    global $post;
-                    $post = $pub;
-                    $this->echoWpLoopContents();
-                }
+            if (!empty($this->listDescription)) {
+                echo '<div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text">';
+                echo $this->listDescription;
                 echo '</div>';
+            }
 
+            if ($this->onlySelectedPublications) {
+
+                    while (have_posts()) : the_post();
+
+                        $this->echoWpLoopContents();
+
+                    endwhile;
+
+            }
+            else {
+                $pubsByYear = $this->sortPubsByYear();
+
+                foreach ($pubsByYear as $year => $pubs) {
+                    echo '<div class="postSection--allPublicationsList__year">';
+                    echo '<div class=" mdl-card__title"><h3 class="mdl-card__title-text">' . $year . '</h3></div>';
+
+                    foreach ($pubs as $pub) {
+                        global $post;
+                        $post = $pub;
+                        $this->echoWpLoopContents();
+                    }
+                    echo '</div>';
+
+                }
             }
         }
         $wp_query->reset_postdata();

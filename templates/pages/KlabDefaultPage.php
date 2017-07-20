@@ -113,11 +113,12 @@ class KlabLabMemberSliderPage extends \Roots\Sage\KlabPage\KlabDefaultPage
 
     protected function echoAfterPage()
     {
+        \Roots\Sage\KlabTemplFunctions\echoDivider();
         $labMembers = new KlabLabMembers();
         $labMembers->echoPosts();
 
-        //$alumni = new KlabLabMembers(true);
-        //$alumni->echoPosts();
+        $alumni = new KlabLabMembers(true);
+        $alumni->echoPosts();
     }
 }
 ?>
