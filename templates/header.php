@@ -43,3 +43,10 @@
     <?php KlabNavMenus\echoPrimaryNavigation() ?>
 </div>
 <?php KlabNavMenus\echoIntraLinks() ?>
+
+<div class ="printOnly">
+    <?php
+    global $post;
+    echo '<h1>' . $post->post_title . ' / '. get_bloginfo( 'name' ) .'</h1>';
+    ?>
+</div>

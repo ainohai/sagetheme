@@ -17,7 +17,6 @@ class KlabFullPageImage extends KlabPostSection\KlabAbstractPostSection
 {
     const FULL_SINGLE_PIC = 'fullSinglePic';
 
-    private $title;
     private $backgroundImageUrl;
     private $caption;
     const HAS_MAX_HEIGHT = '-maxHeight';
@@ -28,14 +27,6 @@ class KlabFullPageImage extends KlabPostSection\KlabAbstractPostSection
             $modifierArray = array ($this::HAS_MAX_HEIGHT);
         }
         parent::__construct(self::FULL_SINGLE_PIC, $modifierArray, false);
-    }
-
-    /**
-     * @param mixed $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
     }
 
     /**

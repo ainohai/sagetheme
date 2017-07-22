@@ -17,9 +17,6 @@ class KlabContentInBox extends KlabAbstractPostSection
     const OVER_IMAGE_MODIFIER = '-overImage';
     const WITH_BACKGROUND_MODIFIER ='-hasBackground';
     const BIG_TEXT_MODIFIER = '-bigText';
-    private $title;
-    private $content;
-    private $image;
 
     public function __construct($overImage = false, $hasBackground = false, $bigText = false, $noGridSpacing = false)
     {
@@ -32,32 +29,9 @@ class KlabContentInBox extends KlabAbstractPostSection
 
     }
 
-    /**
-     * @param mixed $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * @param mixed $content
-     */
-    public function setContent($content)
-    {
-        $this->content = $this->filterPostContent($content);
-    }
 
     public function setAndFilterContent($content){
         $this->content = apply_filters( 'the_content', wp_kses_post($content));
-    }
-
-    /**
-     * @param mixed $image
-     */
-    public function setImage($image)
-    {
-        $this->image = $image;
     }
 
     public function echoContent()

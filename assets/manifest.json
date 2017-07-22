@@ -21,8 +21,19 @@
         "scripts/customizer.js"
       ]
     },
+    "tinymce_buttons.js": {
+      "files": [
+        "scripts/tinymce_buttons.js"
+      ]
+    },
     "jquery.js": {
       "bower": ["jquery"]
+    },
+    "klab-old-ie.css": {
+      "files": ["styles/klab-old-ie.css"]
+    },
+    "klab-print.css": {
+      "files": ["styles/klab-print.css"]
     }
   },
   "config": {

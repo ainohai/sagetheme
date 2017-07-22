@@ -168,7 +168,7 @@ function echo3Column($metaDataName = null)
     }
     $content = apply_filters('the_content', wp_kses_post($content));
 
-    echo '<div class="mdl-cell mdl-cell--4-col">';
+    echo '<div class="mdl-cell mdl-cell--4-col '. $metaDataName .'">';
     echo $content;
     echo '</div>';
 

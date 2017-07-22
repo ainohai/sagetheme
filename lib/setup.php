@@ -102,10 +102,15 @@ function display_sidebar() {
 function assets() {
 
     wp_enqueue_style('material-design-lite-icons/css', 'https://fonts.googleapis.com/icon?family=Material+Icons', false, null);
-    wp_enqueue_style('material-design-lite/css', 'https://code.getmdl.io/1.3.0/material.min.css', false, null);
+    wp_enqueue_style('material-design-lite/css', 'https://code.getmdl.io/1.3.0/material.min.css', null, false, 'screen');
     wp_enqueue_script('material-design-lite/js', 'https://code.getmdl.io/1.3.0/material.min.js', null, null, false);
 
     wp_enqueue_style('sage/css', Assets\asset_path('styles/main.css'), false, null);
+
+    wp_enqueue_style( 'klab-old-ie/css', Assets\asset_path("styles/klab-old-ie.css"), null );
+    wp_style_add_data( 'klab-old-ie/css', 'conditional', 'lt IE 10' );
+
+    wp_enqueue_style( 'klab-print', Assets\asset_path("styles/klab-print.css"), null, false, "print");
 
     if (is_single() && comments_open() && get_option('thread_comments')) {
         wp_enqueue_script('comment-reply');
@@ -281,7 +286,6 @@ if ( ! function_exists( 'klab_addLinkButtons' ) ) {
 if ( ! function_exists( 'klab_registerLinkButtons' ) ) {
     function klab_registerLinkButtons( $buttons ) {
         array_push( $buttons, 'linkWithImage' );
-        array_push( $buttons, 'newsLink' );
         return $buttons;
     }
 }

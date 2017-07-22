@@ -1,0 +1,61 @@
+.mdl-layout--small-screen-only {
+    display:none;
+}
+
+.mdl-card {
+    width:inherit;
+}
+
+.mdl-layout__header-row .mdl-navigation__link{
+    display:inline;
+}
+.mdl-layout-title {
+    display:inline;
+}
+.mdl-layout--small-screen-only.mdl-layout-title.mdl-layout-title--mainKlab {
+    display:none;
+}
+.klab-helsinkiUni{
+    float:right;
+}
+
+#klab-intraLinks{
+    display:none;
+}
+
+.postSection--fullSinglePic .mdl-card__media {
+    display:none;
+}
+
+.mdl-layout-spacer {
+    display:none;
+}
+
+.mdl-grid {
+    clear:both;
+}
+
+.mdl-cell {
+    float:left;
+}
+
+.mdl-cell--4-col {
+    width:30%;
+    display:inline;
+}
+.mdl-cell--6-col {
+    width:50%;
+    display:inline;
+}
+.mdl-cell--12-col {
+    width:100%;
+    display:block;
+}
+
+.klabFooter {
+    border-top-style:solid;
+}
+
+footer {
+    background-color: inherit;
+}

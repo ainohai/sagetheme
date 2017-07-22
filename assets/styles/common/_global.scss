@@ -82,8 +82,13 @@ img {
   height: auto;
 }
 
-.is-small-screen .postSection {
+.is-small-screen {
+  .postSection {
   padding: inherit;
+  }
+  .divider {
+    background-color: inherit;
+  }
 }
 
 .postSection {
@@ -244,11 +249,16 @@ figure.mdl-cell--4-col {
 .divider {
   height: 2px;
   min-height: 2px;
-  max-width: $maxContentWidth - 32px;
+  width: $maxContentWidth - 32px;
   background-color: $lightGrayBg;
   margin-left: auto;
   margin-right: auto;
   margin-top: 12px;
   margin-bottom: 12px;
   padding: 0px;
+  max-width: 80%;
+}
+
+.printOnly {
+  display:none;
 }

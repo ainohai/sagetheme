@@ -22,7 +22,7 @@
     //var_dump($wp_query);
     if( $wp_query->have_posts() ){ ?>
 
-        <div class="mdl-grid">
+        <div class="mdl-grid klabFooter">
 
             <?php
 

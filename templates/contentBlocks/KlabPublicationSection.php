@@ -11,7 +11,6 @@ namespace Roots\Sage\KlabPostSection;
 
 class KlabPublicationSection extends KlabAbstractPostSection
 {
-    private $title;
     private $authors;
     private $publicationDetails;
     private $pubmedGuid;
@@ -44,14 +43,6 @@ class KlabPublicationSection extends KlabAbstractPostSection
         : ''; ?>
 
         <?php
-    }
-
-    /**
-     * @param mixed $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
     }
 
     /**

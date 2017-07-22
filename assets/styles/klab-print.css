@@ -1,0 +1,55 @@
+@media print {
+    header, iframe {
+        display:none !important;
+    }
+    .postSection.postSection--fullSinglePic{
+        display:none;
+    }
+    p, span, li {
+        font-size:12px !important;
+    }
+
+    .divider {
+        display:none;
+    }
+
+    footer p, footer span {
+        font-size:10px !important;
+    }
+
+    .mdl-layout__header-row.mdl-layout__header-row--primary {
+        display:none;
+    }
+
+    body, .post-section {
+        width:90%;
+        max-width: 90%;
+    }
+
+    img {
+        max-width: 80% !important;
+    }
+
+    .mdl-navigation.primaryNav, .mdl-menu__container {
+        display:none;
+    }
+
+    .mdl-grid, .mdl-card {
+        overflow:visible !important;
+        max-width:100% !important;
+        margin-left:16px !important;
+    }
+
+    .mdl-cell.mdl-cell--4-col{
+        float:left;
+        width:30%;
+    }
+
+    .printOnly {
+        display:block;
+    }
+
+    .postSection--publicationItem {
+        max-width:70%;
+    }
+}

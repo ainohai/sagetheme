@@ -33,7 +33,7 @@
                     title: function() {
                         return $(this).find('img').attr('alt');
                     }
-                }
+                };
 
                 $('.gallery a').colorbox(colorboxSettings);
 

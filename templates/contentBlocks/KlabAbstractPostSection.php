@@ -18,6 +18,11 @@ abstract class KlabAbstractPostSection
     private $gridSpacing;
     private $noGrid;
 
+    protected $title;
+    protected $content;
+    protected $image;
+    protected $imageCaption;
+
 
     public function __construct($sectionName, $modifierArray = null, $gridSpacing = true, $noGrid = false)
     {
@@ -52,96 +57,6 @@ abstract class KlabAbstractPostSection
         return $content;
     }
 
-}
-
-class KlabContentSide extends KlabAbstractPostSection
-{
-    const CONTENT_SIDE = 'contentSide';
-    private $content;
-    private $title;
-
-    public function __construct()
-    {
-        parent::__construct($this::CONTENT_SIDE);
-    }
-
-    public function echoContent()
-    {
-        echo '<div class="mdl-cell mdl-cell--12-col mdl-card '. $this::CONTENT_SIDE . '__content">';
-        echo '<div class="mdl-card__title">';
-        echo '<h2 class="mdl-card__title-text">'. $this->title .'</h2>';
-        echo '</div>';
-
-        echo '<div class="mdl-card__supporting-text">';
-        echo $this->content;
-        echo '</div>';
-        echo '</div>';
-
-    }
-
-    /**
-     * @param mixed $content
-     */
-    public function setContent($content)
-    {
-        $this->content = $this->filterPostContent($content);
-    }
-
-    /**
-     * @param mixed $title
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-}
-
-
-
-
-
-class KlabBigSidePicSection extends KlabAbstractPostSection
-{
-    const BIG_SIDE_PIC = 'bigSidePic';
-    private $title;
-    private $content;
-    private $image;
-    private $imageCaption;
-
-    public function __construct()
-    {
-        parent::__construct($this::BIG_SIDE_PIC);
-    }
-
-
-    public function echoContent()
-    {
-        echo '<div class="mdl-card mdl-cell mdl-cell--5-col">';
-
-        $this->echoSidePanel();
-
-        echo '</div>';
-
-        echo '<div class="mdl-card mdl-cell mdl-cell--7-col '. $this::BIG_SIDE_PIC .'__content" >';
-        echo '<div class="mdl-card__supporting-text">';
-
-        echo $this->content;
-
-        echo '</div>';
-        echo '</div>';
-
-    }
-
-    protected function echoSidePanel () {
-
-        echo $this->image;
-        echo '<span class="caption">' . $this->imageCaption . '</span>';
-
-        //the_post_thumbnail('medium');
-        //echo '<span class="caption">' .get_post(get_post_thumbnail_id($post))->post_excerpt . '</span>';
-    }
-
     /**
      * @param mixed $title
      */
@@ -172,6 +87,77 @@ class KlabBigSidePicSection extends KlabAbstractPostSection
     public function setImageCaption($imageCaption)
     {
         $this->imageCaption = $imageCaption;
+    }
+
+    /**
+     * @param null $modifierArray
+     */
+    public function setModifierArray($modifierArray)
+    {
+        $this->modifierArray = $modifierArray;
+    }
+
+}
+
+class KlabContentSide extends KlabAbstractPostSection
+{
+    const CONTENT_SIDE = 'contentSide';
+
+    public function __construct()
+    {
+        parent::__construct($this::CONTENT_SIDE);
+    }
+
+    public function echoContent()
+    {
+        echo '<div class="mdl-cell mdl-cell--12-col mdl-card '. $this::CONTENT_SIDE . '__content">';
+        echo '<div class="mdl-card__title">';
+        echo '<h2 class="mdl-card__title-text">'. $this->title .'</h2>';
+        echo '</div>';
+
+        echo '<div class="mdl-card__supporting-text">';
+        echo $this->content;
+        echo '</div>';
+        echo '</div>';
+
+    }
+
+}
+
+
+class KlabBigSidePicSection extends KlabAbstractPostSection
+{
+    const BIG_SIDE_PIC = 'bigSidePic';
+
+    public function __construct()
+    {
+        parent::__construct($this::BIG_SIDE_PIC);
+    }
+
+
+    public function echoContent()
+    {
+        echo '<div class="mdl-card mdl-cell mdl-cell--5-col">';
+
+        $this->echoSidePanel();
+
+        echo '</div>';
+
+        echo '<div class="mdl-card mdl-cell mdl-cell--7-col '. $this::BIG_SIDE_PIC .'__content" >';
+        echo '<div class="mdl-card__supporting-text">';
+
+        echo $this->content;
+
+        echo '</div>';
+        echo '</div>';
+
+    }
+
+    protected function echoSidePanel () {
+
+        echo $this->image;
+        echo '<span class="caption">' . $this->imageCaption . '</span>';
+
     }
 
 }
