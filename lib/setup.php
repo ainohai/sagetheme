@@ -101,6 +101,7 @@ function display_sidebar() {
  */
 function assets() {
 
+    wp_enqueue_style( 'klab-google-fonts/css', 'https://fonts.googleapis.com/css?family=Noto+serif|Open+Sans', false );
     wp_enqueue_style('material-design-lite-icons/css', 'https://fonts.googleapis.com/icon?family=Material+Icons', false, null);
     wp_enqueue_style('material-design-lite/css', 'https://code.getmdl.io/1.3.0/material.min.css', null, false, 'screen');
     wp_enqueue_script('material-design-lite/js', 'https://code.getmdl.io/1.3.0/material.min.js', null, null, false);
@@ -187,9 +188,9 @@ function klab_loginRedirect( $redirect_to, $request, $user ) {
 
 add_filter( 'login_redirect',  __NAMESPACE__ . '\\klab_loginRedirect', 10, 3 );
 
-add_action('admin_head',  __NAMESPACE__ . '\\custom_admin_css');
+add_action('admin_head',  __NAMESPACE__ . '\\klab_customAdminCss');
 
-function custom_admin_css() {
+function klab_customAdminCss() {
     echo '<style>
     #wpbody-content #cpto #cpt_info_box, #wpbody-content #cpt_info_box {
       display:none;
@@ -197,6 +198,9 @@ function custom_admin_css() {
   </style>';
 }
 
+
+
+////////////SHORTCODES
 function klab_imageLinkShortCode( $atts ) {
     $a = shortcode_atts( array(
         'image_title_in_media_library' => '',

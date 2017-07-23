@@ -30,8 +30,13 @@ function getPageContentClasses(){
     return " page-content mdl-color--white mdl-shadow--4dp content mdl-color-text--grey-800 mdl-cell mdl-cell--12-col";
 }
 
-function constructWrapperSectionClasses() {
-    return 'logicalPieceOfContent';
+function constructWrapperSectionClasses($sectionName = null) {
+    if (empty($sectionName)) {
+        return 'logicalPieceOfContent';
+    }
+    else {
+        return 'logicalPieceOfContent logicalPieceOfContent--'.$sectionName;
+    }
 }
 
 function constructSectionClasses ($sectionName, $gridSpacing = true, $noGrid = false, $modifierArray = null) {

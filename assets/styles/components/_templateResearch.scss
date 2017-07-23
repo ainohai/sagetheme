@@ -1,31 +1,44 @@
-.researchCol--abstract {
-  p {
-    line-height:2em;
-    font-style:italic;
-  }
-}
 
 .mdl-grid.sideBar {
   flex-direction: row-reverse;
 }
-  .researchTopicNav {
-     margin-top:65px;
-     align-self:flex-start;
+.researchTopicNav {
+  margin-top:65px;
+  align-self:flex-start;
+}
+
+.sideBarNav {
+  display:flex;
+}
+
+.researchTopicNav.fixed {
+
+  position:fixed;
+  top:65px;
+  max-width:100%;
+  margin-right:2%;
+
+}
+
+.researchTopicNav.inTheBottom {
+  align-self: flex-end;
+}
+
+
+.logicalPieceOfContent--research {
+   p, li, a, span {
+     //font-family: $base-font-serif;
+     //font-size:1.3em;
+   }
+  h2 {
+    font-size:30px;
+    letter-spacing:inherit;
+    line-height: 40px;
   }
+}
 
-  .sideBarNav {
-    display:flex;
+.-abstractText {
+  p {
+    line-height: 32px;
   }
-
-  .researchTopicNav.fixed {
-
-    position:fixed;
-    top:65px;
-    max-width:100%;
-    margin-right:2%;
-
-  }
-
-  .researchTopicNav.inTheBottom {
-    align-self: flex-end;
-  }
+}

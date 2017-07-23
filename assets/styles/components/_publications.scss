@@ -1,0 +1,41 @@
+.postSection {
+
+  &--allPublicationsList.mdl-grid {
+    max-width: $smallerContentWidth;
+
+    &__year {
+      padding-top: 18px;
+      padiding-bottom: 6px;
+    }
+
+  }
+
+  &--publicationItem {
+    padding-top: 6px;
+    margin-left: 2%; //check this out.
+
+    .mdl-cell.publicationItem__title, .mdl-cell.publicationItem__authors, .mdl-cell.publicationItem__details {
+      margin-top:2px;
+      margin-bottom:1px;
+    }
+    .publicationItem__title{
+      padding-bottom:5px;
+      font-size:1.2em;
+      padding-top:10px;
+    }
+    .publictionItem__authors, .publicationItem__details {
+      font-size:1em;
+    }
+  }
+
+}
+
+.publicationItem {
+  margin-bottom: 24px;
+
+  &__title {
+    //font-weight: 700;
+    //font-size: 16px;
+  }
+}
+

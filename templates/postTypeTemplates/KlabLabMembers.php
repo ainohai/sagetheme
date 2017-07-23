@@ -57,8 +57,8 @@ class KlabLabMembers extends KlabEchoPostType\KlabAbstractEchoPostType  {
 
                             ?>
                             <div class="mdl-grid">
-                            <div class="mdl-cell mdl-cell--9-col mdl-card__title">
-                                <h2 class="mdl-card__title-text"><?php echo $term->name ?></h2>
+                            <div class="mdl-cell mdl-cell--9-col postSection__title">
+                                <h2 class="postSection__title-text"><?php echo $term->name ?></h2>
                             </div>
                             </div>
 

@@ -65,14 +65,14 @@ class KlabPublications extends KlabAbstractEchoPostType
 
             if (isset($this->listTitle)) {
                 echo '<div class="mdl-cell mdl-cell--12-col">';
-                echo '<div class="mdl-card__title">';
-                echo '<h2 class="mdl-card__title-text">'. $this->listTitle .'</h2>';
+                echo '<div class="postSection__title">';
+                echo '<h2 class="postSection__title-text">'. $this->listTitle .'</h2>';
                 echo '</div>';
                 echo '</div>';
             }
 
             if (!empty($this->listDescription)) {
-                echo '<div class="mdl-cell mdl-cell--12-col mdl-card__supporting-text">';
+                echo '<div class="mdl-cell mdl-cell--12-col postSection__supporting-text">';
                 echo $this->listDescription;
                 echo '</div>';
             }
@@ -91,7 +91,7 @@ class KlabPublications extends KlabAbstractEchoPostType
 
                 foreach ($pubsByYear as $year => $pubs) {
                     echo '<div class="postSection--allPublicationsList__year">';
-                    echo '<div class=" mdl-card__title"><h3 class="mdl-card__title-text">' . $year . '</h3></div>';
+                    echo '<div class=" postSection__title"><h3 class="postSection__title-text">' . $year . '</h3></div>';
 
                     foreach ($pubs as $pub) {
                         global $post;

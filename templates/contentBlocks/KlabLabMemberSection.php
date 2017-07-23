@@ -56,8 +56,8 @@ class KlabLabMemberSection extends KlabAbstractPostSection
     }
 
     public function echoFullMemberInfo() { ?>
-        <div class="mdl-cell  mdl-card mdl-cell--3-col">
-            <div class="mdl-card__media">
+        <div class="mdl-cell   mdl-cell--3-col">
+            <div class="postSection__media">
                 <?php if (!empty($this->labMemberImage)) { ?>
             <?php  echo $this->labMemberImage;  ?>
         <?php } else { ?>
@@ -67,19 +67,19 @@ class KlabLabMemberSection extends KlabAbstractPostSection
 
         </div>
 
-    <div class="mdl-cell mdl-cell--9-col mdl-card <?php echo $this::BLOCK_NAME . "__content" ?>">
+    <div class="mdl-cell mdl-cell--9-col  <?php echo $this::BLOCK_NAME . "__content" ?>">
 
-        <div class="mdl-card__title">
-            <h3 class="mdl-card__title-text"><?php echo $this->labMemberName ; ?></h3></br>
+        <div class="postSection__title">
+            <h3 class="postSection__title-text"><?php echo $this->labMemberName ; ?></h3></br>
 
         <?php
 
-        echo '<span class="'. $this::BLOCK_NAME .'__title mdl-card__subtitle-text">'. $this->labMemberTitle .'</span>';
-        echo '<span class="'. $this::BLOCK_NAME .'__currentPosition mdl-card__subtitle-text">'. $this->labMemberCurrentPosition .'</span>';
+        echo '<span class="'. $this::BLOCK_NAME .'__title postSection__subtitle-text">'. $this->labMemberTitle .'</span>';
+        echo '<span class="'. $this::BLOCK_NAME .'__currentPosition postSection__subtitle-text">'. $this->labMemberCurrentPosition .'</span>';
         ?>
         </div>
 
-        <div class="mdl-card__supporting-text">
+        <div class="postSection__supporting-text">
             <?php
             echo $this->labMemberDescription; ?></div>
 

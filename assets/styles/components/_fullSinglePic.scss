@@ -1,4 +1,4 @@
-.postSection--fullSinglePic .mdl-card__media {
+.postSection--fullSinglePic .postSection__media {
     width:100%;
     height:290px;
     height:73vh;
@@ -9,18 +9,14 @@
     background-position-y: center;
     margin-bottom:-97px;
 
-    .mdl-card__title-text {
+    .postSection__title-text {
       font-size:2.25em;
-      //not needed anymore
-      margin-bottom:28px;
-      margin-bottom:15vh;
-      //background-color: $grayBg;
       @include textOverImage();
       margin-top:140px;
       margin-left:18px;
     }
   }
 
-.postSection--fullSinglePic.-maxHeight .mdl-card__media {
+.postSection--fullSinglePic.-maxHeight .postSection__media {
   max-height:650px;
 }

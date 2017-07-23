@@ -20,18 +20,22 @@ class KlabDefaultEntryPage extends KlabDefaultPage
     {
         parent::__construct();
         $this->noTitleOnPic = $noTitleOnPic;
+        $this->setSectionName("fullSinglePic");
     }
 
     public function echoPage() {
 
         $this->echoHeaderPic();
 
+        if(empty (get_the_content())) {
+            return;
+        }
         $contentInBox = new KlabContentInBox();
         $contentInBox->setContent(get_the_content());
         $contentInBox->run();
-        if (!empty(get_the_content())) {
-            \Roots\Sage\KlabTemplFunctions\echoDivider();
-        }
+
+        \Roots\Sage\KlabTemplFunctions\echoDivider();
+
     }
 
     public function echoHeaderPic() {

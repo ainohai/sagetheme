@@ -51,7 +51,7 @@ abstract class KlabAbstractEchoPostType
 
     public function echoPosts() {
         if($this->htmlSection) {
-            echo '<section class="' . KlabTemplFunctions\constructWrapperSectionClasses() . '">';
+            echo '<section class="' . KlabTemplFunctions\constructWrapperSectionClasses($this->blockModifier) . '">';
         }
 
         if(!$this->printEditingComponents){
@@ -112,8 +112,8 @@ abstract class KlabAbstractEchoPostType
         if ($wp_query->have_posts() ) {
 
             if(isset($this->listTitle)) {
-                echo '<div class="mdl-cell mdl-cell--12-col mdl-card__title">';
-                echo '<h2 class="mdl-card__title-text">'. $this->listTitle .'</h2>';
+                echo '<div class="mdl-cell mdl-cell--12-col postSection__title">';
+                echo '<h2 class="postSection__title-text">'. $this->listTitle .'</h2>';
                 echo '</div>';
             }
 

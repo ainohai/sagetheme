@@ -1,6 +1,6 @@
 .rslides .caption {
   @include textOverImage();
-  font-size:1em;
+  //font-size:1em;
   font-weight: normal;
   text-transform: none;
   position:absolute;
@@ -13,10 +13,14 @@
 
 }
 
+.logicalPieceOfContent .rslides {
+  margin-bottom:32px;
+}
+
 .postSection--klabLabMember {
   max-width: $maxContentWidth;
 
-  .mdl-card__media {
+  .postSection__media {
     margin-top:16px;
     margin-left:auto;
     margin-right:auto;
@@ -40,4 +44,11 @@
   width:$smallerContentWidth;
   margin-left:auto;
   margin-right:auto;
+}
+
+li.mdl-list__item.klabLabMember__content {
+  min-height:inherit;
+  height:auto;
+  padding-top:0px;
+  padding-bottom:0px;
 }

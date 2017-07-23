@@ -17,6 +17,7 @@ abstract class KlabAbstractPostSection
     protected $modifierArray;
     private $gridSpacing;
     private $noGrid;
+    protected $sectionId;
 
     protected $title;
     protected $content;
@@ -24,12 +25,13 @@ abstract class KlabAbstractPostSection
     protected $imageCaption;
 
 
-    public function __construct($sectionName, $modifierArray = null, $gridSpacing = true, $noGrid = false)
+    public function __construct($sectionName, $modifierArray = null, $gridSpacing = true, $noGrid = false, $sectionId = null)
     {
         $this->sectionName = $sectionName;
         $this->gridSpacing = $gridSpacing;
         $this->noGrid = $noGrid;
         $this->modifierArray = $modifierArray;
+        $this->sectionId = $sectionId;
 
     }
 
@@ -37,7 +39,9 @@ abstract class KlabAbstractPostSection
     {
 ?>
 
-        <div class="<?php echo KlabTemplFunctions\constructSectionClasses($this->sectionName, $this->gridSpacing, $this->noGrid, $this->modifierArray); ?>">
+        <div class="<?php echo KlabTemplFunctions\constructSectionClasses($this->sectionName, $this->gridSpacing, $this->noGrid, $this->modifierArray); ?>"
+             <?php if (!empty($this->sectionId)) {echo 'id="'.$this->sectionId.'"';} ?>
+        >
 
             <?php
             $this->echoContent();
@@ -110,12 +114,12 @@ class KlabContentSide extends KlabAbstractPostSection
 
     public function echoContent()
     {
-        echo '<div class="mdl-cell mdl-cell--12-col mdl-card '. $this::CONTENT_SIDE . '__content">';
-        echo '<div class="mdl-card__title">';
-        echo '<h2 class="mdl-card__title-text">'. $this->title .'</h2>';
+        echo '<div class="mdl-cell mdl-cell--12-col  '. $this::CONTENT_SIDE . '__content">';
+        echo '<div class="postSection__title">';
+        echo '<h2 class="postSection__title-text">'. $this->title .'</h2>';
         echo '</div>';
 
-        echo '<div class="mdl-card__supporting-text">';
+        echo '<div class="postSection__supporting-text">';
         echo $this->content;
         echo '</div>';
         echo '</div>';
@@ -137,14 +141,14 @@ class KlabBigSidePicSection extends KlabAbstractPostSection
 
     public function echoContent()
     {
-        echo '<div class="mdl-card mdl-cell mdl-cell--5-col">';
+        echo '<div class=" mdl-cell mdl-cell--5-col">';
 
         $this->echoSidePanel();
 
         echo '</div>';
 
-        echo '<div class="mdl-card mdl-cell mdl-cell--7-col '. $this::BIG_SIDE_PIC .'__content" >';
-        echo '<div class="mdl-card__supporting-text">';
+        echo '<div class=" mdl-cell mdl-cell--7-col '. $this::BIG_SIDE_PIC .'__content" >';
+        echo '<div class="postSection__supporting-text">';
 
         echo $this->content;
 
@@ -166,7 +170,7 @@ class KlabMapSectionSection extends KlabBigSidePicSection  {
 
     protected function echoSidePanel()
     {
-        echo '<div class="mdl-card__media" id="map">';
+        echo '<div class="postSection__media" id="map">';
         echo '</div>';
     }
 }

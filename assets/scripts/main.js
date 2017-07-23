@@ -19,7 +19,6 @@
         'common': {
             init: function() {
                 // JavaScript to be fired on all pages
-                console.log("running common");
 
                 $('.gallery-size-thumbnail').addClass('mdl-grid');
                 $('.gallery-size-thumbnail .gallery-item').addClass('mdl-cell--4-col');
@@ -105,7 +104,6 @@
                     //maxwidth: 800
                 });
 
-                console.log("running labmemb");
             }
 
         }
@@ -133,7 +131,6 @@
 
             // Fire page-specific init JS, and then finalize JS
             $.each(document.body.className.replace(/-/g, '_').split(/\s+/), function(i, classnm) {
-                console.log(classnm);
                 UTIL.fire(classnm);
                 UTIL.fire(classnm, 'finalize');
             });
@@ -149,7 +146,6 @@
 })(jQuery); // Fully reference jQuery after this point.
 
 function initMap () {
-    console.log("inifMap");
     var location = {lat: 60.1912461, lng: 24.9042853};
     var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 13,

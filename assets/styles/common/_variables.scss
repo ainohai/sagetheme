@@ -22,9 +22,10 @@ $accent-bg:#9d9d9d;
 $footerText: #d0d0d0;
 
 //Fonts
-$base-font-family: "Open Sans",Helvetica,Arial,sans-serif,Nimbus Sans L;
-$base-font-serif: "Georgia", "Times New Roman", serif;
+$base-font-serif: 'Noto serif', serif;
+$base-font-sans: 'Open Sans', sans-serif;
 $base-line-height: 1.8em;
+$base-font-size: 16px;
 
 $base-font-color: #424242;
 $kivaTurkoosi: #5bc0de;
@@ -38,11 +39,9 @@ $textOverImageBg: rgba(128, 128, 128, 0.4);
 @mixin header-text() {
   font-style: normal;
   font-weight: 700;
-  letter-spacing: -0.05em;
-  line-height: 1.1em;
-  margin-top: 0;
+  letter-spacing: 0.03em;
   text-transform: uppercase;
-  font-family: $base-font-family;
+  font-family: $base-font-sans;
 }
 
 //For texts placed over images:

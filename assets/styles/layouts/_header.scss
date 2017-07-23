@@ -29,15 +29,12 @@
     font-size: 16px;
   }
   .mdl-navigation__link.contrast {
-    //@include white-bg();
-    //color : $primary-accent-color;
     border: 2px, solid $white;
     line-height: 28px;
   }
 }
 .invert {
   .mdl-navigation__link.contrast {
-    //@include white-bg();
     color: $primary-accent-color;
     border: 2px, solid $primary-accent-color;
   }
@@ -67,6 +64,10 @@
   a:hover.mdl-navigation__link  {
     color: $gray;
   }
+}
+
+.mdl-navigation__link--weighted {
+  @include header-text;
 }
 
 #klab-intraLinks {

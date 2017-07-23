@@ -14,18 +14,11 @@ class KlabContentInBox extends KlabAbstractPostSection
 {
 
     const CONTENT_IN_BOX = 'contentInBox';
-    const OVER_IMAGE_MODIFIER = '-overImage';
-    const WITH_BACKGROUND_MODIFIER ='-hasBackground';
-    const BIG_TEXT_MODIFIER = '-bigText';
 
-    public function __construct($overImage = false, $hasBackground = false, $bigText = false, $noGridSpacing = false)
+    public function __construct($overImage = false, $hasBackground = false, $bigText = false, $noGridSpacing = false, $modifierArray = null, $sectionId = null)
     {
-        $modifierArray = [];
-        if ($overImage) { array_push($modifierArray, self::OVER_IMAGE_MODIFIER); }
-        if ($hasBackground) { array_push($modifierArray, self::WITH_BACKGROUND_MODIFIER);}
-        if ($bigText) { array_push($modifierArray, self::BIG_TEXT_MODIFIER);}
 
-        parent::__construct(self::CONTENT_IN_BOX, $modifierArray, !$noGridSpacing);
+        parent::__construct(self::CONTENT_IN_BOX, $modifierArray, !$noGridSpacing, false, $sectionId);
 
     }
 
@@ -37,25 +30,25 @@ class KlabContentInBox extends KlabAbstractPostSection
     public function echoContent()
     {
         ?>
-        <div class="mdl-cell mdl-card mdl-cell--12-col">
+        <div class="mdl-cell  mdl-cell--12-col">
 
             <?php
             echo (!empty($this->title)) ?
-                '<div class="mdl-card__title">
-                    <h2 class="mdl-card__title-text">'
+                '<div class="postSection__title">
+                    <h2 class="postSection__title-text">'
                 . $this->title .
                 '</h2>
                 </div>' : ''; ?>
 
             <?php
             echo (!empty($this->image)) ?
-                '<div class="mdl-card__media">' .
+                '<div class="postSection__media">' .
                 $this->image
                 . '</div>'
                 : ''; ?>
 
             <?php    echo (!empty($this->content)) ?
-                '<div class="mdl-card__supporting-text">' .
+                '<div class="postSection__supporting-text">' .
                 $this->filterPostContent($this->content)
                 . '</div>'
                 : ''; ?>

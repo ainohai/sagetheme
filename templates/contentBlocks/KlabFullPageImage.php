@@ -51,15 +51,15 @@ class KlabFullPageImage extends KlabPostSection\KlabAbstractPostSection
 
         <div class="mdl-card mdl-cell--12-col">
 
-            <div class="mdl-card__media"
+            <div class="postSection__media"
                 <?php echo (!empty($this->backgroundImageUrl)) ?  'style="background-image: url('. $this->backgroundImageUrl .'"' : '' ?>
             >
 
                 <?php $this->echoEditButton(); ?>
 
                 <?php if (isset($this->title)) { ?>
-                    <div class="mdl-card__title">
-                        <h1 class="mdl-card__title-text">
+                    <div class="postSection__title">
+                        <h1 class="postSection__title-text">
 
                             <?php echo $this->title; ?>
 

@@ -10,14 +10,14 @@ class KlabResearchTopic extends KlabAbstractEchoPostType
 
     public function __construct()
     {
-        parent::__construct(self::POST_TYPE_SLUG, self::BLOCK_MODIFIER);
+        parent::__construct(self::POST_TYPE_SLUG, self::BLOCK_MODIFIER, null, true);
     }
 
     protected function echoWpLoopContents() {
 
         global $post;
 
-        $abstractSection = new KlabContentInBox(false, false);
+        $abstractSection = new KlabContentInBox(false, false, false, false, array('-abstractText'), $post->post_name);
         $abstractSection->setContent(get_the_content());
         $abstractSection->setTitle(get_the_title());
         $abstractSection->setImage(get_the_post_thumbnail());

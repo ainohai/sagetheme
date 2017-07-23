@@ -2,10 +2,10 @@ footer {
   backgroud-color: $black;
   margin-top: 32px;
 
-  a, p {
+  a, p, span, li {
     color: $footerText;
-    font-family: $base-font-family;
-    font-size:15px;
+    font-family: $base-font-serif;
+    font-size:17px;
   }
 
 }

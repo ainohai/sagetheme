@@ -16,6 +16,7 @@ class KlabDefaultPage
 {
     protected $wp_query;
     protected $post;
+    private $sectionName;
 
     public function __construct()
     {
@@ -35,7 +36,7 @@ class KlabDefaultPage
     }
 
     public function echoPageAndSection() {
-        echo '<section class="'. \Roots\Sage\KlabTemplFunctions\constructWrapperSectionClasses() .'">';
+        echo '<section class="'. \Roots\Sage\KlabTemplFunctions\constructWrapperSectionClasses($this->sectionName) .'">';
         $this->echoPage();
         echo '</section>';
 
@@ -93,6 +94,10 @@ class KlabDefaultPage
 
     protected function echoAfterChildren(){
         return;
+    }
+
+    protected function setSectionName($sectionName){
+        $this->sectionName = $sectionName;
     }
 
 }
