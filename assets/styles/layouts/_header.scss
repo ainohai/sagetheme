@@ -97,7 +97,9 @@
     background-color: initial;
     
     i {
-      color: $base-font-color;
+      background-color:$primary-accent-color;
+      color:$white;
+
     }
   }
 

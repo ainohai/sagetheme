@@ -115,15 +115,15 @@ img {
 
 }
 
-.postSection__supporting-text {
+.postSection__supporting-text, .postSection__title-text, .postSection__subtitle-text {
   padding-left:24px;
   padding-right:24px;
 }
 
-.postSection__title-text {
-  padding-left:24px;
-  padding-right:24px;
+.postSection__subtitle-text {
+  font-weight:700;
 }
+
 
 .mdl-grid {
   max-width: $maxContentWidth - 50px;

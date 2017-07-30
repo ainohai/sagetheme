@@ -61,6 +61,18 @@ abstract class KlabAbstractPostSection
         return $content;
     }
 
+    protected function echoImageAndCaption () {
+        echo $this->image;
+        echo '<span class="caption">' . $this->imageCaption . '</span>';
+    }
+
+    private function addImageCaption() {
+        global $post;
+        if (has_post_thumbnail($post->ID)) {
+           $this->imageCaption = get_post(get_post_thumbnail_id($post))->post_excerpt;
+        }
+}
+
     /**
      * @param mixed $title
      */
@@ -80,9 +92,12 @@ abstract class KlabAbstractPostSection
     /**
      * @param mixed $image
      */
-    public function setImage($image)
+    public function setImage($image, $setCaption = true)
     {
         $this->image = $image;
+        if ($setCaption) {
+            $this->addImageCaption();
+        }
     }
 
     /**
@@ -143,7 +158,7 @@ class KlabBigSidePicSection extends KlabAbstractPostSection
     {
         echo '<div class=" mdl-cell mdl-cell--5-col">';
 
-        $this->echoSidePanel();
+        $this->echoImageAndCaption();
 
         echo '</div>';
 
@@ -154,13 +169,6 @@ class KlabBigSidePicSection extends KlabAbstractPostSection
 
         echo '</div>';
         echo '</div>';
-
-    }
-
-    protected function echoSidePanel () {
-
-        echo $this->image;
-        echo '<span class="caption">' . $this->imageCaption . '</span>';
 
     }
 

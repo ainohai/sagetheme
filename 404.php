@@ -1,7 +1,5 @@
-<?php get_template_part('templates/page', 'header'); ?>
-
-<div class="alert alert-warning">
-  <?php _e('Sorry, but the page you were trying to view does not exist.', 'sage'); ?>
-</div>
-
-<?php get_search_form(); ?>
+<?php
+use Roots\Sage\ContentInBox\KlabContentInBox;
+$contentInBox = new KlabContentInBox(false, false);
+$contentInBox->setContent("Sorry, the page you were searching wasn't found.");
+$contentInBox->run(); ?>

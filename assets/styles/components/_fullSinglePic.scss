@@ -17,6 +17,17 @@
     }
   }
 
+.is-small-screen {
+  .postSection--fullSinglePic .postSection__media {
+      height:290px;
+    .postSection__title-text {
+      font-size:26px;
+      margin-top:120px;
+    }
+
+  }
+}
+
 .postSection--fullSinglePic.-maxHeight .postSection__media {
   max-height:650px;
 }

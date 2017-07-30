@@ -12,3 +12,14 @@
     }
   }
 }
+
+.postSection--klabInMedia {
+  .postSection__media {
+    img {
+      max-width: 100%;
+      height: auto;
+      float: right;
+      margin-top:24px;
+    }
+  }
+}

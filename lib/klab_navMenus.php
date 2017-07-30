@@ -7,60 +7,6 @@
  */
 namespace Roots\Sage\KlabNavMenus;
 
-/*add_action( 'init', __NAMESPACE__ . '\\registerLabHomePageMenu' );
-//add_action('save_post',  __NAMESPACE__ . '\\updateLabHomePageMenu' );
-
-const klab_primaryNavName = 'klab-home-primary-menu';
-
-//TO DO: UPDATE MENU ON SAVE_POST
-function registerLabHomePageMenu() {
-
-    //wp_delete_nav_menu( $primaryNavName );
-    if ( !is_nav_menu( klab_primaryNavName )) {
-        $menuId = wp_create_nav_menu(klab_primaryNavName);
-
-        $frontPageId = get_option('page_on_front');
-        $navMenuPages = getPageAndItsChildren($frontPageId);
-
-
-        foreach ($navMenuPages as $navMenuPage ){
-
-            updateMenuItem($navMenuPage, $menuId);
-        }
-
-       if( !has_nav_menu( klab_primaryNavName ) ){
-
-            $locations = get_theme_mod('nav_menu_locations');
-            $locations[klab_primaryNavName] = $menuId;
-            set_theme_mod( 'nav_menu_locations', $locations );
-       }
-
-    }
-}
-
-function updateLabHomePageMenu($post_id)
-{
-    $menu_obj = get_term_by( 'name', klab_primaryNavName, 'nav_menu' );
-    updateMenuItem(get_post($post_id), $menu_obj->term_id);
-
-}
-
-/*Post names etc are already updated, but does not work when page is added(=new child) or removed
- * function updateMenuItem ($post, $menuId){
-    $menuStatus = get_post_status( $post->ID ) ? 'publish' : 'draft';
-    $menu_item_data = array(
-
-        'menu-item-object-id' => $post->ID,
-        'menu-item-parent-id' => 0,
-        'menu-item-object' => 'page',
-        'menu-item-type'      => 'post_type',
-        'menu-item-status'    => $menuStatus
-
-    );
-
-    wp_update_nav_menu_item( $menuId, 0, $menu_item_data);
-
-}*/
 define("FOR_PATIENTS_ID", 3677);
 define("FOR_PATIENTS_PARENT_ID", 3949);
 define("LAB_HOME_PARENT_ID", 3946);
@@ -69,7 +15,12 @@ function echoPrimaryNavigation () {
 
     global $post;
 
-    $parentPageId = $post->post_parent ? $post->post_parent : $post->ID;
+    if (isset($post)) {
+        $parentPageId = $post->post_parent ? $post->post_parent : $post->ID;
+    }
+    else {
+        $parentPageId = LAB_HOME_PARENT_ID;
+    }
     $frontPageId = get_option( 'page_on_front' );
     $navMenuPages = getPageChildren($parentPageId);
 
@@ -92,7 +43,12 @@ function echoPrimaryNavigation () {
         }
         echo '<div class="mdl-layout-spacer"></div>';
 
-        $linkId = ($post->post_parent == LAB_HOME_PARENT_ID || $post->ID == $frontPageId) ? FOR_PATIENTS_ID : $frontPageId;
+        if (isset($post)) {
+            $linkId = ($post->post_parent == LAB_HOME_PARENT_ID || $post->ID == $frontPageId) ? FOR_PATIENTS_ID : $frontPageId;
+        }
+        else {
+            $linkId = FOR_PATIENTS_ID;
+        }
         $linkPost = get_post($linkId);
         echo '<a class="mdl-navigation__link mdl-navigation__link--weighted contrast" href="'. get_post_permalink($linkId).'">';
         echo $linkPost->post_title;

@@ -25,6 +25,7 @@ $sage_includes = [
      'templates/postTypeTemplates/KlabResearchTopic.php',
     'templates/postTypeTemplates/KlabLabMemberSlider.php',
     'templates/postTypeTemplates/KlabLabMembers.php',
+    'templates/postTypeTemplates/KlabInMedia.php',
     //Page classes
     'templates/pages/KlabDefaultPage.php',
     'templates/pages/KlabDefaultEntryPage.php',
@@ -38,7 +39,8 @@ $sage_includes = [
     'templates/contentBlocks/KlabContentSide.php',
     'templates/contentBlocks/KlabBigSidePicSection.php',
     'templates/contentBlocks/KlabPublicationSection.php',
-    'templates/contentBlocks/KlabLabMemberSection.php'
+    'templates/contentBlocks/KlabLabMemberSection.php',
+    'templates/contentBlocks/KlabInMediaSection.php'
 
 ];
 

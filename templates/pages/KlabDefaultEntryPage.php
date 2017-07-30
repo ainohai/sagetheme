@@ -10,6 +10,7 @@ namespace Roots\Sage\KlabPage;
 
 use Roots\Sage\ContentInBox\KlabContentInBox;
 use Roots\Sage\FullPageImage\KlabFullPageImage;
+use Roots\Sage\KlabEchoPostType\KlabInMedia;
 use Roots\Sage\KlabResearchTopic\KlabResearchTopic;
 
 class KlabDefaultEntryPage extends KlabDefaultPage
@@ -109,6 +110,7 @@ class KlabPublicationPage extends \Roots\Sage\KlabPage\KlabDefaultEntryPage
 
         $this->echoPubsList(false);
 
+
     }
 
     private function echoPubsList($justSelectedPubs){
@@ -158,4 +160,14 @@ class KlabTutkimuksemmeChildPage extends \Roots\Sage\KlabPage\KlabDefaultEntryPa
 
     }
 
-}?>
+}
+
+class KlabInMediaPage extends \Roots\Sage\KlabPage\KlabDefaultEntryPage {
+    public function echoAfterPage() {
+
+        $klabInMedia = new KlabInMedia();
+        $klabInMedia->echoPosts();
+    }
+
+}
+?>
