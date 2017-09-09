@@ -158,7 +158,7 @@ class KlabBigSidePicSection extends KlabAbstractPostSection
     {
         echo '<div class=" mdl-cell mdl-cell--5-col">';
 
-        $this->echoImageAndCaption();
+        $this->echoSidePanel();
 
         echo '</div>';
 
@@ -170,6 +170,10 @@ class KlabBigSidePicSection extends KlabAbstractPostSection
         echo '</div>';
         echo '</div>';
 
+    }
+
+    protected function echoSidePanel() {
+        $this->echoImageAndCaption();
     }
 
 }

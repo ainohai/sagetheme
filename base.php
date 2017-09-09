@@ -6,25 +6,25 @@ use Roots\Sage\KlabTemplFunctions;
 
 ?>
 
-<!doctype html>
-<html <?php language_attributes(); ?>>
-<?php get_template_part('templates/head'); ?>
-<body <?php body_class(); ?>>
-<!--[if IE]>
-<div class="alert alert-warning">
-    <?php _e('You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.', 'sage'); ?>
-</div>
-<![endif]-->
+    <!doctype html>
+    <html <?php language_attributes(); ?>>
+    <?php get_template_part('templates/head'); ?>
+    <body <?php body_class(); ?>>
+    <!--[if IE]>
+    <div class="alert alert-warning">
+        <?php _e('You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.', 'sage'); ?>
+    </div>
+    <![endif]-->
 
 
 
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
 
-            <?php
-            do_action('get_header');
-            get_template_part('templates/header');
-            ?>
+        <?php
+        do_action('get_header');
+        get_template_part('templates/header');
+        ?>
 
 
         <main class="main mdl-layout__content" >
@@ -46,6 +46,6 @@ use Roots\Sage\KlabTemplFunctions;
 
     </div>
 
-</body>
-</html>
+    </body>
+    </html>
 <?php ?>

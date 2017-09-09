@@ -101,7 +101,7 @@ function display_sidebar() {
  */
 function assets() {
 
-    wp_enqueue_style( 'klab-google-fonts/css', 'https://fonts.googleapis.com/css?family=Noto+serif|Open+Sans', false );
+    wp_enqueue_style( 'klab-google-fonts/css', 'https://fonts.googleapis.com/css?family=Open+Sans', false );
     wp_enqueue_style('material-design-lite-icons/css', 'https://fonts.googleapis.com/icon?family=Material+Icons', false, null);
     wp_enqueue_style('material-design-lite/css', 'https://code.getmdl.io/1.3.0/material.min.css', null, false, 'screen');
     wp_enqueue_script('material-design-lite/js', 'https://code.getmdl.io/1.3.0/material.min.js', null, null, false);
