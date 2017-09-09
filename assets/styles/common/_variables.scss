@@ -23,7 +23,7 @@ $footerText: #d0d0d0;
 
 //Fonts
 $base-font-serif: "Georgia", "Times New Roman", serif;
-$base-font-sans: 'Open Sans', sans-serif;
+$base-font-sans: Helvetica,Arial,sans-serif;
 $base-line-height: 1.8em;
 
 $base-font-color: #424242;
@@ -37,7 +37,9 @@ $textOverImageBg: rgba(128, 128, 128, 0.4);
 @mixin header-text() {
   font-style: normal;
   font-weight: 700;
-  letter-spacing: 0.03em;
+  letter-spacing: -0.05em;
+  line-height: 1.1em;
+  margin-top: 0;
   text-transform: uppercase;
   font-family: $base-font-sans;
 }
